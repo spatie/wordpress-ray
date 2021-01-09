@@ -4,7 +4,7 @@
  * Plugin Name: Ray
  * Plugin URI: https://github.com/spatie/wordpress-ray
  * Description: Easily debug WordPress apps
- * Version: 0.0.1
+ * Version: 1.0.0
  * Author: Spatie
  * Author URI: http://spatie.be
  * License: MIT
