@@ -13,10 +13,6 @@
 
 use Spatie\WordpressRay\Ray;
 
-if (!is_readable(__DIR__ . '/vendor/autoload.php')) {
-    return;
-}
-
 require __DIR__ . '/vendor/autoload.php';
 
 (new Ray())
