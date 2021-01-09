@@ -1,5 +1,6 @@
 {
     "name": "spatie/wordpress-ray",
+    "type": "wordpress-plugin",
     "description": "Debug WordPress apps with ease",
     "keywords": [
         "spatie",
