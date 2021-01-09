@@ -6,7 +6,7 @@
  * Description: Easily debug WordPress apps
  * Version: 1.0.0
  * Author: Spatie
- * Author URI: http://spatie.be
+ * Author URI: https://spatie.be
  * License: MIT
  * Requires PHP: 7.4
  */
