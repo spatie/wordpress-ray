@@ -4,7 +4,8 @@
     "description": "Debug WordPress apps with ease",
     "keywords": [
         "spatie",
-        "wordpress-ray"
+        "ray",
+        "debugging"
     ],
     "homepage": "https://github.com/spatie/wordpress-ray",
     "license": "MIT",
