@@ -21,9 +21,7 @@
         "typisttech/imposter-plugin": "^0.6.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.17",
-        "phpunit/phpunit": "^9.5",
-        "vimeo/psalm": "^4.3"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
