@@ -6,4 +6,5 @@
 * Author: Spatie
 * Author URI: http://spatie.be
 * License: MIT
+* Requires PHP: 7.4
 */
