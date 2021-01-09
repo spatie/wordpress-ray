@@ -1,0 +1,25 @@
+<?php
+
+namespace Spatie\WordPressRay\Spatie\Ray\Origin;
+
+class Origin
+{
+    public ?string $file;
+
+    public ?int $lineNumber;
+
+    public function __construct(?string $file, ?int $lineNumber)
+    {
+        $this->file = $file;
+
+        $this->lineNumber = $lineNumber;
+    }
+
+    public function toArray(): array
+    {
+        return [
+            'file' => $this->file,
+            'line_number' => $this->lineNumber,
+        ];
+    }
+}
