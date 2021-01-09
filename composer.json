@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "spatie/wordpress-ray",
+    "description": "Debug WordPress apps with ease",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "spatie",
+        "wordpress-ray"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/spatie/wordpress-ray",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_homepage",
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
             "role": "Developer"
         }
     ],
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Spatie\\WordpressRay\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Spatie\\WordpressRay\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,11 +47,7 @@
     "funding": [
         {
             "type": "github",
-            "url": "https://github.com/sponsors/:vendor_name"
-        },
-        {
-            "type": "other",
-            "url": ":author_homepage"
+            "url": "https://github.com/sponsors/spatie"
         }
     ]
 }
