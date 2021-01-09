@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '8156695efcf9f69ea77d95cb99a8aaf1537a1f17',
+    'reference' => 'fac48c09adfcadc3a85c38eceb1914999161ae91',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -19,6 +19,15 @@
       array (
       ),
       'reference' => '283a40c901101e66de7061bd359252c013dcc43c',
+    ),
+    'composer/installers' => 
+    array (
+      'pretty_version' => 'v1.9.0',
+      'version' => '1.9.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b93bcf0fa1fccb0b7d176b0967d969691cd74cca',
     ),
     'doctrine/instantiator' => 
     array (
@@ -200,6 +209,13 @@
         0 => '4.1.1',
       ),
     ),
+    'roundcube/plugin-installer' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '*',
+      ),
+    ),
     'sebastian/cli-parser' => 
     array (
       'pretty_version' => '1.0.1',
@@ -344,6 +360,13 @@
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
     ),
+    'shama/baton' => 
+    array (
+      'replaced' => 
+      array (
+        0 => '*',
+      ),
+    ),
     'spatie/backtrace' => 
     array (
       'pretty_version' => '1.0.0',
@@ -378,7 +401,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '8156695efcf9f69ea77d95cb99a8aaf1537a1f17',
+      'reference' => 'fac48c09adfcadc3a85c38eceb1914999161ae91',
     ),
     'symfony/console' => 
     array (

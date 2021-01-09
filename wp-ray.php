@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name: Ray
+ * Plugin Name: Spatie Ray
  * Plugin URI: https://github.com/spatie/wordpress-ray
  * Description: Easily debug WordPress apps
  * Version: 1.0.0
