@@ -17,7 +17,8 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "spatie/ray": "^1.3"
+        "spatie/ray": "^1.3",
+        "typisttech/imposter-plugin": "^0.6.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.17",
@@ -50,5 +51,10 @@
             "type": "github",
             "url": "https://github.com/sponsors/spatie"
         }
-    ]
+    ],
+    "extra": {
+        "imposter": {
+            "namespace": "Spatie\\WordPressRay"
+        }
+    }
 }
