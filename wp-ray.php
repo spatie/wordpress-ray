@@ -13,6 +13,7 @@
 
 use Spatie\WordpressRay\Ray;
 
+// this will add the `ray()` function
 require __DIR__ . '/vendor/autoload.php';
 
 (new Ray())

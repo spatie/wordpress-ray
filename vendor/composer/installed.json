@@ -3874,6 +3874,8 @@
         "sebastian/type",
         "sebastian/version",
         "theseer/tokenizer",
+        "typisttech/imposter",
+        "typisttech/imposter-plugin",
         "webmozart/assert"
     ]
 }
