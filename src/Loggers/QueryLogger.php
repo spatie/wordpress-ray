@@ -14,6 +14,8 @@ class QueryLogger
             return $this;
         }
 
+        define('SAVEQUERIES', true);
+
         add_filter('log_query_custom_data', [$this, 'sendQueryToRay'], 1, 3);
 
         return $this;
@@ -32,9 +34,11 @@ class QueryLogger
         return $this;
     }
 
-    public function sendQueryToRay($data, $sql, $time): array
+    public function sendQueryToRay($data, $sql, $timeInSeconds): array
     {
-        $payload = new ExecutedQueryPayload($sql, $time);
+        $timeInMilliSeconds = $timeInSeconds / 1000;
+
+        $payload = new ExecutedQueryPayload($sql, $timeInMilliSeconds);
 
         ray()->sendRequest($payload);
 
