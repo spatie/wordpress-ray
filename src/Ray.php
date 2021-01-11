@@ -43,6 +43,11 @@ class Ray extends BaseRay
         return $this;
     }
 
+    public function queries(): self
+    {
+        return $this->showQueries();
+    }
+
     public function stopShowingQueries(): self
     {
         static::$queryLogger->stopShowingQueries();
