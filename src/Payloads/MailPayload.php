@@ -5,7 +5,7 @@ namespace Spatie\WordpressRay\Payloads;
 use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 
-class PHPMailerPayload extends Payload
+class MailPayload extends Payload
 {
     protected PHPMailer $phpmailer;
 

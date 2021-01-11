@@ -7,11 +7,13 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 class ExecutedQueryPayload extends Payload
 {
     protected string $sql;
+
     protected float $time;
 
     public function __construct(string $sql, float $time)
     {
         $this->sql = $sql;
+
         $this->time = $time;
     }
 
@@ -25,7 +27,6 @@ class ExecutedQueryPayload extends Payload
         return [
             'sql' => $this->sql,
             'bindings' => [],
-            'connection_name' => 'wpdb',
             'time' => $this->time,
         ];
     }

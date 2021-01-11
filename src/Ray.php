@@ -2,10 +2,21 @@
 
 namespace Spatie\WordpressRay;
 
-class Ray
+use Spatie\WordpressRay\Loggers\MailLogger;
+use Spatie\WordpressRay\Loggers\QueryLogger;
+use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
+
+class Ray extends BaseRay
 {
-    public function registerWordPressMacros(): void
+    protected static QueryLogger $queryLogger;
+
+    protected static MailLogger $mailLogger;
+
+
+    public static function bootForWordPress()
     {
-        // add custom registrations here
+        static::$queryLogger = new QueryLogger();
+
+        static::$mailLogger = new MailLogger();
     }
 }

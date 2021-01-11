@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\WordpressRay;
+namespace Spatie\WordpressRay\Loggers;
 
-use Spatie\WordpressRay\Payloads\PHPMailerPayload;
+use Spatie\WordpressRay\Payloads\MailPayload;
 
-class PHPMailerLogger
+class MailLogger
 {
     protected bool $listenForMails = false;
     protected bool $mailListenerRegistered = false;
@@ -38,7 +38,7 @@ class PHPMailerLogger
 
     public function listener($phpmailer)
     {
-        $payload = new PHPMailerPayload($phpmailer);
+        $payload = new MailPayload($phpmailer);
 
         ray()->sendRequest($payload);
     }
