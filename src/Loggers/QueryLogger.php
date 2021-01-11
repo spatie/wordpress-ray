@@ -8,7 +8,7 @@ class QueryLogger
 {
     protected bool $active = false;
 
-    public function startLoggingQueries(): self
+    public function showQueries(): self
     {
         if ($this->active) {
             return $this;
@@ -19,20 +19,20 @@ class QueryLogger
         return $this;
     }
 
-    public function stopLoggingQueries(): self
+    public function stopShowingQueries(): self
     {
         if (! $this->active) {
             return $this;
         }
 
-        remove_filter('log_query_custom_data', [$this, 'queryListener'], 1, 3);
+        remove_filter('log_query_custom_data', [$this, 'sendQueryToRay'], 1, 3);
 
         $this->active = false;
 
         return $this;
     }
 
-    public function sendQueryToRay($data, $sql, $time): self
+    protected function sendQueryToRay($data, $sql, $time): self
     {
         $payload = new ExecutedQueryPayload($sql, $time);
 

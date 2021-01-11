@@ -6,39 +6,37 @@ use Spatie\WordpressRay\Payloads\MailPayload;
 
 class MailLogger
 {
-    protected bool $listenForMails = false;
-    protected bool $mailListenerRegistered = false;
+    protected bool $active = false;
 
-    public function isLoggingMails(): bool
+    public function showMails(): self
     {
-        return $this->listenForMails;
-    }
-
-    public function startLoggingMails(): self
-    {
-        $this->listenForMails = true;
-
-        if (! $this->mailListenerRegistered) {
-            add_action('phpmailer_init', [$this, 'listener']);
-
-            $this->mailListenerRegistered = true;
+        if ($this->active) {
+            return $this;
         }
 
-        return $this;
-    }
+        add_action('phpmailer_init', [$this, 'sendMailToRay']);
 
-    public function stopLoggingMails(): self
-    {
-        remove_action('phpmailer_init', [$this, 'listener']);
-
-        $this->listenForMails = false;
+        $this->active = true;
 
         return $this;
     }
 
-    public function listener($phpmailer)
+    public function stopShowingMails(): self
     {
-        $payload = new MailPayload($phpmailer);
+        if (! $this->active) {
+            return $this;
+        }
+
+        remove_action('phpmailer_init', [$this, 'sendMailToRay']);
+
+        $this->active = false;
+
+        return $this;
+    }
+
+    protected function sendMailToRay($mailer)
+    {
+        $payload = new MailPayload($mailer);
 
         ray()->sendRequest($payload);
     }
