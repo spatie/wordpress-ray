@@ -36,7 +36,7 @@ class MailLogger
         return $this;
     }
 
-    protected function sendMailToRay(PHPMailer $mailer)
+    public function sendMailToRay(PHPMailer $mailer)
     {
         $mailable = new Mailable($mailer);
 
