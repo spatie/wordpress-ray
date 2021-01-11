@@ -6,6 +6,7 @@ use Closure;
 use Composer\InstalledVersions;
 use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
+use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Macroable\Macroable;
 use Spatie\WordPressRay\Spatie\Ray\Concerns\RayColors;
 use Spatie\WordPressRay\Spatie\Ray\Concerns\RaySizes;
@@ -13,7 +14,9 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\CallerPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\JsonStringPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NewScreenPayload;
@@ -145,6 +148,10 @@ class Ray
     {
         $backtrace = Backtrace::create();
 
+        if (class_exists(LaravelRay::class) && function_exists('base_path')) {
+            $backtrace->applicationPath(base_path());
+        }
+
         if ($startingFromFrame) {
             $backtrace->startingFromFrame($startingFromFrame);
         }
@@ -203,6 +210,26 @@ class Ray
     public function notify(string $text): self
     {
         $payload = new NotifyPayload($text);
+
+        return $this->sendRequest($payload);
+    }
+
+    /**
+     * Sends the provided value encoded as a JSON string using json_encode().
+     */
+    public function toJson($value): self
+    {
+        $payload = new JsonStringPayload($value);
+
+        return $this->sendRequest($payload);
+    }
+
+    /**
+     * Sends the provided JSON string decoded using json_decode().
+     */
+    public function json(string $json): self
+    {
+        $payload = new DecodedJsonPayload($json);
 
         return $this->sendRequest($payload);
     }

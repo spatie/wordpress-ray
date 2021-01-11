@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'abf831f24c73ec493b01f4abb27ed2b0740c7d55',
+    'reference' => 'c5c040bb05a546b479b26e0be60847da8e49a057',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -387,12 +387,12 @@
     ),
     'spatie/ray' => 
     array (
-      'pretty_version' => '1.3.7',
-      'version' => '1.3.7.0',
+      'pretty_version' => '1.5.3',
+      'version' => '1.5.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7cb95aa752b6a1a95e34d0457c59d95185187836',
+      'reference' => 'c1741a35906323b49888eea234bcc60d0357cb50',
     ),
     'spatie/wordpress-ray' => 
     array (
@@ -401,7 +401,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'abf831f24c73ec493b01f4abb27ed2b0740c7d55',
+      'reference' => 'c5c040bb05a546b479b26e0be60847da8e49a057',
     ),
     'symfony/console' => 
     array (
