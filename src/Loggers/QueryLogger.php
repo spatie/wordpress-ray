@@ -32,12 +32,12 @@ class QueryLogger
         return $this;
     }
 
-    public function sendQueryToRay($data, $sql, $time): self
+    public function sendQueryToRay($data, $sql, $time): array
     {
         $payload = new ExecutedQueryPayload($sql, $time);
 
         ray()->sendRequest($payload);
 
-        return $this;
+        return $data;
     }
 }
