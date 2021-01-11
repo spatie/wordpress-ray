@@ -21,26 +21,14 @@ class MailPayload extends Payload
 
     public function getContent(): array
     {
-        $content = [
-            'html' => '',
-            'from' => [],
-            'to' => [],
-            'cc' => [],
-            'bcc' => [],
+        return [
+            'mailable_class' => '',
+            'from' => $this->mailable->from(),
+            'subject' => $this->mailable->subject(),
+            'to' => $this->mailable->to(),
+            'cc' => $this->mailable->cc(),
+            'bcc' => $this->mailable->bcc(),
+            'html' => $this->mailable->body()
         ];
-
-        if ($this->mailable) {
-            $content = array_merge($content, [
-                'mailable_class' => 'WordPress mail',
-                'from' => $this->mailable->from(),
-                'subject' => $this->mailable->subject(),
-                'to' => $this->mailable->to(),
-                'cc' => $this->mailable->cc(),
-                'bcc' => $this->mailable->bcc(),
-                'html' => $this->mailable->body(),
-            ]);
-        }
-
-        return $content;
     }
 }
