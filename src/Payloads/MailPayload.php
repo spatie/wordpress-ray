@@ -2,77 +2,45 @@
 
 namespace Spatie\WordpressRay\Payloads;
 
-use PHPMailer\PHPMailer\PHPMailer as PHPMailer;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
+use Spatie\WordpressRay\Support\Mailable;
 
 class MailPayload extends Payload
 {
-    protected PHPMailer $phpmailer;
+    protected Mailable $mailable;
 
-    public function __construct(PHPMailer $phpmailer)
+    public function __construct(Mailable $mailable)
     {
-        $this->phpmailer = $phpmailer;
+        $this->mailable = $mailable;
     }
 
     public function getType(): string
     {
-        return "custom";
+        return 'mailable';
     }
 
     public function getContent(): array
     {
-        return [
-            "label" => "PHPMailer",
-            "content" => $this->makeContent(),
+        $content = [
+            'html' => $this->html,
+            'from' => [],
+            'to' => [],
+            'cc' => [],
+            'bcc' => [],
         ];
-    }
 
-    protected function formatEmailsToString($addresses): string
-    {
-        $addresses = array_map(function ($address) {
-            if (! empty($address[1])) {
-                return "$address[1] <$address[0]>";
-            }
+        if ($this->mailable) {
+            $content = array_merge($content, [
+                'mailable_class' => 'WordPress mail',
+                'from' => $this->mailable->from(),
+                'subject' => $this->mailable->subject(),
+                'to' => $this->mailable->to(),
+                'cc' => $this->mailable->cc(),
+                'bcc' => $this->mailable->bcc(),
+                'html' => $this->mailable->body()
+            ]);
+        }
 
-            return $address[0];
-        }, $addresses);
-
-        return implode(",", $addresses);
-    }
-
-    protected function makeContent(): string
-    {
-        ob_start();
-
-        $subject = $this->phpmailer->Subject;
-        $body = $this->phpmailer->Body;
-        $to = $this->formatEmailsToString($this->phpmailer->getToAddresses());
-        $cc = $this->formatEmailsToString($this->phpmailer->getCcAddresses());
-        $bcc = $this->formatEmailsToString($this->phpmailer->getBccAddresses()); ?>
-        <div class="max-w-md mb-2">
-            <div class="flex border-b">
-                <div class="w-1/3 text-gray-500">Subject</div>
-                <div class="w-2/3"><?php echo $subject; ?></div>
-            </div>
-            <div class="flex border-b">
-                <div class="w-1/3 text-gray-500">To</div>
-                <div class="w-2/3"><?php echo $to; ?></div>
-            </div>
-            <div class="flex border-b">
-                <div class="w-1/3 text-gray-500">Cc</div>
-                <div class="w-2/3"><?php echo $cc; ?></div>
-            </div>
-            <div class="flex">
-                <div class="w-1/3 text-gray-500">Bcc</div>
-                <div class="w-2/3"><?php echo $bcc; ?></div>
-            </div>
-        </div>
-
-        <div>
-            <?php echo $body; ?>
-        </div>
-        <?php
-
-        return ob_get_clean();
+        return $content;
     }
 }

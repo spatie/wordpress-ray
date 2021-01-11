@@ -2,7 +2,9 @@
 
 namespace Spatie\WordpressRay\Loggers;
 
+use PHPMailer\PHPMailer\PHPMailer;
 use Spatie\WordpressRay\Payloads\MailPayload;
+use Spatie\WordpressRay\Support\Mailable;
 
 class MailLogger
 {
@@ -34,9 +36,11 @@ class MailLogger
         return $this;
     }
 
-    protected function sendMailToRay($mailer)
+    protected function sendMailToRay(PHPMailer $mailer)
     {
-        $payload = new MailPayload($mailer);
+        $mailable = new Mailable($mailer);
+
+        $payload = new MailPayload($mailable);
 
         ray()->sendRequest($payload);
     }

@@ -64,6 +64,7 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'D' => 
         array (
@@ -182,6 +183,10 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'PhpParser\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -331,6 +336,11 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Doctrine\\Instantiator\\InstantiatorInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/InstantiatorInterface.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\ActualValueIsNotAnObjectException' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/ActualValueIsNotAnObjectException.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
@@ -1646,11 +1656,12 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
-        'Spatie\\WordpressRay\\PHPMailerLogger' => __DIR__ . '/../..' . '/src/PHPMailerLogger.php',
+        'Spatie\\WordpressRay\\Loggers\\MailLogger' => __DIR__ . '/../..' . '/src/Loggers/MailLogger.php',
+        'Spatie\\WordpressRay\\Loggers\\QueryLogger' => __DIR__ . '/../..' . '/src/Loggers/QueryLogger.php',
         'Spatie\\WordpressRay\\Payloads\\ExecutedQueryPayload' => __DIR__ . '/../..' . '/src/Payloads/ExecutedQueryPayload.php',
-        'Spatie\\WordpressRay\\Payloads\\PHPMailerPayload' => __DIR__ . '/../..' . '/src/Payloads/PHPMailerPayload.php',
-        'Spatie\\WordpressRay\\QueryLogger' => __DIR__ . '/../..' . '/src/QueryLogger.php',
+        'Spatie\\WordpressRay\\Payloads\\MailPayload' => __DIR__ . '/../..' . '/src/Payloads/MailPayload.php',
         'Spatie\\WordpressRay\\Ray' => __DIR__ . '/../..' . '/src/Ray.php',
+        'Spatie\\WordpressRay\\Support\\Mailable' => __DIR__ . '/../..' . '/src/Support/Mailable.php',
         'Spatie\\WordpressRay\\Tests\\ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
