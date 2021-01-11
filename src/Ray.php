@@ -4,6 +4,7 @@ namespace Spatie\WordPressRay;
 
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
 
 class Ray extends BaseRay
@@ -17,6 +18,8 @@ class Ray extends BaseRay
         static::$queryLogger = new QueryLogger();
 
         static::$mailLogger = new MailLogger();
+
+        Payload::$originFactoryClass = OriginFactory::class;
     }
 
     public function showMails(): self

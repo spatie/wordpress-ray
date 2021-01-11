@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3ed26fa8c97753a12de31c0961766c5",
+    "content-hash": "1320b1ba7402d32680df5e1f9e80c4c7",
     "packages": [
         {
             "name": "brick/math",
@@ -394,16 +394,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.5.4",
+            "version": "1.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "5b0660acc0cad7e43ff17b7a065fba2793b47573"
+                "reference": "4e5d340b8eb5d01d6b4ec37e171378a562a09a0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/5b0660acc0cad7e43ff17b7a065fba2793b47573",
-                "reference": "5b0660acc0cad7e43ff17b7a065fba2793b47573",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/4e5d340b8eb5d01d6b4ec37e171378a562a09a0f",
+                "reference": "4e5d340b8eb5d01d6b4ec37e171378a562a09a0f",
                 "shasum": ""
             },
             "require": {
@@ -451,7 +451,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.5.4"
+                "source": "https://github.com/spatie/ray/tree/1.5.5"
             },
             "funding": [
                 {
@@ -463,7 +463,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-01-11T18:51:58+00:00"
+            "time": "2021-01-11T23:14:50+00:00"
         },
         {
             "name": "symfony/console",

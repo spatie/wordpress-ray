@@ -1097,6 +1097,7 @@ return array(
     'Spatie\\WordPressRay\\Brick\\Math\\RoundingMode' => $vendorDir . '/brick/math/src/RoundingMode.php',
     'Spatie\\WordPressRay\\Loggers\\MailLogger' => $baseDir . '/src/Loggers/MailLogger.php',
     'Spatie\\WordPressRay\\Loggers\\QueryLogger' => $baseDir . '/src/Loggers/QueryLogger.php',
+    'Spatie\\WordPressRay\\OriginFactory' => $baseDir . '/src/OriginFactory.php',
     'Spatie\\WordPressRay\\Payloads\\ExecutedQueryPayload' => $baseDir . '/src/Payloads/ExecutedQueryPayload.php',
     'Spatie\\WordPressRay\\Payloads\\MailPayload' => $baseDir . '/src/Payloads/MailPayload.php',
     'Spatie\\WordPressRay\\Psr\\Container\\ContainerExceptionInterface' => $vendorDir . '/psr/container/src/ContainerExceptionInterface.php',
