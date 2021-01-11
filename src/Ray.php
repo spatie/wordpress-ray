@@ -12,7 +12,6 @@ class Ray extends BaseRay
 
     protected static MailLogger $mailLogger;
 
-
     public static function bootForWordPress()
     {
         static::$queryLogger = new QueryLogger();
