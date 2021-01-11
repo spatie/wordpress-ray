@@ -680,85 +680,6 @@
             "install-path": "../phpdocumentor/type-resolver"
         },
         {
-            "name": "phpmailer/phpmailer",
-            "version": "v6.2.0",
-            "version_normalized": "6.2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "e38888a75c070304ca5514197d4847a59a5c853f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/e38888a75c070304ca5514197d4847a59a5c853f",
-                "reference": "e38888a75c070304ca5514197d4847a59a5c853f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-filter": "*",
-                "ext-hash": "*",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "doctrine/annotations": "^1.2",
-                "phpcompatibility/php-compatibility": "^9.3.5",
-                "roave/security-advisories": "dev-latest",
-                "squizlabs/php_codesniffer": "^3.5.6",
-                "yoast/phpunit-polyfills": "^0.2.0"
-            },
-            "suggest": {
-                "ext-mbstring": "Needed to send email in multibyte encoding charset",
-                "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
-                "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
-                "psr/log": "For optional PSR-3 debug logging",
-                "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
-                "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
-            },
-            "time": "2020-11-25T15:24:57+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "PHPMailer\\PHPMailer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL-2.1-only"
-            ],
-            "authors": [
-                {
-                    "name": "Marcus Bointon",
-                    "email": "phpmailer@synchromedia.co.uk"
-                },
-                {
-                    "name": "Jim Jagielski",
-                    "email": "jimjag@gmail.com"
-                },
-                {
-                    "name": "Andy Prevost",
-                    "email": "codeworxtech@users.sourceforge.net"
-                },
-                {
-                    "name": "Brent R. Matzelle"
-                }
-            ],
-            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "support": {
-                "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Synchro",
-                    "type": "github"
-                }
-            ],
-            "install-path": "../phpmailer/phpmailer"
-        },
-        {
             "name": "phpspec/prophecy",
             "version": "1.12.2",
             "version_normalized": "1.12.2.0",
@@ -2626,17 +2547,17 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.5.3",
-            "version_normalized": "1.5.3.0",
+            "version": "1.5.4",
+            "version_normalized": "1.5.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "c1741a35906323b49888eea234bcc60d0357cb50"
+                "reference": "5b0660acc0cad7e43ff17b7a065fba2793b47573"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/c1741a35906323b49888eea234bcc60d0357cb50",
-                "reference": "c1741a35906323b49888eea234bcc60d0357cb50",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/5b0660acc0cad7e43ff17b7a065fba2793b47573",
+                "reference": "5b0660acc0cad7e43ff17b7a065fba2793b47573",
                 "shasum": ""
             },
             "require": {
@@ -2655,7 +2576,7 @@
                 "phpunit/phpunit": "^9.5",
                 "spatie/phpunit-snapshot-assertions": "^4.2"
             },
-            "time": "2021-01-11T17:31:56+00:00",
+            "time": "2021-01-11T18:51:58+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2686,7 +2607,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.5.3"
+                "source": "https://github.com/spatie/ray/tree/1.5.4"
             },
             "funding": [
                 {
@@ -3929,7 +3850,6 @@
         "phpdocumentor/reflection-common",
         "phpdocumentor/reflection-docblock",
         "phpdocumentor/type-resolver",
-        "phpmailer/phpmailer",
         "phpspec/prophecy",
         "phpunit/php-code-coverage",
         "phpunit/php-file-iterator",

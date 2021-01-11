@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '40efccdbf56f166c146c19351ac4de84c04034b6',
+    'reference' => '03c8f3249988c4a03ddf0558c55b46da809c22ef',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -104,15 +104,6 @@
       array (
       ),
       'reference' => '6a467b8989322d92aa1c8bf2bebcc6e5c2ba55c0',
-    ),
-    'phpmailer/phpmailer' => 
-    array (
-      'pretty_version' => 'v6.2.0',
-      'version' => '6.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'e38888a75c070304ca5514197d4847a59a5c853f',
     ),
     'phpspec/prophecy' => 
     array (
@@ -396,12 +387,12 @@
     ),
     'spatie/ray' => 
     array (
-      'pretty_version' => '1.5.3',
-      'version' => '1.5.3.0',
+      'pretty_version' => '1.5.4',
+      'version' => '1.5.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c1741a35906323b49888eea234bcc60d0357cb50',
+      'reference' => '5b0660acc0cad7e43ff17b7a065fba2793b47573',
     ),
     'spatie/wordpress-ray' => 
     array (
@@ -410,7 +401,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '40efccdbf56f166c146c19351ac4de84c04034b6',
+      'reference' => '03c8f3249988c4a03ddf0558c55b46da809c22ef',
     ),
     'symfony/console' => 
     array (

@@ -3,7 +3,9 @@
 use Spatie\WordPressRay\Illuminate\Contracts\Container\BindingResolutionException;
 use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Ray\Ray;
+
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
+use Spatie\WordPressRay\Ray as WordPressRay;
 
 if (! function_exists('ray')) {
     /**
@@ -23,9 +25,13 @@ if (! function_exists('ray')) {
             }
         }
 
+        $rayClass = class_exists(WordPressRay::class)
+            ? WordPressRay::class
+            : Ray::class;
+
         $settings = SettingsFactory::createFromConfigFile();
 
-        return (new Ray($settings))->send(...$args);
+        return (new $rayClass($settings))->send(...$args);
     }
 }
 

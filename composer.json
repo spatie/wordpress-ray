@@ -23,7 +23,6 @@
     },
     "require-dev": {
         "composer/installers": "^1.9",
-        "phpmailer/phpmailer": "^6.2",
         "phpunit/phpunit": "^9.5",
         "typisttech/imposter-plugin": "^0.6.2"
     },
@@ -56,10 +55,10 @@
     ],
     "extra": {
         "imposter": {
-            "namespace": "Spatie\\WordPressRay"
-        },
-        "excludes": [
-            "composer/installers"
-        ]
+            "namespace": "Spatie\\WordPressRay",
+            "excludes": [
+                "composer/installers"
+            ]
+        }
     }
 }
