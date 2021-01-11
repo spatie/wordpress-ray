@@ -17,6 +17,11 @@ class Ray extends BaseRay
         static::$queryLogger = new QueryLogger();
 
         static::$mailLogger = new MailLogger();
+
+        // Attempt to turn on SAVEQUERIES which gets us more detailed query logging.
+        if (!defined('SAVEQUERIES')) {
+            define('SAVEQUERIES', true);
+        }
     }
 
     public function showMails(): self

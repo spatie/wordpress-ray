@@ -14,9 +14,11 @@ class QueryLogger
             return $this;
         }
 
-        define('SAVEQUERIES', true);
-
-        add_filter('log_query_custom_data', [$this, 'sendQueryToRay'], 1, 3);
+        if ($this->useDetailedQueries()) {
+            add_filter('log_query_custom_data', [$this, 'sendDetailedQueryToRay'], 999, 3);
+        } else {
+            add_filter('query', [$this, 'sendQueryToRay'], 999);
+        }
 
         return $this;
     }
@@ -27,14 +29,31 @@ class QueryLogger
             return $this;
         }
 
-        remove_filter('log_query_custom_data', [$this, 'sendQueryToRay'], 1, 3);
+        if ($this->useDetailedQueries()) {
+            remove_filter('log_query_custom_data', [$this, 'sendDetailedQueryToRay'], 999, 3);
+        } else {
+            remove_filter('query', [$this, 'sendQueryToRay'], 999);
+        }
 
         $this->active = false;
 
         return $this;
     }
 
-    public function sendQueryToRay($data, $sql, $timeInSeconds): array
+    protected function useDetailedQueries(): bool {
+        return defined('SAVEQUERIES') && SAVEQUERIES;
+    }
+
+    public function sendQueryToRay($sql): string
+    {
+        $payload = new ExecutedQueryPayload($sql, 0);
+
+        ray()->sendRequest($payload);
+
+        return $sql;
+    }
+
+    public function sendDetailedQueryToRay($data, $sql, $timeInSeconds): array
     {
         $timeInMilliSeconds = $timeInSeconds / 1000;
 
