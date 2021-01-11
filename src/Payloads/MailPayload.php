@@ -37,7 +37,7 @@ class MailPayload extends Payload
                 'to' => $this->mailable->to(),
                 'cc' => $this->mailable->cc(),
                 'bcc' => $this->mailable->bcc(),
-                'html' => $this->mailable->body()
+                'html' => $this->mailable->body(),
             ]);
         }
 
