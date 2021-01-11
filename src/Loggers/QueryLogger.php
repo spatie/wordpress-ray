@@ -36,7 +36,7 @@ class QueryLogger
 
     public function sendQueryToRay($data, $sql, $timeInSeconds): array
     {
-        $timeInMilliSeconds = $timeInSeconds / 1000;
+        $timeInMilliSeconds = $timeInSeconds * 1000;
 
         $payload = new ExecutedQueryPayload($sql, $timeInMilliSeconds);
 
