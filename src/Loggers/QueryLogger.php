@@ -32,7 +32,7 @@ class QueryLogger
         return $this;
     }
 
-    protected function sendQueryToRay($data, $sql, $time): self
+    public function sendQueryToRay($data, $sql, $time): self
     {
         $payload = new ExecutedQueryPayload($sql, $time);
 
