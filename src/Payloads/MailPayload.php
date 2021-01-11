@@ -22,7 +22,7 @@ class MailPayload extends Payload
     public function getContent(): array
     {
         $content = [
-            'html' => $this->html,
+            'html' => '',
             'from' => [],
             'to' => [],
             'cc' => [],
