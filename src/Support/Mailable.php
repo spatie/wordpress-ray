@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordpressRay\Support;
+namespace Spatie\WordPressRay\Support;
 
 use PHPMailer\PHPMailer\PHPMailer;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordpressRay;
+namespace Spatie\WordPressRay;
 
-use Spatie\WordpressRay\Loggers\MailLogger;
-use Spatie\WordpressRay\Loggers\QueryLogger;
+use Spatie\WordPressRay\Loggers\MailLogger;
+use Spatie\WordPressRay\Loggers\QueryLogger;
 use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
 
 class Ray extends BaseRay

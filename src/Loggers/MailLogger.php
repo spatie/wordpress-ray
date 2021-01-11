@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\WordpressRay\Loggers;
+namespace Spatie\WordPressRay\Loggers;
 
 use PHPMailer\PHPMailer\PHPMailer;
-use Spatie\WordpressRay\Payloads\MailPayload;
-use Spatie\WordpressRay\Support\Mailable;
+use Spatie\WordPressRay\Payloads\MailPayload;
+use Spatie\WordPressRay\Support\Mailable;
 
 class MailLogger
 {

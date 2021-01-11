@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordpressRay\Tests;
+namespace Spatie\WordPressRay\Tests;
 
 use PHPUnit\Framework\TestCase;
 

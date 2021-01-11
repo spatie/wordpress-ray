@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordpressRay\Loggers;
+namespace Spatie\WordPressRay\Loggers;
 
-use Spatie\WordpressRay\Payloads\ExecutedQueryPayload;
+use Spatie\WordPressRay\Payloads\ExecutedQueryPayload;
 
 class QueryLogger
 {

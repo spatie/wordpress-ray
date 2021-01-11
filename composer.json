@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\WordpressRay\\": "src"
+            "Spatie\\WordPressRay\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\WordpressRay\\Tests\\": "tests"
+            "Spatie\\WordPressRay\\Tests\\": "tests"
         }
     },
     "scripts": {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordpressRay\Payloads;
+namespace Spatie\WordPressRay\Payloads;
 
 use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
-use Spatie\WordpressRay\Support\Mailable;
+use Spatie\WordPressRay\Support\Mailable;
 
 class MailPayload extends Payload
 {

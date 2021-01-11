@@ -48,8 +48,8 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
             'Symfony\\Component\\String\\' => 25,
             'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Console\\' => 26,
-            'Spatie\\WordpressRay\\Tests\\' => 26,
-            'Spatie\\WordpressRay\\' => 20,
+            'Spatie\\WordPressRay\\Tests\\' => 26,
+            'Spatie\\WordPressRay\\' => 20,
             'Spatie\\Ray\\' => 11,
             'Spatie\\Macroable\\' => 17,
             'Spatie\\Backtrace\\' => 17,
@@ -143,11 +143,11 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Spatie\\WordpressRay\\Tests\\' => 
+        'Spatie\\WordPressRay\\Tests\\' => 
         array (
             0 => __DIR__ . '/../..' . '/tests',
         ),
-        'Spatie\\WordpressRay\\' => 
+        'Spatie\\WordPressRay\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -1291,6 +1291,10 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Spatie\\WordPressRay\\Brick\\Math\\Internal\\Calculator\\GmpCalculator' => __DIR__ . '/..' . '/brick/math/src/Internal/Calculator/GmpCalculator.php',
         'Spatie\\WordPressRay\\Brick\\Math\\Internal\\Calculator\\NativeCalculator' => __DIR__ . '/..' . '/brick/math/src/Internal/Calculator/NativeCalculator.php',
         'Spatie\\WordPressRay\\Brick\\Math\\RoundingMode' => __DIR__ . '/..' . '/brick/math/src/RoundingMode.php',
+        'Spatie\\WordPressRay\\Loggers\\MailLogger' => __DIR__ . '/../..' . '/src/Loggers/MailLogger.php',
+        'Spatie\\WordPressRay\\Loggers\\QueryLogger' => __DIR__ . '/../..' . '/src/Loggers/QueryLogger.php',
+        'Spatie\\WordPressRay\\Payloads\\ExecutedQueryPayload' => __DIR__ . '/../..' . '/src/Payloads/ExecutedQueryPayload.php',
+        'Spatie\\WordPressRay\\Payloads\\MailPayload' => __DIR__ . '/../..' . '/src/Payloads/MailPayload.php',
         'Spatie\\WordPressRay\\Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Spatie\\WordPressRay\\Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Spatie\\WordPressRay\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
@@ -1426,6 +1430,7 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Spatie\\WordPressRay\\Ray' => __DIR__ . '/../..' . '/src/Ray.php',
         'Spatie\\WordPressRay\\Spatie\\Backtrace\\Backtrace' => __DIR__ . '/..' . '/spatie/backtrace/src/Backtrace.php',
         'Spatie\\WordPressRay\\Spatie\\Backtrace\\CodeSnippet' => __DIR__ . '/..' . '/spatie/backtrace/src/CodeSnippet.php',
         'Spatie\\WordPressRay\\Spatie\\Backtrace\\File' => __DIR__ . '/..' . '/spatie/backtrace/src/File.php',
@@ -1461,6 +1466,7 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Spatie\\WordPressRay\\Spatie\\Ray\\Request' => __DIR__ . '/..' . '/spatie/ray/src/Request.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Settings\\Settings' => __DIR__ . '/..' . '/spatie/ray/src/Settings/Settings.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Settings\\SettingsFactory' => __DIR__ . '/..' . '/spatie/ray/src/Settings/SettingsFactory.php',
+        'Spatie\\WordPressRay\\Support\\Mailable' => __DIR__ . '/../..' . '/src/Support/Mailable.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\Console\\Color' => __DIR__ . '/..' . '/symfony/console/Color.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
@@ -1646,13 +1652,7 @@ class ComposerStaticInit9a5c29a21399925b7c16db89e6008731
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
-        'Spatie\\WordpressRay\\Loggers\\MailLogger' => __DIR__ . '/../..' . '/src/Loggers/MailLogger.php',
-        'Spatie\\WordpressRay\\Loggers\\QueryLogger' => __DIR__ . '/../..' . '/src/Loggers/QueryLogger.php',
-        'Spatie\\WordpressRay\\Payloads\\ExecutedQueryPayload' => __DIR__ . '/../..' . '/src/Payloads/ExecutedQueryPayload.php',
-        'Spatie\\WordpressRay\\Payloads\\MailPayload' => __DIR__ . '/../..' . '/src/Payloads/MailPayload.php',
-        'Spatie\\WordpressRay\\Ray' => __DIR__ . '/../..' . '/src/Ray.php',
-        'Spatie\\WordpressRay\\Support\\Mailable' => __DIR__ . '/../..' . '/src/Support/Mailable.php',
-        'Spatie\\WordpressRay\\Tests\\ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
+        'Spatie\\WordPressRay\\Tests\\ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',
         'TheSeer\\Tokenizer\\NamespaceUri' => __DIR__ . '/..' . '/theseer/tokenizer/src/NamespaceUri.php',

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordpressRay\Payloads;
+namespace Spatie\WordPressRay\Payloads;
 
 use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 

@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '03c8f3249988c4a03ddf0558c55b46da809c22ef',
+    'reference' => 'c13eb1c25f9d7a9f559d273218ff24060238a179',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -401,7 +401,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '03c8f3249988c4a03ddf0558c55b46da809c22ef',
+      'reference' => 'c13eb1c25f9d7a9f559d273218ff24060238a179',
     ),
     'symfony/console' => 
     array (

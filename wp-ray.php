@@ -11,7 +11,7 @@
  * Requires PHP: 7.4
  */
 
-use Spatie\WordpressRay\Ray;
+use Spatie\WordPressRay\Ray;
 
 // this will add the `ray()` function
 require __DIR__ . '/vendor/autoload.php';
