@@ -23,14 +23,14 @@ class PHPMailerPayload extends Payload
     {
         return [
             "label" => "PHPMailer",
-            "content" => $this->makeContent()
+            "content" => $this->makeContent(),
         ];
     }
 
     protected function formatEmailsToString($addresses): string
     {
         $addresses = array_map(function ($address) {
-            if (!empty($address[1])) {
+            if (! empty($address[1])) {
                 return "$address[1] <$address[0]>";
             }
 
@@ -44,12 +44,11 @@ class PHPMailerPayload extends Payload
     {
         ob_start();
 
-        $subject    = $this->phpmailer->Subject;
-        $body       = $this->phpmailer->Body;
-        $to         = $this->formatEmailsToString($this->phpmailer->getToAddresses());
-        $cc         = $this->formatEmailsToString($this->phpmailer->getCcAddresses());
-        $bcc        = $this->formatEmailsToString($this->phpmailer->getBccAddresses());
-        ?>
+        $subject = $this->phpmailer->Subject;
+        $body = $this->phpmailer->Body;
+        $to = $this->formatEmailsToString($this->phpmailer->getToAddresses());
+        $cc = $this->formatEmailsToString($this->phpmailer->getCcAddresses());
+        $bcc = $this->formatEmailsToString($this->phpmailer->getBccAddresses()); ?>
         <div class="max-w-md mb-2">
             <div class="flex border-b">
                 <div class="w-1/3 text-gray-500">Subject</div>
