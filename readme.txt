@@ -1,11 +1,43 @@
 === Ray ===
 Contributors: freekmurze
-Donate link: http://example.com/
+Donate link: http://github.com/sponsors/spatie
 Tags: development, debugging
 Requires PHP: 7.4
 Stable tag: 1.0
 License: MIT
 
-This plugin lets you use a function called `ray()` that helps you debugging.
+Easily debug Word Press applications using Ray
 
-More info in [the Ray docs](https://spatie.be/docs/ray).
+
+== Description ==
+
+[Ray](https://myray.app) is a beautiful, lightweight desktop app that helps you debug your app. There's a [free demo](https://myray.app) available that can be unlocked with a [license](https://spatie.be/products/ray).
+
+After installing this plugin, you can use the `ray()` function to quickly dump stuff. Any variable(s) that you pass to `ray` will be displayed.
+
+Here some examples
+
+```php
+ray('Hello world');
+
+ray(['a' => 1, 'b' => 2])->color('red');
+
+ray('multiple', 'argments', 'are', 'welcome');
+
+ray()->showQueries();
+```
+
+Here's how that looks like in Ray.
+
+![screenshot](https://spatie.be/docs/ray/v1/images/intro.jpg)
+
+There are many other helper functions available on Ray that allow you to display things that can help you debug such as [runtime and memory usage](/docs/ray/v1/usage/framework-agnostic-php-project#measuring-performance-and-memory-usage), [queries that were executed](/docs/ray/v1/usage/wordpress#showing-queries), and much more.
+
+== Full Documentation ==
+
+The extensive documentation can be found [here](https//spatie.be/docs/ray)
+
+== Changelog ==
+
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md)
+
