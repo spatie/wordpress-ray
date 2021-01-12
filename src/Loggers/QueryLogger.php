@@ -14,9 +14,13 @@ class QueryLogger
             return $this;
         }
 
-        define('SAVEQUERIES', true);
+        if (! defined('SAVEQUERIES') || ! SAVEQUERIES) {
+            define('SAVEQUERIES', true);
+        }
 
         add_filter('log_query_custom_data', [$this, 'sendQueryToRay'], 1, 3);
+
+        $this->active = true;
 
         return $this;
     }
