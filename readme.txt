@@ -3,11 +3,12 @@ Contributors: freekmurze
 Donate link: http://github.com/sponsors/spatie
 Tags: development, debugging
 Requires PHP: 7.4
+Requires at least: 5.5
+Tested up: 5.6
 Stable tag: 1.0
 License: MIT
 
 Easily debug Word Press applications using Ray
-
 
 == Description ==
 
@@ -15,7 +16,7 @@ Easily debug Word Press applications using Ray
 
 After installing this plugin, you can use the `ray()` function to quickly dump stuff. Any variable(s) that you pass to `ray` will be displayed.
 
-Here some examples
+Here some examples:
 
 ```php
 ray('Hello world');
@@ -40,4 +41,21 @@ The extensive documentation can be found [here](https//spatie.be/docs/ray)
 == Changelog ==
 
 You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md)
+
+== Upgrade Notice ==
+
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md)
+
+== Screenshots ==
+
+This plugin adds no UI to WordPress. Here how the Ray desktop app looks like.
+
+![screenshot](https://spatie.be/docs/ray/v1/images/intro.jpg)
+
+== Frequently Asked Questions ==
+
+Want to know how to get started? Hear over to [our extensive docs](https://spatie.be/docs/ray).
+
+
+Want to report a bug? Create an issue at [the spatie/wordpress-ray repo](https://github.com/spatie/wordpress-ray).
 
