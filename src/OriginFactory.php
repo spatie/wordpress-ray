@@ -2,6 +2,7 @@
 
 namespace Spatie\WordPressRay;
 
+use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
 use Spatie\WordPressRay\Spatie\Backtrace\Frame;
@@ -28,6 +29,10 @@ class OriginFactory extends DefaultOriginFactory
 
         if ($rayFrame->class === MailLogger::class) {
             return $frames[$indexOfRay + 5];
+        }
+
+        if ($rayFrame->class === HookLogger::class) {
+            return $frames[$indexOfRay + 4];
         }
 
         return $rayFrame;
