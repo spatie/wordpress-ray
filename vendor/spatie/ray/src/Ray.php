@@ -4,6 +4,7 @@ namespace Spatie\WordPressRay\Spatie\Ray;
 
 use Closure;
 use Composer\InstalledVersions;
+use Exception;
 use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
 use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
@@ -347,9 +348,13 @@ class Ray
             $payloads = [$payloads];
         }
 
-        if (class_exists(InstalledVersions::class)) {
-            $meta['ray_package_version'] = InstalledVersions::getVersion('spatie/ray');
-        }
+        try {
+            if (class_exists(InstalledVersions::class)) {
+                $meta['ray_package_version'] = InstalledVersions::getVersion('spatie/ray');
+            }
+        } catch (Exception $e) {
+            // In WordPress this entire package will be rewritten under another namespace Spatie\WordPressRay\}
+
 
         $allMeta = array_merge([
             'php_version' => phpversion(),

@@ -2,6 +2,14 @@
 
 All notable changes to `ray` will be documented in this file
 
+## 1.5.9 - 20201-01-13
+
+- ignore package version errors
+
+## 1.5.8 - 2021-01-13
+
+- ignore package check errors
+
 ## 1.5.7 - 2021-01-13
 
 - remove unneeded symfony/console dependency
