@@ -22,6 +22,13 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
+## Release instructions for maintainers
+
+- update spatie/ray in `composer.json` with the highest version number of the package
+- run `composer update --prefer-lowest -W`
+- create a new release, it will automatically be pushed to the WordPress SVN
+
+
 ## Credits
 
 - [Freek Van der Herten](https://github.com/freekmurze)

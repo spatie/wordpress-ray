@@ -2403,17 +2403,17 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.5.9",
-            "version_normalized": "1.5.9.0",
+            "version": "1.5.10",
+            "version_normalized": "1.5.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "4e06f0678c90b7f1348c18adbb31c848ca257335"
+                "reference": "f9a78f56f3de9a60e96c763480a85931005e344f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/4e06f0678c90b7f1348c18adbb31c848ca257335",
-                "reference": "4e06f0678c90b7f1348c18adbb31c848ca257335",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/f9a78f56f3de9a60e96c763480a85931005e344f",
+                "reference": "f9a78f56f3de9a60e96c763480a85931005e344f",
                 "shasum": ""
             },
             "require": {
@@ -2431,7 +2431,7 @@
                 "phpunit/phpunit": "^9.5",
                 "spatie/phpunit-snapshot-assertions": "^4.2"
             },
-            "time": "2021-01-13T12:01:46+00:00",
+            "time": "2021-01-13T12:09:27+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -2462,7 +2462,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.5.9"
+                "source": "https://github.com/spatie/ray/tree/1.5.10"
             },
             "funding": [
                 {

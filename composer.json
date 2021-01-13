@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
-        "spatie/ray": "^1.5.9"
+        "spatie/ray": "^1.5.10"
     },
     "require-dev": {
         "composer/installers": "^1.9",

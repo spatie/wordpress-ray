@@ -353,7 +353,8 @@ class Ray
                 $meta['ray_package_version'] = InstalledVersions::getVersion('spatie/ray');
             }
         } catch (Exception $e) {
-            // In WordPress this entire package will be rewritten under another namespace Spatie\WordPressRay\}
+            // In WordPress this entire package will be rewritten
+        }
 
 
         $allMeta = array_merge([
