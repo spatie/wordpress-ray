@@ -19,20 +19,22 @@ class OriginFactory extends DefaultOriginFactory
         /** @var Frame $rayFrame */
         $rayFrame = $frames[$indexOfRay] ?? null;
 
+        $searchFrame = $frames[$indexOfRay + 1] ?? null;
+
         if (! $rayFrame) {
             return null;
         }
 
-        if ($rayFrame->class === QueryLogger::class) {
-            return $frames[$indexOfRay + 7];
+        if ($searchFrame && $searchFrame->class === QueryLogger::class) {
+            return $frames[$indexOfRay + 8];
         }
 
-        if ($rayFrame->class === MailLogger::class) {
+        if ($searchFrame && $searchFrame->class === MailLogger::class) {
+            return $frames[$indexOfRay + 6];
+        }
+
+        if ($searchFrame && $searchFrame->class === HookLogger::class) {
             return $frames[$indexOfRay + 5];
-        }
-
-        if ($rayFrame->class === HookLogger::class) {
-            return $frames[$indexOfRay + 4];
         }
 
         return $rayFrame;
