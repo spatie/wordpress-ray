@@ -2,6 +2,7 @@
 
 namespace Spatie\WordPressRay;
 
+use phpDocumentor\Reflection\Types\Self_;
 use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
@@ -16,6 +17,8 @@ class Ray extends BaseRay
 
     protected static HookLogger $hookLogger;
 
+    public static bool $enabled = true;
+
     public static function bootForWordPress()
     {
         static::$queryLogger = new QueryLogger();
@@ -25,6 +28,25 @@ class Ray extends BaseRay
         static::$hookLogger = new HookLogger();
 
         Payload::$originFactoryClass = OriginFactory::class;
+    }
+
+    public function enable(): self
+    {
+        static::$enabled = true;
+
+        return $this;
+    }
+
+    public function disable(): self
+    {
+        static::$enabled = false;
+
+        return $this;
+    }
+
+    public function isEnabled(): bool
+    {
+        return static::$enabled;
     }
 
     public function showMails(): self
@@ -72,5 +94,14 @@ class Ray extends BaseRay
         static::$hookLogger->stopShowingHooks();
 
         return $this;
+    }
+
+    public function sendRequest($payloads, array $meta = []): BaseRay
+    {
+        if (! $this->isEnabled()) {
+            return $this;
+        }
+
+        return BaseRay::sendRequest($payloads, $meta);
     }
 }
