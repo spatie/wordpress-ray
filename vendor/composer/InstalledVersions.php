@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'cd3c13a84864f72fa00cd023dce89ec46a539fca',
+    'reference' => '1d0df807b5e15a1e377bf538f51d3229af65a601',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -410,12 +410,12 @@ private static $installed = array (
     ),
     'spatie/ray' => 
     array (
-      'pretty_version' => '1.5.5',
-      'version' => '1.5.5.0',
+      'pretty_version' => '1.5.6',
+      'version' => '1.5.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '4e5d340b8eb5d01d6b4ec37e171378a562a09a0f',
+      'reference' => '186cb24079214be803af1633e178f815e411090f',
     ),
     'spatie/wordpress-ray' => 
     array (
@@ -424,7 +424,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'cd3c13a84864f72fa00cd023dce89ec46a539fca',
+      'reference' => '1d0df807b5e15a1e377bf538f51d3229af65a601',
     ),
     'symfony/console' => 
     array (
