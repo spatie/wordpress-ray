@@ -27,6 +27,10 @@ class Ray extends BaseRay
         static::$hookLogger = new HookLogger();
 
         Payload::$originFactoryClass = OriginFactory::class;
+
+        if (wp_get_environment_type() === 'production') {
+            static::$enabled = false;
+        }
     }
 
     public function enable(): self
