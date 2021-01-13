@@ -2,7 +2,6 @@
 
 namespace Spatie\WordPressRay;
 
-use phpDocumentor\Reflection\Types\Self_;
 use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
