@@ -40,11 +40,11 @@ After it is installed you can use any of the [framework agnostic](https://spatie
 
 == Changelog ==
 
-You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md).
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/blob/master/CHANGELOG.md).
 
 == Upgrade Notice ==
 
-You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md).
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/blob/master/CHANGELOG.md).
 
 == Screenshots ==
 
