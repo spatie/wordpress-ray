@@ -56,5 +56,5 @@ You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/C
 
 Want to know how to get started? Head over to [our extensive docs](https://spatie.be/docs/ray).
 
-Want to report a bug? Create an issue at [the spatie/wordpress-ray repo](https://github.com/spatie/wordpress-ray).
+Want to report a bug? Create an issue at the [spatie/wordpress-ray](https://github.com/spatie/wordpress-ray) repo.
 
