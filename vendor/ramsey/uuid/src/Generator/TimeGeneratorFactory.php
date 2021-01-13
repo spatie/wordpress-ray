@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,9 +7,10 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
@@ -19,8 +19,7 @@ use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
 use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
 
 /**
- * TimeGeneratorFactory retrieves a default time generator, based on the
- * environment
+ * A factory for retrieving a time generator, based on the environment
  */
 class TimeGeneratorFactory
 {
@@ -39,6 +38,14 @@ class TimeGeneratorFactory
      */
     private $timeProvider;
 
+    /**
+     * Constructs a `TimeGeneratorFactory` using a node provider, time converter,
+     * and time provider
+     *
+     * @param NodeProviderInterface $nodeProvider
+     * @param TimeConverterInterface $timeConverter
+     * @param TimeProviderInterface $timeProvider
+     */
     public function __construct(
         NodeProviderInterface $nodeProvider,
         TimeConverterInterface $timeConverter,
@@ -51,8 +58,10 @@ class TimeGeneratorFactory
 
     /**
      * Returns a default time generator, based on the current environment
+     *
+     * @return TimeGeneratorInterface
      */
-    public function getGenerator(): TimeGeneratorInterface
+    public function getGenerator()
     {
         return new DefaultTimeGenerator(
             $this->nodeProvider,

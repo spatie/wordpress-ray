@@ -2,18 +2,6 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](http://keepachangelog.com/) principles.
 
-## [1.0.8] - 2020-10-26
-
-### Fixed
-
-* `SebastianBergmann\CodeUnit\Exception` now correctly extends `\Throwable`
-
-## [1.0.7] - 2020-10-02
-
-### Fixed
-
-* `SebastianBergmann\CodeUnit\Mapper::stringToCodeUnits()` no longer attempts to create `CodeUnit` objects for code units that are not declared in userland
-
 ## [1.0.6] - 2020-09-28
 
 ### Changed
@@ -54,8 +42,6 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release
 
-[1.0.8]: https://github.com/sebastianbergmann/code-unit/compare/1.0.7...1.0.8
-[1.0.7]: https://github.com/sebastianbergmann/code-unit/compare/1.0.6...1.0.7
 [1.0.6]: https://github.com/sebastianbergmann/code-unit/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/sebastianbergmann/code-unit/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/sebastianbergmann/code-unit/compare/1.0.3...1.0.4

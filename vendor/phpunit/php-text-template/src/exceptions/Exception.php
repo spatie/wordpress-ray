@@ -9,8 +9,6 @@
  */
 namespace SebastianBergmann\Template;
 
-use Throwable;
-
-interface Exception extends Throwable
+interface Exception
 {
 }

@@ -9,8 +9,6 @@
  */
 namespace SebastianBergmann\CodeUnit;
 
-use Throwable;
-
-interface Exception extends Throwable
+interface Exception
 {
 }

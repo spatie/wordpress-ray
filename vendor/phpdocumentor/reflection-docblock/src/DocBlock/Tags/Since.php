@@ -89,14 +89,6 @@ final class Since extends BaseTag implements Factory\StaticMethod
      */
     public function __toString() : string
     {
-        if ($this->description) {
-            $description = $this->description->render();
-        } else {
-            $description = '';
-        }
-
-        $version = (string) $this->version;
-
-        return $version . ($description !== '' ? ($version !== '' ? ' ' : '') . $description : '');
+        return (string) $this->version . ($this->description ? ' ' . (string) $this->description : '');
     }
 }

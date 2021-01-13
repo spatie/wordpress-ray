@@ -66,10 +66,6 @@ final class Context
      * @throws InvalidArgumentException Thrown if $value is not an array or object
      *
      * @return bool|int|string the ID of the stored value, either as a string or integer
-     *
-     * @psalm-template T
-     * @psalm-param T $value
-     * @param-out T $value
      */
     public function add(&$value)
     {
@@ -94,10 +90,6 @@ final class Context
      * @throws InvalidArgumentException Thrown if $value is not an array or object
      *
      * @return false|int|string the string or integer ID of the stored value if it has already been seen, or false if the value is not stored
-     *
-     * @psalm-template T
-     * @psalm-param T $value
-     * @param-out T $value
      */
     public function contains(&$value)
     {

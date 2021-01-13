@@ -9,8 +9,6 @@
  */
 namespace SebastianBergmann\Complexity;
 
-use Throwable;
-
-interface Exception extends Throwable
+interface Exception
 {
 }

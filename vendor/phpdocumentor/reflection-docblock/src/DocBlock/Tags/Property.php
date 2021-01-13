@@ -18,11 +18,11 @@ use phpDocumentor\Reflection\DocBlock\DescriptionFactory;
 use phpDocumentor\Reflection\Type;
 use phpDocumentor\Reflection\TypeResolver;
 use phpDocumentor\Reflection\Types\Context as TypeContext;
-use phpDocumentor\Reflection\Utils;
 use Webmozart\Assert\Assert;
 use function array_shift;
 use function array_unshift;
 use function implode;
+use function preg_split;
 use function strpos;
 use function substr;
 use const PREG_SPLIT_DELIM_CAPTURE;
@@ -57,7 +57,8 @@ final class Property extends TagWithType implements Factory\StaticMethod
 
         [$firstPart, $body] = self::extractTypeFromBody($body);
         $type               = null;
-        $parts              = Utils::pregSplit('/(\s+)/Su', $body, 2, PREG_SPLIT_DELIM_CAPTURE);
+        $parts              = preg_split('/(\s+)/Su', $body, 2, PREG_SPLIT_DELIM_CAPTURE);
+        Assert::isArray($parts);
         $variableName = '';
 
         // if the first item that is encountered is not a variable; it is a type
@@ -68,12 +69,10 @@ final class Property extends TagWithType implements Factory\StaticMethod
             array_unshift($parts, $firstPart);
         }
 
-        // if the next item starts with a $ it must be the variable name
+        // if the next item starts with a $ or ...$ it must be the variable name
         if (isset($parts[0]) && strpos($parts[0], '$') === 0) {
             $variableName = array_shift($parts);
-            if ($type) {
-                array_shift($parts);
-            }
+            array_shift($parts);
 
             Assert::notNull($variableName);
 
@@ -98,22 +97,8 @@ final class Property extends TagWithType implements Factory\StaticMethod
      */
     public function __toString() : string
     {
-        if ($this->description) {
-            $description = $this->description->render();
-        } else {
-            $description = '';
-        }
-
-        if ($this->variableName) {
-            $variableName = '$' . $this->variableName;
-        } else {
-            $variableName = '';
-        }
-
-        $type = (string) $this->type;
-
-        return $type
-            . ($variableName !== '' ? ($type !== '' ? ' ' : '') . $variableName : '')
-            . ($description !== '' ? ($type !== '' || $variableName !== '' ? ' ' : '') . $description : '');
+        return ($this->type ? $this->type . ' ' : '')
+            . ($this->variableName ? '$' . $this->variableName : '')
+            . ($this->description ? ' ' . $this->description : '');
     }
 }

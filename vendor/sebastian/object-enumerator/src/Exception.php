@@ -9,8 +9,6 @@
  */
 namespace SebastianBergmann\ObjectEnumerator;
 
-use Throwable;
-
-interface Exception extends Throwable
+interface Exception
 {
 }

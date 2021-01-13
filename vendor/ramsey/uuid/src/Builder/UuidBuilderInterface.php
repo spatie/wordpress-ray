@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,9 +7,10 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
 
@@ -18,22 +18,17 @@ use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
 use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 
 /**
- * A UUID builder builds instances of UuidInterface
- *
- * @psalm-immutable
+ * UuidBuilderInterface builds instances UuidInterface
  */
 interface UuidBuilderInterface
 {
     /**
-     * Builds and returns a UuidInterface
+     * Builds an instance of a UuidInterface
      *
      * @param CodecInterface $codec The codec to use for building this UuidInterface instance
-     * @param string $bytes The byte string from which to construct a UUID
-     *
-     * @return UuidInterface Implementations may choose to return more specific
-     *     instances of UUIDs that implement UuidInterface
-     *
-     * @psalm-pure
+     * @param array $fields An array of fields from which to construct a UuidInterface instance;
+     *     see {@see \Ramsey\Uuid\UuidInterface::getFieldsHex()} for array structure.
+     * @return UuidInterface
      */
-    public function build(CodecInterface $codec, string $bytes): UuidInterface;
+    public function build(CodecInterface $codec, array $fields);
 }
