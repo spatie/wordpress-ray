@@ -28,7 +28,7 @@ ray('multiple', 'arguments', 'are', 'welcome');
 ray()->showQueries();
 `
 
-There are many other helper functions available on Ray that allow you to display things that can help you debug such as [runtime and memory usage](/docs/ray/v1/usage/framework-agnostic-php-project#measuring-performance-and-memory-usage), [queries that were executed](/docs/ray/v1/usage/wordpress#showing-queries), and much more.
+There are many other helper functions available on Ray that allow you to display things that can help you debug such as [runtime and memory usage](https://spatie.be/docs/ray/v1/usage/framework-agnostic-php-project#measuring-performance-and-memory-usage), [queries that were executed](https://spatie.be/docs/ray/v1/usage/wordpress#showing-queries), and much more.
 
 == Full Documentation ==
 
