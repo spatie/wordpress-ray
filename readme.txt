@@ -1,6 +1,6 @@
 === Ray ===
 Contributors: freekmurze
-Donate link: http://github.com/sponsors/spatie
+Donate link: https://github.com/sponsors/spatie
 Tags: development, debugging
 Requires PHP: 7.4
 Requires at least: 5.5
@@ -8,17 +8,17 @@ Tested up: 5.6
 Stable tag: 1.0
 License: MIT
 
-Easily debug Word Press applications using Ray
+Easily debug WordPress sites using Ray.
 
 == Description ==
 
 [Ray](https://myray.app) is a beautiful, lightweight desktop app that helps you debug your app. There's a [free demo](https://myray.app) available that can be unlocked with a [license](https://spatie.be/products/ray).
 
-After installing this plugin, you can use the `ray()` function to quickly dump stuff. Any variable(s) that you pass to `ray` will be displayed.
+After installing this plugin, you can use the `ray()` function to quickly dump stuff. Any variable(s) that you pass to `ray()` will be displayed.
 
 Here some examples:
 
-```php
+`
 ray('Hello world');
 
 ray(['a' => 1, 'b' => 2])->color('red');
@@ -26,36 +26,29 @@ ray(['a' => 1, 'b' => 2])->color('red');
 ray('multiple', 'arguments', 'are', 'welcome');
 
 ray()->showQueries();
-```
-
-Here's how that looks like in Ray.
-
-![screenshot](https://spatie.be/docs/ray/v1/images/intro.jpg)
+`
 
 There are many other helper functions available on Ray that allow you to display things that can help you debug such as [runtime and memory usage](/docs/ray/v1/usage/framework-agnostic-php-project#measuring-performance-and-memory-usage), [queries that were executed](/docs/ray/v1/usage/wordpress#showing-queries), and much more.
 
 == Full Documentation ==
 
-The extensive documentation can be found [here](https//spatie.be/docs/ray)
+The extensive documentation can be found [here](https://spatie.be/docs/ray).
 
 == Changelog ==
 
-You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md)
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md).
 
 == Upgrade Notice ==
 
-You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md)
+You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md).
 
 == Screenshots ==
 
-This plugin adds no UI to WordPress. Here how the Ray desktop app looks like.
-
-![screenshot](https://spatie.be/docs/ray/v1/images/intro.jpg)
+1. Here's how the Ray desktop app looks like.
 
 == Frequently Asked Questions ==
 
 Want to know how to get started? Head over to [our extensive docs](https://spatie.be/docs/ray).
-
 
 Want to report a bug? Create an issue at [the spatie/wordpress-ray repo](https://github.com/spatie/wordpress-ray).
 
