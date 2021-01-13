@@ -34,6 +34,10 @@ There are many other helper functions available on Ray that allow you to display
 
 The extensive documentation can be found [here](https://spatie.be/docs/ray).
 
+It contains the [installation instructions](https://spatie.be/docs/ray/v1/installation-in-your-project/wordpress) for WordPress.
+
+After it is installed you can use any of the [framework agnostic](https://spatie.be/docs/ray/v1/usage/framework-agnostic-php-project) and [WordPress specific functions](https://spatie.be/docs/ray/v1/usage/wordpress).
+
 == Changelog ==
 
 You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/CHANGELOG.md).
