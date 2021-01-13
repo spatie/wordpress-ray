@@ -46,7 +46,7 @@ You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/C
 
 1. Here's how the Ray desktop app looks like.
 
-![screenshot](assets/ray.png)
+![screenshot](https://spatie.be/docs/ray/v1/images/intro.jpg)
 
 == Frequently Asked Questions ==
 
