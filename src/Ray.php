@@ -28,7 +28,7 @@ class Ray extends BaseRay
 
         Payload::$originFactoryClass = OriginFactory::class;
 
-        if (defined('WP_ENVIRONMENT_TYPE') && wp_get_environment_type() === 'production') {
+        if (self::isProduction()) {
             static::$enabled = false;
         }
     }
@@ -106,5 +106,14 @@ class Ray extends BaseRay
         }
 
         return BaseRay::sendRequest($payloads, $meta);
+    }
+
+    protected static function isProduction(): bool
+    {
+        if (! defined('WP_ENVIRONMENT_TYPE')) {
+            return false;
+        }
+
+        return wp_get_environment_type() === 'production';
     }
 }
