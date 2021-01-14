@@ -28,7 +28,7 @@ class Ray extends BaseRay
 
         Payload::$originFactoryClass = OriginFactory::class;
 
-        if (wp_get_environment_type() === 'production') {
+        if (defined('WP_ENVIRONMENT_TYPE') && wp_get_environment_type() === 'production') {
             static::$enabled = false;
         }
     }
