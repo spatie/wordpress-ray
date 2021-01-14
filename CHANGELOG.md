@@ -2,6 +2,10 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## 1.0.3 - 2021-01-13
+
+- improve production check
+
 ## 1.0.2 - 2021-01-13
 
 - fix tagging issues
