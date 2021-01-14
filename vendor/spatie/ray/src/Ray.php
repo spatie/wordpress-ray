@@ -11,11 +11,13 @@ use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Macroable\Macroable;
 use Spatie\WordPressRay\Spatie\Ray\Concerns\RayColors;
 use Spatie\WordPressRay\Spatie\Ray\Concerns\RaySizes;
+use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CallerPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\FileContentsPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\JsonStringPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
@@ -26,6 +28,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
 use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
+use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
 use Spatie\WordPressRay\Symfony\Component\Stopwatch\Stopwatch;
 
 class Ray
@@ -37,6 +40,8 @@ class Ray
     public Settings $settings;
 
     protected static Client $client;
+
+    public static Counters $counters;
 
     public static string $fakeUuid;
 
@@ -57,6 +62,8 @@ class Ray
         $this->settings = $settings;
 
         self::$client = $client ?? self::$client ?? new Client($settings->port, $settings->host);
+
+        self::$counters = self::$counters ?? new Counters();
 
         $this->uuid = $uuid ?? static::$fakeUuid ?? Uuid::uuid4()->toString();
     }
@@ -216,21 +223,32 @@ class Ray
     }
 
     /**
-     * Sends the provided value encoded as a JSON string using json_encode().
+     * Sends the provided value(s) encoded as a JSON string using json_encode().
      */
-    public function toJson($value): self
+    public function toJson(...$values): self
     {
-        $payload = new JsonStringPayload($value);
+        $payloads = array_map(function ($value) {
+            return new JsonStringPayload($value);
+        }, $values);
 
-        return $this->sendRequest($payload);
+        return $this->sendRequest($payloads);
     }
 
     /**
-     * Sends the provided JSON string decoded using json_decode().
+     * Sends the provided JSON string(s) decoded using json_decode().
      */
-    public function json(string $json): self
+    public function json(string ...$jsons): self
     {
-        $payload = new DecodedJsonPayload($json);
+        $payloads = array_map(function ($json) {
+            return new DecodedJsonPayload($json);
+        }, $jsons);
+
+        return $this->sendRequest($payloads);
+    }
+
+    public function file(string $filename): self
+    {
+        $payload = new FileContentsPayload($filename);
 
         return $this->sendRequest($payload);
     }
@@ -295,6 +313,38 @@ class Ray
         return $this;
     }
 
+    public function count(?string $name = null): self
+    {
+        $fingerPrint = (new DefaultOriginFactory())->getOrigin()->fingerPrint();
+
+        [$ray, $times] = self::$counters->increment($name ?? $fingerPrint);
+
+        $message = "Called ";
+
+        if ($name) {
+            $message .= "`{$name}` ";
+        }
+
+        $message .= "{$times} ";
+
+        $message .= $times === 1
+            ? 'time'
+            : 'times';
+
+        $message .= '.';
+
+        $ray->sendCustom($message, 'Count');
+
+        return $ray;
+    }
+
+    public function clearCounters(): self
+    {
+        self::$counters->clear();
+
+        return $this;
+    }
+
     public function pause(): self
     {
         $lockName = md5(time());
@@ -355,7 +405,6 @@ class Ray
         } catch (Exception $e) {
             // In WordPress this entire package will be rewritten
         }
-
 
         $allMeta = array_merge([
             'php_version' => phpversion(),

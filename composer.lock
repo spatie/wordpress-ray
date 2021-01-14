@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5652de1e6e19288178546ad95fd736e9",
+    "content-hash": "3c66b20df445741fb6d16796f26f8b64",
     "packages": [
         {
             "name": "psr/container",
@@ -251,16 +251,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.5.10",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "f9a78f56f3de9a60e96c763480a85931005e344f"
+                "reference": "69699770736030fec47ef685ab0c3a2eba8013b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/f9a78f56f3de9a60e96c763480a85931005e344f",
-                "reference": "f9a78f56f3de9a60e96c763480a85931005e344f",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/69699770736030fec47ef685ab0c3a2eba8013b8",
+                "reference": "69699770736030fec47ef685ab0c3a2eba8013b8",
                 "shasum": ""
             },
             "require": {
@@ -307,7 +307,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.5.10"
+                "source": "https://github.com/spatie/ray/tree/1.9.1"
             },
             "funding": [
                 {
@@ -319,7 +319,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-01-13T12:09:27+00:00"
+            "time": "2021-01-14T23:21:49+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
