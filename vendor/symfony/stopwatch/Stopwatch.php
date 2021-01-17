@@ -13,9 +13,6 @@ namespace Spatie\WordPressRay\Symfony\Component\Stopwatch;
 
 use Spatie\WordPressRay\Symfony\Contracts\Service\ResetInterface;
 
-// Help opcache.preload discover always-needed symbols
-class_exists(Section::class);
-
 /**
  * Stopwatch provides a way to profile code.
  *
@@ -101,8 +98,8 @@ class Stopwatch implements ResetInterface
     /**
      * Starts an event.
      *
-     * @param string      $name     The event name
-     * @param string|null $category The event category
+     * @param string $name     The event name
+     * @param string $category The event category
      *
      * @return StopwatchEvent
      */
@@ -168,7 +165,7 @@ class Stopwatch implements ResetInterface
      */
     public function getSectionEvents($id)
     {
-        return isset($this->sections[$id]) ? $this->sections[$id]->getEvents() : [];
+        return isset($this->sections[$id]) ? $this->sections[$id]->getEvents() : array();
     }
 
     /**
@@ -176,6 +173,6 @@ class Stopwatch implements ResetInterface
      */
     public function reset()
     {
-        $this->sections = $this->activeSections = ['__root__' => new Section(null, $this->morePrecision)];
+        $this->sections = $this->activeSections = array('__root__' => new Section(null, $this->morePrecision));
     }
 }

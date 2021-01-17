@@ -21,7 +21,7 @@ class Section
     /**
      * @var StopwatchEvent[]
      */
-    private $events = [];
+    private $events = array();
 
     /**
      * @var float|null
@@ -41,7 +41,7 @@ class Section
     /**
      * @var Section[]
      */
-    private $children = [];
+    private $children = array();
 
     /**
      * @param float|null $origin        Set the origin of the events in this section, use null to set their origin to their start time
@@ -62,17 +62,11 @@ class Section
      */
     public function get($id)
     {
-        if (null === $id) {
-            @trigger_error(sprintf('Passing "null" as the first argument of the "%s()" method is deprecated since Symfony 4.4, pass a valid child section identifier instead.', __METHOD__), E_USER_DEPRECATED);
-        }
-
         foreach ($this->children as $child) {
             if ($id === $child->getId()) {
                 return $child;
             }
         }
-
-        return null;
     }
 
     /**
@@ -84,7 +78,7 @@ class Section
      */
     public function open($id)
     {
-        if (null === $id || null === $session = $this->get($id)) {
+        if (null === $session = $this->get($id)) {
             $session = $this->children[] = new self(microtime(true) * 1000, $this->morePrecision);
         }
 
@@ -116,8 +110,8 @@ class Section
     /**
      * Starts an event.
      *
-     * @param string      $name     The event name
-     * @param string|null $category The event category
+     * @param string $name     The event name
+     * @param string $category The event category
      *
      * @return StopwatchEvent The event
      */

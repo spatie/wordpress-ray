@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '6261b017a5aaa493fd7d3ed90485a10d0b8b67cb',
+    'reference' => '24acf1012c54bb2fa3418b8ed6c184e99a1c3945',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -182,15 +182,6 @@ private static $installed = array (
       ),
       'reference' => '8e16c225d57c3d6808014df6b1dd7598d0a5bbbe',
     ),
-    'psr/container' => 
-    array (
-      'pretty_version' => '1.0.0',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
-    ),
     'ramsey/uuid' => 
     array (
       'pretty_version' => '3.0.0',
@@ -315,21 +306,21 @@ private static $installed = array (
     ),
     'sebastian/object-reflector' => 
     array (
-      'pretty_version' => '2.0.2',
-      'version' => '2.0.2.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '127a46f6b057441b201253526f81d5406d6c7840',
+      'reference' => 'f4fd0835cabb0d4a6546d9fe291e5740037aa1e7',
     ),
     'sebastian/recursion-context' => 
     array (
-      'pretty_version' => '4.0.2',
-      'version' => '4.0.2.0',
+      'pretty_version' => '4.0.0',
+      'version' => '4.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '062231bf61d2b9448c4fa5a7643b5e1829c11d63',
+      'reference' => 'cdd86616411fc3062368b720b0425de10bd3d579',
     ),
     'sebastian/resource-operations' => 
     array (
@@ -376,12 +367,12 @@ private static $installed = array (
     ),
     'spatie/macroable' => 
     array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7a99549fc001c925714b329220dea680c04bfa48',
+      'reference' => '74b0d189ce75142f1706aad834d5a428dfc7c3c3',
     ),
     'spatie/ray' => 
     array (
@@ -399,7 +390,16 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '6261b017a5aaa493fd7d3ed90485a10d0b8b67cb',
+      'reference' => '24acf1012c54bb2fa3418b8ed6c184e99a1c3945',
+    ),
+    'symfony/contracts' => 
+    array (
+      'pretty_version' => 'v1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4a33574d5771f4b04334cd4f7d43de96a92efb62',
     ),
     'symfony/polyfill-ctype' => 
     array (
@@ -428,41 +428,23 @@ private static $installed = array (
       ),
       'reference' => '8abc9097f5001d310f0edba727469c988acc6ea7',
     ),
-    'symfony/polyfill-php80' => 
-    array (
-      'pretty_version' => 'v1.15.0',
-      'version' => '1.15.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '8854dc880784d2ae32908b75824754339b5c0555',
-    ),
-    'symfony/service-contracts' => 
-    array (
-      'pretty_version' => 'v1.1.9',
-      'version' => '1.1.9.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b776d18b303a39f56c63747bcb977ad4b27aca26',
-    ),
     'symfony/stopwatch' => 
     array (
-      'pretty_version' => 'v4.4.9',
-      'version' => '4.4.9.0',
+      'pretty_version' => 'v4.2.0',
+      'version' => '4.2.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f51fb90df1154a7f75987198a9689e28f91e6a50',
+      'reference' => 'ec076716412274e51f8a7ea675d9515e5c311123',
     ),
     'symfony/var-dumper' => 
     array (
-      'pretty_version' => 'v4.4.9',
-      'version' => '4.4.9.0',
+      'pretty_version' => 'v4.2.0',
+      'version' => '4.2.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '56b3aa5eab0ac6720dcd559fd1d590ce301594ac',
+      'reference' => 'db61258540350725f4beb6b84006e32398acd120',
     ),
     'theseer/tokenizer' => 
     array (

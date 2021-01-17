@@ -24,9 +24,9 @@ final class CliContextProvider implements ContextProviderInterface
             return null;
         }
 
-        return [
-            'command_line' => $commandLine = implode(' ', $_SERVER['argv'] ?? []),
+        return array(
+            'command_line' => $commandLine = implode(' ', $_SERVER['argv']),
             'identifier' => hash('crc32b', $commandLine.$_SERVER['REQUEST_TIME_FLOAT']),
-        ];
+        );
     }
 }

@@ -17,8 +17,6 @@ use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
  * Casts a caster's Stub.
  *
  * @author Nicolas Grekas <p@tchwork.com>
- *
- * @final since Symfony 4.4
  */
 class StubCaster
 {
@@ -37,7 +35,7 @@ class StubCaster
                 $stub->class = Stub::STRING_BINARY;
             }
 
-            $a = [];
+            $a = array();
         }
 
         return $a;
@@ -53,7 +51,7 @@ class StubCaster
         if ($isNested) {
             $stub->cut += \count($a);
 
-            return [];
+            return array();
         }
 
         return $a;
@@ -68,7 +66,7 @@ class StubCaster
             $stub->cut = $c->cut;
             $stub->attr = $c->attr;
 
-            $a = [];
+            $a = array();
 
             if ($c->value) {
                 foreach (array_keys($c->value) as $k) {

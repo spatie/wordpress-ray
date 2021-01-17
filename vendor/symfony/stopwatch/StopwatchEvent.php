@@ -21,7 +21,7 @@ class StopwatchEvent
     /**
      * @var StopwatchPeriod[]
      */
-    private $periods = [];
+    private $periods = array();
 
     /**
      * @var float
@@ -41,7 +41,7 @@ class StopwatchEvent
     /**
      * @var float[]
      */
-    private $started = [];
+    private $started = array();
 
     /**
      * @param float       $origin        The origin time in milliseconds
@@ -154,15 +154,7 @@ class StopwatchEvent
      */
     public function getStartTime()
     {
-        if (isset($this->periods[0])) {
-            return $this->periods[0]->getStartTime();
-        }
-
-        if ($this->started) {
-            return $this->started[0];
-        }
-
-        return 0;
+        return isset($this->periods[0]) ? $this->periods[0]->getStartTime() : 0;
     }
 
     /**
@@ -185,10 +177,12 @@ class StopwatchEvent
     public function getDuration()
     {
         $periods = $this->periods;
-        $left = \count($this->started);
+        $stopped = \count($periods);
+        $left = \count($this->started) - $stopped;
 
-        for ($i = $left - 1; $i >= 0; --$i) {
-            $periods[] = new StopwatchPeriod($this->started[$i], $this->getNow(), $this->morePrecision);
+        for ($i = 0; $i < $left; ++$i) {
+            $index = $stopped + $i;
+            $periods[] = new StopwatchPeriod($this->started[$index], $this->getNow(), $this->morePrecision);
         }
 
         $total = 0;
@@ -229,10 +223,18 @@ class StopwatchEvent
     /**
      * Formats a time.
      *
+     * @param int|float $time A raw time
+     *
+     * @return float The formatted time
+     *
      * @throws \InvalidArgumentException When the raw time is not valid
      */
-    private function formatTime(float $time): float
+    private function formatTime($time)
     {
+        if (!is_numeric($time)) {
+            throw new \InvalidArgumentException('The time must be a numerical value');
+        }
+
         return round($time, 1);
     }
 
