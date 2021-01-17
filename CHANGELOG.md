@@ -4,7 +4,7 @@ All notable changes to `wordpress-ray` will be documented in this file.
 
 ### 1.1.1 - 2021-01-17
 
-- fix for dumping dates
+- fix for dumping dates (#25)
 
 ## 1.1.0 - 2021-01-14
 
