@@ -2,6 +2,7 @@
 
 namespace Spatie\WordPressRay\Spatie\Ray;
 
+use Spatie\WordPressRay\Carbon\Carbon;
 use Closure;
 use Composer\InstalledVersions;
 use Exception;
@@ -13,12 +14,16 @@ use Spatie\WordPressRay\Spatie\Ray\Concerns\RayColors;
 use Spatie\WordPressRay\Spatie\Ray\Concerns\RaySizes;
 use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CallerPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\ClearAllPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\FileContentsPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\HtmlPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\ImagePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\JsonStringPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
@@ -28,6 +33,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
 use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
+use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
 use Spatie\WordPressRay\Symfony\Component\Stopwatch\Stopwatch;
 
@@ -52,7 +58,7 @@ class Ray
 
     public static function create(Client $client = null, string $uuid = null): self
     {
-        $settings = Settings::load();
+        $settings = SettingsFactory::createFromConfigFile();
 
         return new static($settings, $client, $uuid);
     }
@@ -77,9 +83,14 @@ class Ray
     {
         $payload = new NewScreenPayload($name);
 
-        $this->sendRequest($payload);
+        return $this->sendRequest($payload);
+    }
 
-        return $this;
+    public function clearAll()
+    {
+        $payload = new ClearAllPayload();
+
+        return $this->sendRequest($payload);
     }
 
     public function clearScreen()
@@ -91,36 +102,28 @@ class Ray
     {
         $payload = new ColorPayload($color);
 
-        $this->sendRequest($payload);
-
-        return $this;
+        return $this->sendRequest($payload);
     }
 
     public function size(string $size): self
     {
         $payload = new SizePayload($size);
 
-        $this->sendRequest($payload);
-
-        return $this;
+        return $this->sendRequest($payload);
     }
 
     public function remove(): self
     {
         $payload = new RemovePayload();
 
-        $this->sendRequest($payload);
-
-        return $this;
+        return $this->sendRequest($payload);
     }
 
     public function hide(): self
     {
         $payload = new HidePayload();
 
-        $this->sendRequest($payload);
-
-        return $this;
+        return $this->sendRequest($payload);
     }
 
     /**
@@ -253,6 +256,13 @@ class Ray
         return $this->sendRequest($payload);
     }
 
+    public function image(string $location): self
+    {
+        $payload = new ImagePayload($location);
+
+        return $this->sendRequest($payload);
+    }
+
     public function die($status = '')
     {
         die($status);
@@ -299,18 +309,23 @@ class Ray
         return $this->removeWhen($boolOrCallable);
     }
 
-    public function ban(): self
+    public function carbon(?Carbon $carbon): self
     {
-        $this->send('🕶');
+        $payload = new CarbonPayload($carbon);
+
+        $this->sendRequest($payload);
 
         return $this;
     }
 
+    public function ban(): self
+    {
+        return $this->send('🕶');
+    }
+
     public function charles(): self
     {
-        $this->send('🎶 🎹 🎷 🕺');
-
-        return $this;
+        return $this->send('🎶 🎹 🎷 🕺');
     }
 
     public function count(?string $name = null): self
@@ -360,15 +375,39 @@ class Ray
         return $this;
     }
 
+    public function html(string $html = '')
+    {
+        $payload = new HtmlPayload($html);
+
+        return $this->sendRequest($payload);
+    }
+
+    public function raw(...$arguments): self
+    {
+        if (! count($arguments)) {
+            return $this;
+        }
+
+        $payloads = array_map(function ($argument) {
+            return LogPayload::createForArguments([$argument]);
+        }, $arguments);
+
+        return $this->sendRequest($payloads);
+    }
+
     public function send(...$arguments): self
     {
         if (! count($arguments)) {
             return $this;
         }
 
-        $payload = LogPayload::createForArguments($arguments);
+        if ($this->settings->always_send_raw_values) {
+            return $this->raw(...$arguments);
+        }
 
-        return $this->sendRequest($payload);
+        $payloads = PayloadFactory::createForValues($arguments);
+
+        return $this->sendRequest($payloads);
     }
 
     public function pass($argument)
@@ -386,7 +425,7 @@ class Ray
     }
 
     /**
-     * @param \Spatie\Ray\Payloads\Payload|\Spatie\Ray\Payloads\Payload[]$payloads
+     * @param \Spatie\Ray\Payloads\Payload|\Spatie\Ray\Payloads\Payload[] $payloads
      * @param array $meta
      *
      * @return $this

@@ -5,6 +5,7 @@ use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Ray\Ray;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 
+use Spatie\WordPressRay\Spatie\RayBundle\Ray as SymfonyRay;
 use Spatie\WordPressRay\Ray as WordPressRay;
 use Spatie\WordPressRay\Spatie\YiiRay\Ray as YiiRay;
 
@@ -12,7 +13,7 @@ if (! function_exists('ray')) {
     /**
      * @param mixed ...$args
      *
-     * @return \Spatie\Ray\Ray|LaravelRay|WordPressRay|YiiRay
+     * @return \Spatie\Ray\Ray|LaravelRay|WordPressRay|YiiRay|SymfonyRay
      */
     function ray(...$args)
     {
@@ -34,6 +35,10 @@ if (! function_exists('ray')) {
 
         if (class_exists(WordPressRay::class)) {
             $rayClass = WordPressRay::class;
+        }
+
+        if (class_exists(SymfonyRay::class)) {
+            $rayClass = SymfonyRay::class;
         }
 
         $settings = SettingsFactory::createFromConfigFile();
