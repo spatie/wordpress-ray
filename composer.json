@@ -42,7 +42,7 @@
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "post-install-cmd": [
-            "sed -i '' 's/'\\''Symfony/'\\''Spatie\\\\WordPressRay\\\\Symfony/g' ./vendor/symfony/var-dumper/Cloner/AbstractCloner.php"
+            "sed -i -e 's/'\\''Symfony/'\\''Spatie\\\\WordPressRay\\\\Symfony/g' ./vendor/symfony/var-dumper/Cloner/AbstractCloner.php"
         ]
     },
     "config": {
