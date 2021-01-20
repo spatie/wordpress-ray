@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,21 +7,23 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
-
 /**
- * A time provider retrieves the current time
+ * TimeProviderInterface provides functionality to get the time from a specific
+ * type of time provider
  */
 interface TimeProviderInterface
 {
     /**
-     * Returns a time object
+     * Returns a timestamp array
+     *
+     * @return int[] Array guaranteed to contain `sec` and `usec` components of a timestamp
      */
-    public function getTime(): Time;
+    public function currentTime();
 }

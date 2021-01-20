@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,37 +7,29 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\RandomSourceException;
-
 /**
- * RandomBytesGenerator generates strings of random binary data using the
- * built-in `random_bytes()` PHP function
+ * RandomBytesGenerator provides functionality to generate strings of random
+ * binary data using `random_bytes()` function in PHP 7+
  *
- * @link http://php.net/random_bytes random_bytes()
+ * @link http://php.net/random_bytes
  */
 class RandomBytesGenerator implements RandomGeneratorInterface
 {
     /**
-     * @throws RandomSourceException if random_bytes() throws an exception/error
+     * Generates a string of random binary data of the specified length
      *
-     * @inheritDoc
+     * @param integer $length The number of bytes of random binary data to generate
+     * @return string A binary string
      */
-    public function generate(int $length): string
+    public function generate($length)
     {
-        try {
-            return random_bytes($length);
-        } catch (\Throwable $exception) {
-            throw new RandomSourceException(
-                $exception->getMessage(),
-                (int) $exception->getCode(),
-                $exception
-            );
-        }
+        return random_bytes($length);
     }
 }

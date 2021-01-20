@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,18 +7,36 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Time;
 
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+
 /**
- * @deprecated DegradedTimeConverter is no longer necessary for converting
- *     time on 32-bit systems. Transition to {@see GenericTimeConverter}.
- *
- * @psalm-immutable
+ * DegradedTimeConverter throws `UnsatisfiedDependencyException` exceptions
+ * if attempting to use time conversion functionality in an environment that
+ * does not support large integers (i.e. when moontoast/math is not available)
  */
-class DegradedTimeConverter extends BigNumberTimeConverter
+class DegradedTimeConverter implements TimeConverterInterface
 {
+    /**
+     * Throws an `UnsatisfiedDependencyException`
+     *
+     * @param string $seconds
+     * @param string $microSeconds
+     * @return void
+     * @throws UnsatisfiedDependencyException
+     */
+    public function calculateTime($seconds, $microSeconds)
+    {
+        throw new UnsatisfiedDependencyException(
+            'When calling ' . __METHOD__ . ' on a 32-bit system, '
+            . 'Moontoast\Math\BigNumber must be present.'
+        );
+    }
 }

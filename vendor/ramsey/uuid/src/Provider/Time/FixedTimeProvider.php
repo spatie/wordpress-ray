@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,55 +7,69 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Time;
 
 use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
-use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
 
 /**
- * FixedTimeProvider uses an known time to provide the time
+ * FixedTimeProvider uses an previously-generated timestamp to provide the time
  *
- * This provider allows the use of a previously-generated, or known, time
- * when generating time-based UUIDs.
+ * This provider allows the use of a previously-generated timestamp, such as one
+ * stored in a database, when creating version 1 UUIDs.
  */
 class FixedTimeProvider implements TimeProviderInterface
 {
     /**
-     * @var Time
+     * @var int[] Array containing `sec` and `usec` components of a timestamp
      */
     private $fixedTime;
 
-    public function __construct(Time $time)
+    /**
+     * Constructs a `FixedTimeProvider` using the provided `$timestamp`
+     *
+     * @param int[] Array containing `sec` and `usec` components of a timestamp
+     * @throws InvalidArgumentException if the `$timestamp` does not contain `sec` or `usec` components
+     */
+    public function __construct(array $timestamp)
     {
-        $this->fixedTime = $time;
+        if (!array_key_exists('sec', $timestamp) || !array_key_exists('usec', $timestamp)) {
+            throw new \InvalidArgumentException('Array must contain sec and usec keys.');
+        }
+
+        $this->fixedTime = $timestamp;
     }
 
     /**
-     * Sets the `usec` component of the time
+     * Sets the `usec` component of the timestamp
      *
-     * @param int|string|IntegerObject $value The `usec` value to set
+     * @param int $value The `usec` value to set
      */
-    public function setUsec($value): void
+    public function setUsec($value)
     {
-        $this->fixedTime = new Time($this->fixedTime->getSeconds(), $value);
+        $this->fixedTime['usec'] = $value;
     }
 
     /**
-     * Sets the `sec` component of the time
+     * Sets the `sec` component of the timestamp
      *
-     * @param int|string|IntegerObject $value The `sec` value to set
+     * @param int $value The `sec` value to set
      */
-    public function setSec($value): void
+    public function setSec($value)
     {
-        $this->fixedTime = new Time($value, $this->fixedTime->getMicroseconds());
+        $this->fixedTime['sec'] = $value;
     }
 
-    public function getTime(): Time
+    /**
+     * Returns a timestamp array
+     *
+     * @return int[] Array containing `sec` and `usec` components of a timestamp
+     */
+    public function currentTime()
     {
         return $this->fixedTime;
     }

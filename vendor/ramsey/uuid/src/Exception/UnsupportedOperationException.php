@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This file is part of the ramsey/uuid library
  *
@@ -8,17 +7,16 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
 
 namespace Spatie\WordPressRay\Ramsey\Uuid\Exception;
 
-use LogicException as PhpLogicException;
-
 /**
- * Thrown to indicate that the requested operation is not supported
+ * Thrown to indicate that the requested operation is not supported.
  */
-class UnsupportedOperationException extends PhpLogicException
+class UnsupportedOperationException extends \RuntimeException
 {
 }
