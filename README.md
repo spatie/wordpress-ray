@@ -25,9 +25,11 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Release instructions for maintainers
 
 - update spatie/ray in `composer.json` with the highest version number of the package
+- update `readme.txt` and `wp-ray` with the new release number
+- run `rm -rf vendor`
+- run `rm composer.lock`
 - run `composer update --no-dev --prefer-lowest -W`
 - run 'sed -i -e 's/'\''Symfony/'\''Spatie\\WordPressRay\\Symfony/g' ./vendor/symfony/var-dumper/Cloner/AbstractCloner.php'
-- update `readme.txt` and `wp-ray` with the new release number   
 - create a new release, it will automatically be pushed to the WordPress SVN
 
 
