@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Polyfill\Ctype;
+namespace Spatie\WordPressRay\Symfony\Polyfill\Ctype;
 
 /**
  * Ctype implementation through regex.
