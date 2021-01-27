@@ -21,6 +21,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\FileContentsPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\HideAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HtmlPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ImagePayload;
@@ -30,7 +31,9 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NewScreenPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NotifyPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\ShowAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\TablePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
 use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
@@ -43,18 +46,23 @@ class Ray
     use RaySizes;
     use Macroable;
 
-    public Settings $settings;
+    /** @var \Spatie\Ray\Settings\Settings */
+    public $settings;
 
-    protected static Client $client;
+    /** @var \Spatie\Ray\Client */
+    protected static $client;
 
-    public static Counters $counters;
+    /** @var \Spatie\Ray\Support\Counters */
+    public static $counters;
 
-    public static string $fakeUuid;
+    /** @var string */
+    public static $fakeUuid;
 
-    public string $uuid = '';
+    /** @var string */
+    public $uuid = '';
 
     /** @var \Symfony\Component\Stopwatch\Stopwatch[] */
-    public static array $stopWatches = [];
+    public static $stopWatches = [];
 
     public static function create(Client $client = null, string $uuid = null): self
     {
@@ -273,6 +281,29 @@ class Ray
         return $this->send(get_class($object));
     }
 
+    public function phpinfo(string ...$properties): self
+    {
+        if (! count($properties)) {
+            return $this->table([
+                'PHP version' => phpversion(),
+                'Memory limit' => ini_get('memory_limit'),
+                'Max file upload size' => ini_get('max_file_uploads'),
+                'Max post size' => ini_get('post_max_size'),
+                'PHP ini file' => php_ini_loaded_file(),
+                "PHP scanned ini file" => php_ini_scanned_files() ,
+                'Extensions' => implode(', ', get_loaded_extensions()),
+            ], 'PHPInfo');
+        }
+
+        $properties = array_flip($properties);
+
+        foreach ($properties as $property => $value) {
+            $properties[$property] = ini_get($property);
+        }
+
+        return $this->table($properties, 'PHPInfo');
+    }
+
     public function showWhen($boolOrCallable): self
     {
         if (is_callable($boolOrCallable)) {
@@ -326,6 +357,13 @@ class Ray
     public function charles(): self
     {
         return $this->send('🎶 🎹 🎷 🕺');
+    }
+
+    public function table(array $values, $label = 'Table'): self
+    {
+        $payload = new TablePayload($values, $label);
+
+        return $this->sendRequest($payload);
     }
 
     public function count(?string $name = null): self
@@ -415,6 +453,20 @@ class Ray
         $this->send($argument);
 
         return $argument;
+    }
+
+    public function showApp(): self
+    {
+        $payload = new ShowAppPayload();
+
+        return $this->sendRequest($payload);
+    }
+
+    public function hideApp(): self
+    {
+        $payload = new HideAppPayload();
+
+        return $this->sendRequest($payload);
     }
 
     public function sendCustom(string $content, string $label = ''): self

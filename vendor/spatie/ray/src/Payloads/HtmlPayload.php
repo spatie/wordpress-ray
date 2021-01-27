@@ -4,7 +4,8 @@ namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
 
 class HtmlPayload extends Payload
 {
-    protected string $html;
+    /** @var string */
+    protected $html;
 
     public function __construct(string $html = '')
     {

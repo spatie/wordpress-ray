@@ -9,11 +9,14 @@ class TracePayload extends Payload
 {
     use RemovesRayFrames;
 
-    protected array $frames;
+    /** @var array */
+    protected $frames;
 
-    protected ?int $startFromIndex = null;
+    /** @var int|null */
+    protected $startFromIndex = null;
 
-    protected ?int $limit = null;
+    /** @var int|null */
+    protected $limit = null;
 
     public function __construct(array $frames)
     {
@@ -41,13 +44,15 @@ class TracePayload extends Payload
 
     public function getContent(): array
     {
-        $frames = array_map(fn (Frame $frame) => [
-            'file_name' => $this->replaceRemotePathWithLocalPath($frame->file),
-            'line_number' => $frame->lineNumber,
-            'class' => $frame->class,
-            'method' => $frame->method,
-            'vendor_frame' => ! $frame->applicationFrame,
-        ], $this->frames);
+        $frames = array_map(function (Frame $frame) {
+            return [
+                'file_name' => $this->replaceRemotePathWithLocalPath($frame->file),
+                'line_number' => $frame->lineNumber,
+                'class' => $frame->class,
+                'method' => $frame->method,
+                'vendor_frame' => ! $frame->applicationFrame,
+            ];
+        }, $this->frames);
 
         if (! is_null($this->limit)) {
             $frames = array_slice($frames, $this->startFromIndex ?? 0, $this->limit);

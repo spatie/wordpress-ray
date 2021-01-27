@@ -3,7 +3,6 @@
 namespace Spatie\WordPressRay\Spatie\Ray;
 
 use Spatie\WordPressRay\Carbon\Carbon;
-use Closure;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\BoolPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
@@ -12,9 +11,11 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 
 class PayloadFactory
 {
-    protected array $values;
+    /** @var array */
+    protected $values;
 
-    protected static ?Closure $payloadFinder = null;
+    /** @var \Closure|null */
+    protected static $payloadFinder = null;
 
     public static function createForValues(array $arguments): array
     {

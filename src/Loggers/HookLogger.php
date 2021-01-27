@@ -6,7 +6,8 @@ use Spatie\WordPressRay\Payloads\HookPayload;
 
 class HookLogger
 {
-    protected bool $active = false;
+    /** @var bool */
+    protected $active = false;
 
     public function showHooks(): self
     {
@@ -34,7 +35,7 @@ class HookLogger
         return $this;
     }
 
-    public function sendHookToRay($name, ...$arguments): void
+    public function sendHookToRay($name, ...$arguments)
     {
         $payload = new HookPayload($name, $arguments);
 

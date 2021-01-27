@@ -7,12 +7,16 @@ use Spatie\WordPressRay\Spatie\Ray\Origin\Origin;
 
 abstract class Payload
 {
-    public static string $originFactoryClass = DefaultOriginFactory::class;
+    /** @var string */
+    public static $originFactoryClass = DefaultOriginFactory::class;
 
     abstract public function getType(): string;
 
-    public ?string $remotePath = null;
-    public ?string $localPath = null;
+    /** @var string|null */
+    public $remotePath = null;
+
+    /** @var string|null */
+    public $localPath = null;
 
     public function replaceRemotePathWithLocalPath(string $filePath): string
     {
@@ -20,7 +24,7 @@ abstract class Payload
             return $filePath;
         }
 
-        return str_replace($this->remotePath, $this->localPath, $filePath);
+        return substr_replace($filePath, $this->localPath, 0, strlen($this->remotePath));
     }
 
     public function getContent(): array

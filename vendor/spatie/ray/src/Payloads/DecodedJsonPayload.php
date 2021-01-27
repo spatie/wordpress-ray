@@ -6,7 +6,8 @@ use Spatie\WordPressRay\Spatie\Ray\ArgumentConverter;
 
 class DecodedJsonPayload extends Payload
 {
-    protected string $value;
+    /** @var string */
+    protected $value;
 
     public function __construct(string $value)
     {

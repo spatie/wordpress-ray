@@ -2,10 +2,10 @@
 Contributors: freekmurze
 Donate link: https://github.com/sponsors/spatie
 Tags: development, debugging
-Requires PHP: 7.4
+Requires PHP: 7.3
 Requires at least: 5.5
 Tested up to: 5.6
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: MIT
 
 Easily debug WordPress sites using Ray.

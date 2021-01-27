@@ -10,13 +10,17 @@ use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
 
 class Ray extends BaseRay
 {
-    protected static QueryLogger $queryLogger;
+    /** @var \Spatie\WordPressRay\Loggers\QueryLogger */
+    protected static $queryLogger;
 
-    protected static MailLogger $mailLogger;
+    /** @var \Spatie\WordPressRay\Loggers\MailLogger */
+    protected static $mailLogger;
 
-    protected static HookLogger $hookLogger;
+    /** @var \Spatie\WordPressRay\Loggers\HookLogger */
+    protected static $hookLogger;
 
-    public static bool $enabled = true;
+    /** @var bool */
+    public static $enabled = true;
 
     public static function bootForWordPress()
     {

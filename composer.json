@@ -18,8 +18,8 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "spatie/ray": "^1.13.0",
+        "php": "^7.3|^8.0",
+        "spatie/ray": "^1.17.1",
         "typisttech/imposter-plugin": "^0.6.2"
     },
     "require-dev": {

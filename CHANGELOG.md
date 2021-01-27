@@ -2,6 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## 1.2.2 - 2021-01-27
+
+- upgrade ray to 1.17.1
+- add support for PHP 7.3
+
 ## 1.2.1 - 2021-01-19
 
 - do not include dev deps

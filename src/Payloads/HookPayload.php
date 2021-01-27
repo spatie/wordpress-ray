@@ -7,9 +7,11 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 
 class HookPayload extends Payload
 {
-    protected string $hookName;
+    /** @var string */
+    protected $hookName;
 
-    protected array $payload = [];
+    /** @var array */
+    protected $payload = [];
 
     public function __construct(string $hookName, array $payload)
     {

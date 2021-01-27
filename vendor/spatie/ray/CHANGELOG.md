@@ -2,6 +2,30 @@
 
 All notable changes to `ray` will be documented in this file
 
+## 1.17.1 - 2021-01-27
+
+- add support for PHP 7.3
+
+## 1.17.0 - 2021-01-25
+
+- add `showApp` and `hideApp`
+
+## 1.16.0 - 2021-01-22
+
+- add `phpinfo` method
+
+## 1.15.0 - 2021-01-22
+
+- add `table` method
+
+## 1.14.1 - 2021-01-22
+
+- fix bug when `remote_path` is also in `filePath` (#227)
+
+## 1.14.0 - 2021-01-20
+
+- Add support for CraftRay
+
 ## 1.13.0 - 2021-01-18
 
 - the package will now select the best payload type when passing something to `ray()`

@@ -257,23 +257,23 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.13.0",
-            "version_normalized": "1.13.0.0",
+            "version": "1.17.1",
+            "version_normalized": "1.17.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "1df552d740f71f9866fa5b531ac7077726922f4e"
+                "reference": "a28dcff88ccb8acb8ad295ae69919cb323148ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/1df552d740f71f9866fa5b531ac7077726922f4e",
-                "reference": "1df552d740f71f9866fa5b531ac7077726922f4e",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/a28dcff88ccb8acb8ad295ae69919cb323148ef8",
+                "reference": "a28dcff88ccb8acb8ad295ae69919cb323148ef8",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": "^7.4|^8.0",
+                "php": "^7.3|^8.0",
                 "ramsey/uuid": "^3.0|^4.1",
                 "spatie/backtrace": "^1.0",
                 "spatie/macroable": "^1.0",
@@ -284,10 +284,11 @@
                 "illuminate/support": "6.x|^8.18",
                 "nesbot/carbon": "^2.43",
                 "phpunit/phpunit": "^9.5",
+                "rector/rector": "^0.9.16",
                 "spatie/phpunit-snapshot-assertions": "^4.2",
                 "spatie/test-time": "^1.2"
             },
-            "time": "2021-01-19T19:28:53+00:00",
+            "time": "2021-01-27T08:50:07+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -318,7 +319,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.13.0"
+                "source": "https://github.com/spatie/ray/tree/1.17.1"
             },
             "funding": [
                 {

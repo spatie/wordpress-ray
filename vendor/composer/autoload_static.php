@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc5e915398524907c569bf5acb039950f
+class ComposerStaticInit000e31ec00eb6e379fc2501d4709f6fe
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -187,6 +187,7 @@ class ComposerStaticInitc5e915398524907c569bf5acb039950f
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\CustomPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/CustomPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\DecodedJsonPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/DecodedJsonPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\FileContentsPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/FileContentsPayload.php',
+        'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\HideAppPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/HideAppPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\HidePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/HidePayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\HtmlPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/HtmlPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\ImagePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/ImagePayload.php',
@@ -198,7 +199,9 @@ class ComposerStaticInitc5e915398524907c569bf5acb039950f
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\NullPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/NullPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\Payload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/Payload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\RemovePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/RemovePayload.php',
+        'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\ShowAppPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/ShowAppPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\SizePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/SizePayload.php',
+        'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\TablePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/TablePayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\TracePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/TracePayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Ray' => __DIR__ . '/..' . '/spatie/ray/src/Ray.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Request' => __DIR__ . '/..' . '/spatie/ray/src/Request.php',
@@ -307,9 +310,9 @@ class ComposerStaticInitc5e915398524907c569bf5acb039950f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc5e915398524907c569bf5acb039950f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc5e915398524907c569bf5acb039950f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc5e915398524907c569bf5acb039950f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit000e31ec00eb6e379fc2501d4709f6fe::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit000e31ec00eb6e379fc2501d4709f6fe::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit000e31ec00eb6e379fc2501d4709f6fe::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -8,7 +8,8 @@ use Spatie\WordPressRay\Support\Mailable;
 
 class MailLogger
 {
-    protected bool $active = false;
+    /** @var bool */
+    protected $active = false;
 
     public function showMails(): self
     {

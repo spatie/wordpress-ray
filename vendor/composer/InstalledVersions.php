@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'e1d1adedb5c6f27cd6cb55e55c146b7953b73dd1',
+    'reference' => '1e05e98e1e7f939a7027f2f96b36257253ea71b8',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -79,12 +79,12 @@ private static $installed = array (
     ),
     'spatie/ray' => 
     array (
-      'pretty_version' => '1.13.0',
-      'version' => '1.13.0.0',
+      'pretty_version' => '1.17.1',
+      'version' => '1.17.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1df552d740f71f9866fa5b531ac7077726922f4e',
+      'reference' => 'a28dcff88ccb8acb8ad295ae69919cb323148ef8',
     ),
     'spatie/wordpress-ray' => 
     array (
@@ -93,7 +93,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'e1d1adedb5c6f27cd6cb55e55c146b7953b73dd1',
+      'reference' => '1e05e98e1e7f939a7027f2f96b36257253ea71b8',
     ),
     'symfony/polyfill-mbstring' => 
     array (

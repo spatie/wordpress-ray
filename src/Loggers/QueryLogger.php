@@ -6,7 +6,8 @@ use Spatie\WordPressRay\Payloads\ExecutedQueryPayload;
 
 class QueryLogger
 {
-    protected bool $active = false;
+    /** @var bool */
+    protected $active = false;
 
     public function showQueries(): self
     {

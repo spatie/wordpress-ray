@@ -6,9 +6,11 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
 
 class ExecutedQueryPayload extends Payload
 {
-    protected string $sql;
+    /** @var string */
+    protected $sql;
 
-    protected float $time;
+    /** @var float */
+    protected $time;
 
     public function __construct(string $sql, float $time)
     {

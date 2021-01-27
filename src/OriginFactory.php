@@ -10,7 +10,10 @@ use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
 
 class OriginFactory extends DefaultOriginFactory
 {
-    public function getFrame(): ?Frame
+    /**
+     * @return \Spatie\WordPressRay\Spatie\Backtrace\Frame|null
+     */
+    public function getFrame()
     {
         $frames = $this->getAllFrames();
 

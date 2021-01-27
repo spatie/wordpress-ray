@@ -1,10 +1,11 @@
 <?php
 
 use Spatie\WordPressRay\Illuminate\Contracts\Container\BindingResolutionException;
+use Spatie\WordPressRay\Spatie\CraftRay\Ray as CraftRay;
 use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Ray\Ray;
-use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 
+use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\RayBundle\Ray as SymfonyRay;
 use Spatie\WordPressRay\Ray as WordPressRay;
 use Spatie\WordPressRay\Spatie\YiiRay\Ray as YiiRay;
@@ -25,6 +26,10 @@ if (! function_exists('ray')) {
                 // testsuite without spatie/laravel-ray's service provider being registered
                 // in `getPackageProviders` of the base test suite
             }
+        }
+
+        if (class_exists(CraftRay::class)) {
+            return Yii::$container->get(CraftRay::class)->send(...$args);
         }
 
         if (class_exists(YiiRay::class)) {

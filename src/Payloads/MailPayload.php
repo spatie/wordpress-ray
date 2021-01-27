@@ -7,7 +7,8 @@ use Spatie\WordPressRay\Support\Mailable;
 
 class MailPayload extends Payload
 {
-    protected Mailable $mailable;
+    /** @var \Spatie\WordPressRay\Support\Mailable */
+    protected $mailable;
 
     public function __construct(Mailable $mailable)
     {

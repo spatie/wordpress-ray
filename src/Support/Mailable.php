@@ -6,7 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 class Mailable
 {
-    protected PHPMailer $mailer;
+    /** @var \PHPMailer\PHPMailer\PHPMailer */
+    protected $mailer;
 
     public function __construct(PHPMailer $mailer)
     {
