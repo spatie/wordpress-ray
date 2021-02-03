@@ -11,11 +11,8 @@
 
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ReflectionCaster;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider\SourceContextProvider;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextualizedDumper;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 // Load the global dump() function
@@ -32,22 +29,19 @@ class VarDumper
     {
         if (null === self::$handler) {
             $cloner = new VarCloner();
-            $cloner->addCasters(ReflectionCaster::UNSET_CLOSURE_FILE_INFO);
 
             if (isset($_SERVER['VAR_DUMPER_FORMAT'])) {
                 $dumper = 'html' === $_SERVER['VAR_DUMPER_FORMAT'] ? new HtmlDumper() : new CliDumper();
             } else {
-                $dumper = \in_array(\PHP_SAPI, ['cli', 'phpdbg']) ? new CliDumper() : new HtmlDumper();
+                $dumper = \in_array(\PHP_SAPI, array('cli', 'phpdbg')) ? new CliDumper() : new HtmlDumper();
             }
-
-            $dumper = new ContextualizedDumper($dumper, [new SourceContextProvider()]);
 
             self::$handler = function ($var) use ($cloner, $dumper) {
                 $dumper->dump($cloner->cloneVar($var));
             };
         }
 
-        return (self::$handler)($var);
+        return \call_user_func(self::$handler, $var);
     }
 
     public static function setHandler(callable $callable = null)

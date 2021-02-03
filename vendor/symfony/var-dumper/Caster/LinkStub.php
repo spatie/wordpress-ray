@@ -63,15 +63,15 @@ class LinkStub extends ConstStub
         }
     }
 
-    private function getComposerRoot(string $file, bool &$inVendor)
+    private function getComposerRoot($file, &$inVendor)
     {
         if (null === self::$vendorRoots) {
-            self::$vendorRoots = [];
+            self::$vendorRoots = array();
 
             foreach (get_declared_classes() as $class) {
                 if ('C' === $class[0] && 0 === strpos($class, 'ComposerAutoloaderInit')) {
                     $r = new \ReflectionClass($class);
-                    $v = \dirname($r->getFileName(), 2);
+                    $v = \dirname(\dirname($r->getFileName()));
                     if (file_exists($v.'/composer/installed.json')) {
                         self::$vendorRoots[] = $v.\DIRECTORY_SEPARATOR;
                     }
