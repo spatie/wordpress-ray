@@ -2,6 +2,10 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## 1.2.3 - 2021-02-05
+
+- upgrade ray to 1.19
+
 ## 1.2.2 - 2021-01-27
 
 - upgrade ray to 1.17.1
