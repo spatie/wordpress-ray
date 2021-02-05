@@ -19,9 +19,6 @@ class Ray extends BaseRay
     /** @var \Spatie\WordPressRay\Loggers\HookLogger */
     protected static $hookLogger;
 
-    /** @var bool */
-    public static $enabled = true;
-
     public static function bootForWordPress()
     {
         static::$queryLogger = new QueryLogger();
@@ -35,20 +32,6 @@ class Ray extends BaseRay
         if (self::isProduction()) {
             static::$enabled = false;
         }
-    }
-
-    public function enable(): self
-    {
-        static::$enabled = true;
-
-        return $this;
-    }
-
-    public function disable(): self
-    {
-        static::$enabled = false;
-
-        return $this;
     }
 
     public function isEnabled(): bool

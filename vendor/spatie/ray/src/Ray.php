@@ -35,6 +35,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\ShowAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TablePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\XmlPayload;
 use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
@@ -64,6 +65,9 @@ class Ray
     /** @var \Symfony\Component\Stopwatch\Stopwatch[] */
     public static $stopWatches = [];
 
+    /** @var bool */
+    public static $enabled = true;
+
     public static function create(Client $client = null, string $uuid = null): self
     {
         $settings = SettingsFactory::createFromConfigFile();
@@ -80,6 +84,32 @@ class Ray
         self::$counters = self::$counters ?? new Counters();
 
         $this->uuid = $uuid ?? static::$fakeUuid ?? Uuid::uuid4()->toString();
+
+        static::$enabled = $this->settings->enable !== false;
+    }
+
+    public function enable(): self
+    {
+        static::$enabled = true;
+
+        return $this;
+    }
+
+    public function disable(): self
+    {
+        static::$enabled = false;
+
+        return $this;
+    }
+
+    public function enabled(): bool
+    {
+        return static::$enabled;
+    }
+
+    public function disabled(): bool
+    {
+        return ! static::$enabled;
     }
 
     public static function useClient(Client $client): void
@@ -94,14 +124,14 @@ class Ray
         return $this->sendRequest($payload);
     }
 
-    public function clearAll()
+    public function clearAll(): self
     {
         $payload = new ClearAllPayload();
 
         return $this->sendRequest($payload);
     }
 
-    public function clearScreen()
+    public function clearScreen(): self
     {
         return $this->newScreen();
     }
@@ -271,7 +301,7 @@ class Ray
         return $this->sendRequest($payload);
     }
 
-    public function die($status = '')
+    public function die($status = ''): void
     {
         die($status);
     }
@@ -413,9 +443,16 @@ class Ray
         return $this;
     }
 
-    public function html(string $html = '')
+    public function html(string $html = ''): self
     {
         $payload = new HtmlPayload($html);
+
+        return $this->sendRequest($payload);
+    }
+
+    public function xml(string $xml): self
+    {
+        $payload = new XmlPayload($xml);
 
         return $this->sendRequest($payload);
     }
@@ -485,6 +522,10 @@ class Ray
      */
     public function sendRequest($payloads, array $meta = []): self
     {
+        if (! $this->enabled()) {
+            return $this;
+        }
+
         if (! is_array($payloads)) {
             $payloads = [$payloads];
         }
