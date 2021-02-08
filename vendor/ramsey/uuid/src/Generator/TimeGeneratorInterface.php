@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
+namespace Ramsey\Uuid\Generator;
 
 /**
  * TimeGeneratorInterface provides functionality to generate strings of binary

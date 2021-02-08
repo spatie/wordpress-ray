@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Origin;
+namespace Spatie\Ray\Origin;
 
 class Origin
 {

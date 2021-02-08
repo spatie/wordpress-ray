@@ -12,12 +12,12 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
 use InvalidArgumentException;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsupportedOperationException;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 /**
  * Represents a universally unique identifier (UUID), according to RFC 4122.
@@ -38,25 +38,25 @@ use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsupportedOperationException;
 class Uuid implements UuidInterface
 {
     /**
-     * When this namespace Spatie\WordPressRay\is specified, the name string is a fully-qualified domain name.
+     * When this namespace is specified, the name string is a fully-qualified domain name.
      * @link http://tools.ietf.org/html/rfc4122#appendix-C
      */
     const NAMESPACE_DNS = '6ba7b810-9dad-11d1-80b4-00c04fd430c8';
 
     /**
-     * When this namespace Spatie\WordPressRay\is specified, the name string is a URL.
+     * When this namespace is specified, the name string is a URL.
      * @link http://tools.ietf.org/html/rfc4122#appendix-C
      */
     const NAMESPACE_URL = '6ba7b811-9dad-11d1-80b4-00c04fd430c8';
 
     /**
-     * When this namespace Spatie\WordPressRay\is specified, the name string is an ISO OID.
+     * When this namespace is specified, the name string is an ISO OID.
      * @link http://tools.ietf.org/html/rfc4122#appendix-C
      */
     const NAMESPACE_OID = '6ba7b812-9dad-11d1-80b4-00c04fd430c8';
 
     /**
-     * When this namespace Spatie\WordPressRay\is specified, the name string is an X.500 DN in DER or a text output format.
+     * When this namespace is specified, the name string is an X.500 DN in DER or a text output format.
      * @link http://tools.ietf.org/html/rfc4122#appendix-C
      */
     const NAMESPACE_X500 = '6ba7b814-9dad-11d1-80b4-00c04fd430c8';
@@ -139,7 +139,7 @@ class Uuid implements UuidInterface
      * UUID directly. Use the static methods, instead:
      *
      * ```
-     * use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
+     * use Ramsey\Uuid\Uuid;
      *
      * $timeBasedUuid     = Uuid::uuid1();
      * $namespaceMd5Uuid  = Uuid::uuid3(Uuid::NAMESPACE_URL, 'http://php.net/');
@@ -627,10 +627,10 @@ class Uuid implements UuidInterface
     }
 
     /**
-     * Generate a version 3 UUID based on the MD5 hash of a namespace Spatie\WordPressRay\identifier
+     * Generate a version 3 UUID based on the MD5 hash of a namespace identifier
      * (which is a UUID) and a name (which is a string).
      *
-     * @param string $ns The UUID namespace Spatie\WordPressRay\in which to create the named UUID
+     * @param string $ns The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
      * @return UuidInterface
      */
@@ -650,9 +650,10 @@ class Uuid implements UuidInterface
     }
 
     /**
-     * Generate a version 5 UUID based on the SHA-1 hash of a namespace Spatie\WordPressRay\* identifier (which is a UUID) and a name (which is a string).
+     * Generate a version 5 UUID based on the SHA-1 hash of a namespace
+     * identifier (which is a UUID) and a name (which is a string).
      *
-     * @param string $ns The UUID namespace Spatie\WordPressRay\in which to create the named UUID
+     * @param string $ns The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
      * @return UuidInterface
      */

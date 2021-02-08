@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>

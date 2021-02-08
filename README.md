@@ -28,8 +28,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 - update `readme.txt` and `wp-ray` with the new release number
 - run `rm -rf vendor`
 - run `rm composer.lock`
-- run `composer update --no-dev --prefer-lowest --with-all-dependencies`
-- run `'sed -i -e 's/'\''Symfony/'\''Spatie\\WordPressRay\\Symfony/g' ./vendor/symfony/var-dumper/Cloner/AbstractCloner.php'`
+- run `composer update --no-dev --prefer-lowest --with-all-dependencies -o`
 - create a new release, it will automatically be pushed to the WordPress SVN
 
 ## Credits

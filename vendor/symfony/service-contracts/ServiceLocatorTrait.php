@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Contracts\Service;
+namespace Symfony\Contracts\Service;
 
-use Spatie\WordPressRay\Psr\Container\ContainerExceptionInterface;
-use Spatie\WordPressRay\Psr\Container\NotFoundExceptionInterface;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 /**
  * A trait to help implement ServiceProviderInterface.

@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Caster;
+namespace Symfony\Component\VarDumper\Tests\Caster;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Test\VarDumperTestTrait;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>

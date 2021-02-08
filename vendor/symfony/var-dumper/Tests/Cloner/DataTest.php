@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Cloner;
+namespace Symfony\Component\VarDumper\Tests\Cloner;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\Caster;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ClassStub;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Caster\Caster;
+use Symfony\Component\VarDumper\Caster\ClassStub;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
 
 class DataTest extends TestCase
 {

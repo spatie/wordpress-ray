@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
+namespace Ramsey\Uuid\Provider;
 
 /**
  * NodeProviderInterface provides functionality to get the node ID (or host ID

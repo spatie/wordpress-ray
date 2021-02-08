@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
+namespace Ramsey\Uuid\Generator;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
 
 /**
  * CombGenerator provides functionality to generate COMB (combined GUID/timestamp)

@@ -12,11 +12,11 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
+namespace Ramsey\Uuid\Builder;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\DegradedUuid;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\DegradedUuid;
 
 /**
  * DegradedUuidBuilder builds instances of DegradedUuid

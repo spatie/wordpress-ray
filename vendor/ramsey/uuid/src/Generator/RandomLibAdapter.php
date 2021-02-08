@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
+namespace Ramsey\Uuid\Generator;
 
-use Spatie\WordPressRay\RandomLib\Generator;
-use Spatie\WordPressRay\RandomLib\Factory;
+use RandomLib\Generator;
+use RandomLib\Factory;
 
 /**
  * RandomLibAdapter provides functionality to generate strings of random

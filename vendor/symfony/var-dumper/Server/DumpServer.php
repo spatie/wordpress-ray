@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Server;
+namespace Symfony\Component\VarDumper\Server;
 
-use Spatie\WordPressRay\Psr\Log\LoggerInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * A server collecting Data clones sent by a ServerDumper.

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner;
+namespace Symfony\Component\VarDumper\Cloner;
 
 /**
  * DumperInterface used by Data objects.

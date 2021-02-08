@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Doctrine\Common\Proxy\Proxy as CommonProxy;
-use Spatie\WordPressRay\Doctrine\ORM\PersistentCollection;
-use Spatie\WordPressRay\Doctrine\ORM\Proxy\Proxy as OrmProxy;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Doctrine\Common\Proxy\Proxy as CommonProxy;
+use Doctrine\ORM\PersistentCollection;
+use Doctrine\ORM\Proxy\Proxy as OrmProxy;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * Casts Doctrine related classes to array representation.

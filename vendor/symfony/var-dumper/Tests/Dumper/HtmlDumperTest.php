@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Dumper;
+namespace Symfony\Component\VarDumper\Tests\Dumper;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>

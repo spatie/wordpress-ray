@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Exceptions;
+namespace Spatie\Ray\Exceptions;
 
 use Exception;
 

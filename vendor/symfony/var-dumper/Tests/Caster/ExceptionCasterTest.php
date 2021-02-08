@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Caster;
+namespace Symfony\Component\VarDumper\Tests\Caster;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\Caster;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ExceptionCaster;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\FrameStub;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Test\VarDumperTestTrait;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Caster\Caster;
+use Symfony\Component\VarDumper\Caster\ExceptionCaster;
+use Symfony\Component\VarDumper\Caster\FrameStub;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class ExceptionCasterTest extends TestCase
 {

@@ -12,12 +12,12 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
+namespace Ramsey\Uuid\Generator;
 
-use Spatie\WordPressRay\Ramsey\Uuid\BinaryUtils;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
+use Ramsey\Uuid\BinaryUtils;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
+use Ramsey\Uuid\Provider\NodeProviderInterface;
+use Ramsey\Uuid\Provider\TimeProviderInterface;
 
 /**
  * DefaultTimeGenerator provides functionality to generate strings of binary

@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Time;
+namespace Ramsey\Uuid\Provider\Time;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
+use Ramsey\Uuid\Provider\TimeProviderInterface;
 
 /**
  * FixedTimeProvider uses an previously-generated timestamp to provide the time

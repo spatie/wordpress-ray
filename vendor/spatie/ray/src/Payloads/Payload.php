@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
-use Spatie\WordPressRay\Spatie\Ray\Origin\Origin;
+use Spatie\Ray\Origin\DefaultOriginFactory;
+use Spatie\Ray\Origin\Origin;
 
 abstract class Payload
 {

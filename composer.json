@@ -19,12 +19,12 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "spatie/ray": "^1.19.0",
-        "typisttech/imposter-plugin": "^0.6.2"
+        "spatie/ray": "^1.19.0"
     },
     "require-dev": {
         "composer/installers": "^1.9",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "automattic/jetpack-autoloader": "^2.9"
     },
     "autoload": {
         "psr-4": {
@@ -40,10 +40,7 @@
         "psalm": "vendor/bin/psalm",
         "test": "vendor/bin/phpunit",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
-        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
-        "post-install-cmd": [
-            "sed -i -e 's/'\\''Symfony/'\\''Spatie\\\\WordPressRay\\\\Symfony/g' ./vendor/symfony/var-dumper/Cloner/AbstractCloner.php"
-        ]
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
         "sort-packages": true
@@ -55,13 +52,5 @@
             "type": "github",
             "url": "https://github.com/sponsors/spatie"
         }
-    ],
-    "extra": {
-        "imposter": {
-            "namespace": "Spatie\\WordPressRay",
-            "excludes": [
-                "composer/installers"
-            ]
-        }
-    }
+    ]
 }

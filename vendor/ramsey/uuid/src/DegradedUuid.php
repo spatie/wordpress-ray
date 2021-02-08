@@ -12,12 +12,12 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsupportedOperationException;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Exception\UnsupportedOperationException;
 
 /**
  * DegradedUuid represents an RFC 4122 UUID on 32-bit systems

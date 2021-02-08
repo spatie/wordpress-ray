@@ -5,8 +5,8 @@ namespace Spatie\WordPressRay;
 use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
-use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
+use Spatie\Ray\Payloads\Payload;
+use Spatie\Ray\Ray as BaseRay;
 
 class Ray extends BaseRay
 {

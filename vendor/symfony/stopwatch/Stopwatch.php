@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\Stopwatch;
+namespace Symfony\Component\Stopwatch;
 
-use Spatie\WordPressRay\Symfony\Contracts\Service\ResetInterface;
+use Symfony\Contracts\Service\ResetInterface;
 
 // Help opcache.preload discover always-needed symbols
 class_exists(Section::class);

@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Symfony\Component\Stopwatch\StopwatchEvent;
+use Symfony\Component\Stopwatch\StopwatchEvent;
 
 class MeasurePayload extends Payload
 {

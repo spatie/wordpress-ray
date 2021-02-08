@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Number;
+namespace Ramsey\Uuid\Converter\Number;
 
-use Spatie\WordPressRay\Moontoast\Math\BigNumber;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Moontoast\Math\BigNumber;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
 
 /**
  * BigNumberConverter converts UUIDs from hexadecimal characters into

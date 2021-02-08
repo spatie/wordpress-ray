@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\Stopwatch;
+namespace Symfony\Component\Stopwatch;
 
 /**
  * Represents an Period for an Event.

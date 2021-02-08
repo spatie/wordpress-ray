@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Spatie\WordPressRay\Symfony\Polyfill\Mbstring as p;
+use Symfony\Polyfill\Mbstring as p;
 
 if (!function_exists('mb_strlen')) {
     define('MB_CASE_UPPER', 0);

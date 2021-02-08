@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter;
+namespace Ramsey\Uuid\Converter;
 
 /**
  * TimeConverterInterface provides facilities for converting parts of time into

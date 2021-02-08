@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Spatie\WordPressRay\Symfony\Polyfill\Php72 as p;
+use Symfony\Polyfill\Php72 as p;
 
 if (PHP_VERSION_ID < 70200) {
     if ('\\' === DIRECTORY_SEPARATOR && !function_exists('sapi_windows_vt100_support')) {

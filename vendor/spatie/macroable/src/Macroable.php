@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Macroable;
+namespace Spatie\Macroable;
 
 use Closure;
 use ReflectionClass;

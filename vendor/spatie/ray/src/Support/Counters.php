@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Support;
+namespace Spatie\Ray\Support;
 
-use Spatie\WordPressRay\Spatie\Ray\Ray;
+use Spatie\Ray\Ray;
 
 class Counters
 {

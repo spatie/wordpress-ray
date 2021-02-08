@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter;
+namespace Ramsey\Uuid\Converter;
 
 /**
  * NumberConverterInterface converts UUIDs from hexadecimal characters into

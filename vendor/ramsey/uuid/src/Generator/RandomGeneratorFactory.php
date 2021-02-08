@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
+namespace Ramsey\Uuid\Generator;
 
 /**
  * A factory for retrieving a random generator, based on the environment

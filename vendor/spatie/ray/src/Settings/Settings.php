@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Settings;
+namespace Spatie\Ray\Settings;
 
 class Settings
 {

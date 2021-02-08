@@ -12,16 +12,16 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
 use InvalidArgumentException;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\RandomGeneratorInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\TimeGeneratorInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Provider\NodeProviderInterface;
+use Ramsey\Uuid\Generator\RandomGeneratorInterface;
+use Ramsey\Uuid\Generator\TimeGeneratorInterface;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Ramsey\Uuid\UuidInterface;
 
 class UuidFactory implements UuidFactoryInterface
 {
@@ -228,9 +228,11 @@ class UuidFactory implements UuidFactoryInterface
     /**
      * Returns a version 3 or 5 namespaced `Uuid`
      *
-     * @param string|UuidInterface $ns The UUID namespace Spatie\WordPressRay\to use Spatie\WordPressRay\* @param string $name The string to hash together with the namespace Spatie\WordPressRay\* @param int $version The version of UUID to create (3 or 5)
+     * @param string|UuidInterface $ns The UUID namespace to use
+     * @param string $name The string to hash together with the namespace
+     * @param int $version The version of UUID to create (3 or 5)
      * @param string $hashFunction The hash function to use when hashing together
-     *     the namespace Spatie\WordPressRay\and name
+     *     the namespace and name
      * @return UuidInterface
      */
     protected function uuidFromNsAndName($ns, $name, $version, $hashFunction)

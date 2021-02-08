@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Time;
+namespace Ramsey\Uuid\Converter\Time;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
 
 /**
  * PhpTimeConverter uses built-in PHP functions and standard math operations

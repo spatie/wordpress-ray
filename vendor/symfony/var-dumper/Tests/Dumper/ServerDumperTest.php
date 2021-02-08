@@ -9,15 +9,15 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Dumper;
+namespace Symfony\Component\VarDumper\Tests\Dumper;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\Process\PhpProcess;
-use Spatie\WordPressRay\Symfony\Component\Process\Process;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\DataDumperInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ServerDumper;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\Process\PhpProcess;
+use Symfony\Component\Process\Process;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
+use Symfony\Component\VarDumper\Dumper\DataDumperInterface;
+use Symfony\Component\VarDumper\Dumper\ServerDumper;
 
 class ServerDumperTest extends TestCase
 {

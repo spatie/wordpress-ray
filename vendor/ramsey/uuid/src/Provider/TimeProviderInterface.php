@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
+namespace Ramsey\Uuid\Provider;
 
 /**
  * TimeProviderInterface provides functionality to get the time from a specific

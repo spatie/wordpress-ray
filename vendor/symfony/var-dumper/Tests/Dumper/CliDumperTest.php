@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Dumper;
+namespace Symfony\Component\VarDumper\Tests\Dumper;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Test\VarDumperTestTrait;
-use Spatie\WordPressRay\Twig\Environment;
-use Spatie\WordPressRay\Twig\Loader\FilesystemLoader;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>

@@ -16,14 +16,14 @@
  * @author Maxime Steinhausser <maxime.steinhausser@gmail.com>
  */
 
-use Spatie\WordPressRay\Psr\Log\LoggerInterface;
-use Spatie\WordPressRay\Symfony\Component\Console\Application;
-use Spatie\WordPressRay\Symfony\Component\Console\Input\ArgvInput;
-use Spatie\WordPressRay\Symfony\Component\Console\Input\InputOption;
-use Spatie\WordPressRay\Symfony\Component\Console\Logger\ConsoleLogger;
-use Spatie\WordPressRay\Symfony\Component\Console\Output\ConsoleOutput;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Command\ServerDumpCommand;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Server\DumpServer;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Logger\ConsoleLogger;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\VarDumper\Command\ServerDumpCommand;
+use Symfony\Component\VarDumper\Server\DumpServer;
 
 function includeIfExists(string $file): bool
 {

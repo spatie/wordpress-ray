@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Backtrace;
+namespace Spatie\Backtrace;
 
 use SplFileObject;
 

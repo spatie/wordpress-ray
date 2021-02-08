@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Concerns;
+namespace Spatie\Ray\Concerns;
 
-use Spatie\WordPressRay\Spatie\Backtrace\Frame;
+use Spatie\Backtrace\Frame;
 
 trait RemovesRayFrames
 {

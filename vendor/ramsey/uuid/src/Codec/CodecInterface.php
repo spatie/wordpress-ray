@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
+namespace Ramsey\Uuid\Codec;
 
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * CodecInterface represents a UUID coder-decoder

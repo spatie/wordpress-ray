@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
+namespace Ramsey\Uuid\Provider\Node;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Ramsey\Uuid\Provider\NodeProviderInterface;
 
 /**
  * RandomNodeProvider provides functionality to generate a random node ID, in

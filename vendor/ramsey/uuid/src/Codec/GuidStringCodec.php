@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
+namespace Ramsey\Uuid\Codec;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * GuidStringCodec encodes and decodes globally unique identifiers (GUID)

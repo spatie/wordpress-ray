@@ -12,32 +12,32 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\PeclUuidTimeGenerator;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\Node\FallbackNodeProvider;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\Node\RandomNodeProvider;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\Node\SystemNodeProvider;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\Number\BigNumberConverter;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\Number\DegradedNumberConverter;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\Time\BigNumberTimeConverter;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\Time\DegradedTimeConverter;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\Time\PhpTimeConverter;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\Time\SystemTimeProvider;
-use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Builder\DefaultUuidBuilder;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\StringCodec;
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\GuidStringCodec;
-use Spatie\WordPressRay\Ramsey\Uuid\Builder\DegradedUuidBuilder;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\RandomGeneratorFactory;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\RandomGeneratorInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\TimeGeneratorFactory;
-use Spatie\WordPressRay\Ramsey\Uuid\Generator\TimeGeneratorInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
+use Ramsey\Uuid\Generator\PeclUuidTimeGenerator;
+use Ramsey\Uuid\Provider\Node\FallbackNodeProvider;
+use Ramsey\Uuid\Provider\Node\RandomNodeProvider;
+use Ramsey\Uuid\Provider\Node\SystemNodeProvider;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Converter\Number\BigNumberConverter;
+use Ramsey\Uuid\Converter\Number\DegradedNumberConverter;
+use Ramsey\Uuid\Converter\Time\BigNumberTimeConverter;
+use Ramsey\Uuid\Converter\Time\DegradedTimeConverter;
+use Ramsey\Uuid\Converter\Time\PhpTimeConverter;
+use Ramsey\Uuid\Provider\Time\SystemTimeProvider;
+use Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Ramsey\Uuid\Builder\DefaultUuidBuilder;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\Codec\StringCodec;
+use Ramsey\Uuid\Codec\GuidStringCodec;
+use Ramsey\Uuid\Builder\DegradedUuidBuilder;
+use Ramsey\Uuid\Generator\RandomGeneratorFactory;
+use Ramsey\Uuid\Generator\RandomGeneratorInterface;
+use Ramsey\Uuid\Generator\TimeGeneratorFactory;
+use Ramsey\Uuid\Generator\TimeGeneratorInterface;
+use Ramsey\Uuid\Provider\TimeProviderInterface;
+use Ramsey\Uuid\Provider\NodeProviderInterface;
 
 /**
  * FeatureSet detects and exposes available features in the current environment

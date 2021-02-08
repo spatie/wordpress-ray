@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
 class JsonStringPayload extends Payload
 {

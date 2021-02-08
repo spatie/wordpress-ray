@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Origin;
+namespace Spatie\Ray\Origin;
 
-use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
-use Spatie\WordPressRay\Spatie\Backtrace\Frame;
-use Spatie\WordPressRay\Spatie\Ray\Ray;
+use Spatie\Backtrace\Backtrace;
+use Spatie\Backtrace\Frame;
+use Spatie\Ray\Ray;
 
 class DefaultOriginFactory implements OriginFactory
 {

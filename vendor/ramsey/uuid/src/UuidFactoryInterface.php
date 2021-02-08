@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
 /**
  * UuidFactoryInterface defines common functionality all `UuidFactory` instances
@@ -33,10 +33,10 @@ interface UuidFactoryInterface
     public function uuid1($node = null, $clockSeq = null);
 
     /**
-     * Generate a version 3 UUID based on the MD5 hash of a namespace Spatie\WordPressRay\identifier
+     * Generate a version 3 UUID based on the MD5 hash of a namespace identifier
      * (which is a UUID) and a name (which is a string).
      *
-     * @param string $ns The UUID namespace Spatie\WordPressRay\in which to create the named UUID
+     * @param string $ns The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
      * @return UuidInterface
      */
@@ -50,9 +50,10 @@ interface UuidFactoryInterface
     public function uuid4();
 
     /**
-     * Generate a version 5 UUID based on the SHA-1 hash of a namespace Spatie\WordPressRay\* identifier (which is a UUID) and a name (which is a string).
+     * Generate a version 5 UUID based on the SHA-1 hash of a namespace
+     * identifier (which is a UUID) and a name (which is a string).
      *
-     * @param string $ns The UUID namespace Spatie\WordPressRay\in which to create the named UUID
+     * @param string $ns The UUID namespace in which to create the named UUID
      * @param string $name The name to create a UUID for
      * @return UuidInterface
      */

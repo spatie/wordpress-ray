@@ -6,7 +6,7 @@ use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
 use Spatie\WordPressRay\Spatie\Backtrace\Frame;
-use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
+use Spatie\Ray\Origin\DefaultOriginFactory;
 
 class OriginFactory extends DefaultOriginFactory
 {

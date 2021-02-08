@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Contracts\Service;
+namespace Symfony\Contracts\Service;
 
-use Spatie\WordPressRay\Psr\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Implementation of ServiceSubscriberInterface that determines subscribed services from

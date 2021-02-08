@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Contracts\Service;
+namespace Symfony\Contracts\Service;
 
-use Spatie\WordPressRay\Psr\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * A ServiceProviderInterface exposes the identifiers and the types of services provided by a container.

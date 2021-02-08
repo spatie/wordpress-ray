@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
 /**
  * Provides binary math utilities

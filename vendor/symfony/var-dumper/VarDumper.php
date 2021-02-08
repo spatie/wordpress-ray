@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper;
+namespace Symfony\Component\VarDumper;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 // Load the global dump() function
 require_once __DIR__.'/Resources/functions/dump.php';

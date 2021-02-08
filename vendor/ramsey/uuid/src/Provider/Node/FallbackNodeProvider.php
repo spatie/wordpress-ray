@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
+namespace Ramsey\Uuid\Provider\Node;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Ramsey\Uuid\Provider\NodeProviderInterface;
 
 /**
  * FallbackNodeProvider attempts to gain the system host ID from an array of

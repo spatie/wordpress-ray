@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Time;
+namespace Ramsey\Uuid\Converter\Time;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 
 /**
  * DegradedTimeConverter throws `UnsatisfiedDependencyException` exceptions

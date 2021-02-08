@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor;
+namespace Symfony\Component\VarDumper\Command\Descriptor;
 
-use Spatie\WordPressRay\Symfony\Component\Console\Output\OutputInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 /**
  * @author Maxime Steinhausser <maxime.steinhausser@gmail.com>

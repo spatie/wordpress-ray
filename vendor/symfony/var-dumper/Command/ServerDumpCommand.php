@@ -9,21 +9,21 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Command;
+namespace Symfony\Component\VarDumper\Command;
 
-use Spatie\WordPressRay\Symfony\Component\Console\Command\Command;
-use Spatie\WordPressRay\Symfony\Component\Console\Exception\InvalidArgumentException;
-use Spatie\WordPressRay\Symfony\Component\Console\Input\InputInterface;
-use Spatie\WordPressRay\Symfony\Component\Console\Input\InputOption;
-use Spatie\WordPressRay\Symfony\Component\Console\Output\OutputInterface;
-use Spatie\WordPressRay\Symfony\Component\Console\Style\SymfonyStyle;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor\DumpDescriptorInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor\HtmlDescriptor;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Server\DumpServer;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Command\Descriptor\CliDescriptor;
+use Symfony\Component\VarDumper\Command\Descriptor\DumpDescriptorInterface;
+use Symfony\Component\VarDumper\Command\Descriptor\HtmlDescriptor;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Server\DumpServer;
 
 /**
  * Starts a dump server to collect and output dumps on a single place with multiple formats support.

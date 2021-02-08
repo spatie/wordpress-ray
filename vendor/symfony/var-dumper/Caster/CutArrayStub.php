@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
 /**
  * Represents a cut array.

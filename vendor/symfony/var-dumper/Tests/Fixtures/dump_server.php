@@ -1,10 +1,10 @@
 <?php
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Server\DumpServer;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\VarDumper;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Server\DumpServer;
+use Symfony\Component\VarDumper\VarDumper;
 
 $componentRoot = $_SERVER['COMPONENT_ROOT'];
 

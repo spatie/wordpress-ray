@@ -12,9 +12,9 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid;
+namespace Ramsey\Uuid;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
 
 /**
  * UuidInterface defines common functionality for all universally unique

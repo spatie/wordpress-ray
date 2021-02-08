@@ -12,7 +12,7 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Exception;
+namespace Ramsey\Uuid\Exception;
 
 /**
  * Thrown to indicate that the requested operation has dependencies that have not

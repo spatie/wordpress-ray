@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Caster;
+namespace Symfony\Component\VarDumper\Tests\Caster;
 
-use Spatie\WordPressRay\PHPUnit\Framework\TestCase;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ArgsStub;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ClassStub;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\LinkStub;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Test\VarDumperTestTrait;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Fixtures\FooInterface;
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\VarDumper\Caster\ArgsStub;
+use Symfony\Component\VarDumper\Caster\ClassStub;
+use Symfony\Component\VarDumper\Caster\LinkStub;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
+use Symfony\Component\VarDumper\Tests\Fixtures\FooInterface;
 
 class StubCasterTest extends TestCase
 {

@@ -12,12 +12,12 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
+namespace Ramsey\Uuid\Codec;
 
 use InvalidArgumentException;
-use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * StringCodec encodes and decodes RFC 4122 UUIDs

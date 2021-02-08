@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner;
+namespace Symfony\Component\VarDumper\Cloner;
 
 /**
  * Represents the main properties of a PHP variable.

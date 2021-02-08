@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
+namespace Ramsey\Uuid\Builder;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Ramsey\Uuid\Codec\CodecInterface;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * UuidBuilderInterface builds instances UuidInterface

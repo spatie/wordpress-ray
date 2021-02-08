@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor;
+namespace Symfony\Component\VarDumper\Command\Descriptor;
 
-use Spatie\WordPressRay\Symfony\Component\Console\Output\OutputInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 /**
  * Describe collected data clones for html output.

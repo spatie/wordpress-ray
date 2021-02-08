@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Time;
+namespace Ramsey\Uuid\Converter\Time;
 
-use Spatie\WordPressRay\Moontoast\Math\BigNumber;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Moontoast\Math\BigNumber;
+use Ramsey\Uuid\Converter\TimeConverterInterface;
 
 /**
  * BigNumberTimeConverter uses the moontoast/math library's `BigNumber` to

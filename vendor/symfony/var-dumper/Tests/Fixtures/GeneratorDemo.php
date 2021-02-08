@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Tests\Fixtures;
+namespace Symfony\Component\VarDumper\Tests\Fixtures;
 
 class GeneratorDemo
 {

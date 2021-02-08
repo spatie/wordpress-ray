@@ -12,10 +12,10 @@
  * @link https://github.com/ramsey/uuid GitHub
  */
 
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Number;
+namespace Ramsey\Uuid\Converter\Number;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Ramsey\Uuid\Converter\NumberConverterInterface;
 
 /**
  * DegradedNumberConverter throws `UnsatisfiedDependencyException` exceptions
