@@ -2,7 +2,7 @@
 
 namespace Spatie\WordPressRay\Spatie\Ray;
 
-use Spatie\WordPressRay\Carbon\Carbon;
+use Spatie\WordPressRay\Carbon\CarbonInterface;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\BoolPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
@@ -55,7 +55,7 @@ class PayloadFactory
             return new NullPayload();
         }
 
-        if ($value instanceof Carbon) {
+        if ($value instanceof CarbonInterface) {
             return new CarbonPayload($value);
         }
 

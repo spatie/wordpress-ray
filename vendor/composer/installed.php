@@ -6,11 +6,20 @@
     'aliases' => 
     array (
     ),
-    'reference' => '3646591960d1b62ee5a89897b0c4a08fdc1bbef1',
+    'reference' => 'b38e6efb0f0923f1904fb38ede5f69b2d8f16de2',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
   array (
+    'psr/container' => 
+    array (
+      'pretty_version' => '1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
+    ),
     'ramsey/uuid' => 
     array (
       'pretty_version' => '3.0.0',
@@ -29,30 +38,30 @@
     ),
     'spatie/backtrace' => 
     array (
-      'pretty_version' => '1.0.0',
-      'version' => '1.0.0.0',
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '59811ee52b21b5a42a9c6ca8699f979fd64d8cec',
+      'reference' => '3440fe023a7d5b4497090fb6b2dcdc747daf7873',
     ),
     'spatie/macroable' => 
     array (
-      'pretty_version' => '1.0.0',
-      'version' => '1.0.0.0',
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '74b0d189ce75142f1706aad834d5a428dfc7c3c3',
+      'reference' => '7a99549fc001c925714b329220dea680c04bfa48',
     ),
     'spatie/ray' => 
     array (
-      'pretty_version' => '1.19.0',
-      'version' => '1.19.0.0',
+      'pretty_version' => '1.21.1',
+      'version' => '1.21.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b518a25a59443ee0ddc8b3ed77ff4139c1f1273a',
+      'reference' => '9ed03dd8d7aa1fed5e947c6a5aa637a54a179009',
     ),
     'spatie/wordpress-ray' => 
     array (
@@ -61,7 +70,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '3646591960d1b62ee5a89897b0c4a08fdc1bbef1',
+      'reference' => 'b38e6efb0f0923f1904fb38ede5f69b2d8f16de2',
     ),
     'symfony/polyfill-mbstring' => 
     array (
@@ -81,32 +90,41 @@
       ),
       'reference' => '8abc9097f5001d310f0edba727469c988acc6ea7',
     ),
-    'symfony/service-contracts' => 
+    'symfony/polyfill-php80' => 
     array (
-      'pretty_version' => 'v1.1.1',
-      'version' => '1.1.1.0',
+      'pretty_version' => 'v1.15.0',
+      'version' => '1.15.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '251a6c61244ded3d9e1f647e10cf0742dfece322',
+      'reference' => '8854dc880784d2ae32908b75824754339b5c0555',
+    ),
+    'symfony/service-contracts' => 
+    array (
+      'pretty_version' => 'v1.1.9',
+      'version' => '1.1.9.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'b776d18b303a39f56c63747bcb977ad4b27aca26',
     ),
     'symfony/stopwatch' => 
     array (
-      'pretty_version' => 'v5.1.0',
-      'version' => '5.1.0.0',
+      'pretty_version' => 'v4.4.9',
+      'version' => '4.4.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0f7c58cf81dbb5dd67d423a89d577524a2ec0323',
+      'reference' => 'f51fb90df1154a7f75987198a9689e28f91e6a50',
     ),
     'symfony/var-dumper' => 
     array (
-      'pretty_version' => 'v4.2.0',
-      'version' => '4.2.0.0',
+      'pretty_version' => 'v4.4.9',
+      'version' => '4.4.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'db61258540350725f4beb6b84006e32398acd120',
+      'reference' => '56b3aa5eab0ac6720dcd559fd1d590ce301594ac',
     ),
     'typisttech/imposter' => 
     array (

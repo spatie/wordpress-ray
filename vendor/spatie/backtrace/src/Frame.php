@@ -4,17 +4,23 @@ namespace Spatie\WordPressRay\Spatie\Backtrace;
 
 class Frame
 {
-    public string $file;
+    /** @var string */
+    public $file;
 
-    public int $lineNumber;
+    /** @var int */
+    public $lineNumber;
 
-    public ?array $arguments = null;
+    /** @var array|null */
+    public $arguments = null;
 
-    public bool $applicationFrame;
+    /** @var bool */
+    public $applicationFrame;
 
-    public ?string $method;
+    /** @var string|null */
+    public $method;
 
-    public ?string $class;
+    /** @var string|null */
+    public $class;
 
     public function __construct(
         string $file,
@@ -43,5 +49,17 @@ class Frame
             ->surroundingLine($this->lineNumber)
             ->snippetLineCount($lineCount)
             ->get($this->file);
+    }
+
+    public function getSnippetProperties(int $lineCount): array
+    {
+        $snippet = $this->getSnippet($lineCount);
+
+        return array_map(function(int $lineNumber) use ($snippet) {
+            return [
+                'line_number' => $lineNumber,
+                'text' => $snippet[$lineNumber],
+            ];
+        }, array_keys($snippet));
     }
 }

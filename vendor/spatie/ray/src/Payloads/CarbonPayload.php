@@ -2,17 +2,17 @@
 
 namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Carbon\Carbon;
+use Spatie\WordPressRay\Carbon\CarbonInterface;
 
 class CarbonPayload extends Payload
 {
-    /** @var \Carbon\Carbon|null */
+    /** @var \Carbon\CarbonInterface|null */
     protected $carbon;
 
     /** @var string */
     protected $format;
 
-    public function __construct(?Carbon $carbon, string $format = 'Y-m-d H:i:s')
+    public function __construct(?CarbonInterface $carbon, string $format = 'Y-m-d H:i:s')
     {
         $this->carbon = $carbon;
 

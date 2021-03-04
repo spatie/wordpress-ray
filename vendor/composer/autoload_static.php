@@ -4,11 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
+class ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '3074abeef0bacf5811f59e9dee6311d1' => __DIR__ . '/..' . '/spatie/ray/src/helpers.php',
     );
@@ -21,6 +22,7 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         ),
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Service\\' => 26,
@@ -36,6 +38,10 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         array (
             'Ramsey\\Uuid\\' => 12,
         ),
+        'P' => 
+        array (
+            'Psr\\Container\\' => 14,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -46,6 +52,10 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'TypistTech\\Imposter\\' => 
         array (
             0 => __DIR__ . '/..' . '/typisttech/imposter/src',
+        ),
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
         'Symfony\\Polyfill\\Php72\\' => 
         array (
@@ -91,6 +101,10 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
     );
 
     public static $classMap = array (
@@ -102,6 +116,9 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Payloads\\ExecutedQueryPayload' => __DIR__ . '/../..' . '/src/Payloads/ExecutedQueryPayload.php',
         'Spatie\\WordPressRay\\Payloads\\HookPayload' => __DIR__ . '/../..' . '/src/Payloads/HookPayload.php',
         'Spatie\\WordPressRay\\Payloads\\MailPayload' => __DIR__ . '/../..' . '/src/Payloads/MailPayload.php',
+        'Spatie\\WordPressRay\\Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
+        'Spatie\\WordPressRay\\Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
+        'Spatie\\WordPressRay\\Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\BinaryUtils' => __DIR__ . '/..' . '/ramsey/uuid/src/BinaryUtils.php',
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\Builder\\DefaultUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DefaultUuidBuilder.php',
         'Spatie\\WordPressRay\\Ramsey\\Uuid\\Builder\\DegradedUuidBuilder' => __DIR__ . '/..' . '/ramsey/uuid/src/Builder/DegradedUuidBuilder.php',
@@ -157,6 +174,7 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Spatie\\Ray\\Exceptions\\CouldNotConnectToRay' => __DIR__ . '/..' . '/spatie/ray/src/Exceptions/CouldNotConnectToRay.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Exceptions\\StopExecutionRequested' => __DIR__ . '/..' . '/spatie/ray/src/Exceptions/StopExecutionRequested.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Origin\\DefaultOriginFactory' => __DIR__ . '/..' . '/spatie/ray/src/Origin/DefaultOriginFactory.php',
+        'Spatie\\WordPressRay\\Spatie\\Ray\\Origin\\Hostname' => __DIR__ . '/..' . '/spatie/ray/src/Origin/Hostname.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Origin\\Origin' => __DIR__ . '/..' . '/spatie/ray/src/Origin/Origin.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Origin\\OriginFactory' => __DIR__ . '/..' . '/spatie/ray/src/Origin/OriginFactory.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\PayloadFactory' => __DIR__ . '/..' . '/spatie/ray/src/PayloadFactory.php',
@@ -169,6 +187,7 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\CreateLockPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/CreateLockPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\CustomPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/CustomPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\DecodedJsonPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/DecodedJsonPayload.php',
+        'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\ExceptionPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/ExceptionPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\FileContentsPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/FileContentsPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\HideAppPayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/HideAppPayload.php',
         'Spatie\\WordPressRay\\Spatie\\Ray\\Payloads\\HidePayload' => __DIR__ . '/..' . '/spatie/ray/src/Payloads/HidePayload.php',
@@ -207,10 +226,14 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\DOMCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DOMCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\DateCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DateCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\DoctrineCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DoctrineCaster.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\DsCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DsCaster.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\DsPairStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/DsPairStub.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\EnumStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/EnumStub.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\ExceptionCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ExceptionCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\FrameStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/FrameStub.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\GmpCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/GmpCaster.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\ImagineCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ImagineCaster.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\ImgStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/ImgStub.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\IntlCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/IntlCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\LinkStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/LinkStub.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\MemcachedCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/MemcachedCaster.php',
@@ -224,6 +247,7 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\StubCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/StubCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\SymfonyCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/SymfonyCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\TraceStub' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/TraceStub.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\UuidCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/UuidCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\XmlReaderCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/XmlReaderCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Caster\\XmlResourceCaster' => __DIR__ . '/..' . '/symfony/var-dumper/Caster/XmlResourceCaster.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Cloner\\AbstractCloner' => __DIR__ . '/..' . '/symfony/var-dumper/Cloner/AbstractCloner.php',
@@ -243,6 +267,7 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\ContextProvider\\ContextProviderInterface' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ContextProvider/ContextProviderInterface.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\ContextProvider\\RequestContextProvider' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ContextProvider/RequestContextProvider.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\ContextProvider\\SourceContextProvider' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ContextProvider/SourceContextProvider.php',
+        'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\ContextualizedDumper' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ContextualizedDumper.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\DataDumperInterface' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/DataDumperInterface.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\HtmlDumper' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/HtmlDumper.php',
         'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\Dumper\\ServerDumper' => __DIR__ . '/..' . '/symfony/var-dumper/Dumper/ServerDumper.php',
@@ -256,9 +281,12 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\ServiceProviderInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceProviderInterface.php',
         'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\ServiceSubscriberInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberInterface.php',
         'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberTrait.php',
+        'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\Test\\ServiceLocatorTest' => __DIR__ . '/..' . '/symfony/service-contracts/Test/ServiceLocatorTest.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
+        'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Spatie\\WordPressRay\\Tests\\ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'TypistTech\\Imposter\\ArrayUtil' => __DIR__ . '/..' . '/typisttech/imposter/src/ArrayUtil.php',
         'TypistTech\\Imposter\\Config' => __DIR__ . '/..' . '/typisttech/imposter/src/Config.php',
         'TypistTech\\Imposter\\ConfigCollection' => __DIR__ . '/..' . '/typisttech/imposter/src/ConfigCollection.php',
@@ -279,14 +307,15 @@ class ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813
         'TypistTech\\Imposter\\StringUtil' => __DIR__ . '/..' . '/typisttech/imposter/src/StringUtil.php',
         'TypistTech\\Imposter\\Transformer' => __DIR__ . '/..' . '/typisttech/imposter/src/Transformer.php',
         'TypistTech\\Imposter\\TransformerInterface' => __DIR__ . '/..' . '/typisttech/imposter/src/TransformerInterface.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6f67b83eba5ebd18ca3f4c0a59099813::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$classMap;
 
         }, null, ClassLoader::class);
     }

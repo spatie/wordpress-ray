@@ -2,6 +2,42 @@
 
 All notable changes to `ray` will be documented in this file
 
+## 1.21.1 - 2021-03-03
+
+- do not require hostname
+
+## 1.21.0 - 2021-03-03
+
+- add `hostname` in the origin section of a payload
+
+## 1.20.1 - 2021-02-26
+
+- fix config loading priorities in other packages
+
+## 1.20.0 - 2021-02-22
+
+- add `exception` method
+
+## 1.19.5 - 2021-02-17
+
+- allow instances of `CarbonInterface` to be used for `CarbonPayload` (#316)
+
+## 1.19.4 - 2021-02-11
+
+- fix enabled status (#301)
+
+## 1.19.3 - 2021-02-09
+
+- fix Client cache fingerprint initialization (#292)
+
+## 1.19.2 - 2021-02-09
+
+- add curl throttling after failed connection (#286)
+
+## 1.19.1 - 2021-02-08
+
+- allow symfony/stopwatch 4.0 (#284)
+
 ## 1.19.0 - 2021-02-03
 
 - send XML payloads (#272)

@@ -1,9 +1,7 @@
 # A trait to dynamically add methods to a class
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/macroable.svg?style=flat-square)](https://packagist.org/packages/spatie/macroable)
-[![Build Status](https://img.shields.io/travis/spatie/macroable/master.svg?style=flat-square)](https://travis-ci.org/spatie/macroable)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/c3dbed0e-9794-4c54-b40c-ccaf5a1394de.svg?style=flat-square)](https://insight.sensiolabs.com/projects/c3dbed0e-9794-4c54-b40c-ccaf5a1394de)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/macroable.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/macroable)
+![run-tests](https://github.com/spatie/macroable/workflows/run-tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/macroable.svg?style=flat-square)](https://packagist.org/packages/spatie/macroable)
 
 This package provides a trait that, when applied to a class, makes it possible to add methods to that class at runtime.
@@ -17,21 +15,20 @@ $myClass = new class() {
 
 $myClass::macro('concatenate', function(... $strings) {
    return implode('-', $strings);
-};
+});
 
 $myClass->concatenate('one', 'two', 'three'); // returns 'one-two-three'
 ```
 
-The idea of a macroable trait and the implementation is taken from [the `macroable` trait](https://github.com/laravel/framework/blob/master/src/Illuminate/Support/Traits/Macroable.php) of the [the Laravel framework](https://laravel.com).
+The idea of a macroable trait and the implementation is taken from [the `macroable` trait](https://github.com/laravel/framework/blob/master/src/Illuminate/Support/Traits/Macroable.php) of the [Laravel framework](https://laravel.com).
 
+## Support us
 
-## Postcardware
+[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/macroable.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/macroable)
 
-You're free to use this package (it's [MIT-licensed](LICENSE.md)), but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
+We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
-Our address is: Spatie, Samberstraat 69D, 2060 Antwerp, Belgium.
-
-We publish all received postcards [on our company website](https://spatie.be/en/opensource/postcards).
+We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
 ## Installation
 
@@ -54,7 +51,7 @@ $macroableClass::macro('concatenate', function(... $strings) {
    return implode('-', $strings);
 };
 
-$myClass->concatenate('one', 'two', 'three'); // returns 'one-two-three'
+$macroableClass->concatenate('one', 'two', 'three'); // returns 'one-two-three'
 ```
 
 Callables passed to the `macro` function will be bound to the `class`
@@ -74,18 +71,22 @@ $macroableClass::macro('getName', function() {
 $macroableClass->getName(); // returns 'myName'
 ```
 
-You can also add multiple methods in one go my using a mixin class. A mixin class contains methods that return callables. Each method from the mixin will be registered on the macroable class.
+You can also add multiple methods in one go by using a mixin class. A mixin class contains methods that return callables. Each method from the mixin will be registered on the macroable class.
 
 ```php
 $mixin = new class() {
     public function mixinMethod()
     {
-       return 'mixinMethod';
+       return function() {
+          return 'mixinMethod';
+       };
     }
     
     public function anotherMixinMethod()
     {
-       return 'anotherMixinMethod';
+       return function() {
+          return 'anotherMixinMethod';
+       };
     }
 };
 
@@ -98,7 +99,7 @@ $macroableClass->anotherMixinMethod() // returns 'anotherMixinMethod';
 
 ## Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Testing
 
@@ -114,16 +115,20 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
 
+## Postcardware
+
+You're free to use this package (it's [MIT-licensed](LICENSE.md)), but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
+
+Our address is: Spatie, Kruikstraat 22, 2018 Antwerp, Belgium.
+
+We publish all received postcards [on our company website](https://spatie.be/en/opensource/postcards).
+
 ## Credits
 
 - [Freek Van der Herten](https://github.com/freekmurze)
 - [All Contributors](../../contributors)
 
-Idea and code is taken from [the `macroable` trait](https://github.com/laravel/framework/blob/master/src/Illuminate/Support/Traits/Macroable.php) of the [the Laravel framework](https://laravel.com).
-
-## About Spatie
-
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+Idea and code is taken from [the `macroable` trait](https://github.com/laravel/framework/blob/master/src/Illuminate/Support/Traits/Macroable.php) of the [Laravel framework](https://laravel.com).
 
 ## License
 

@@ -20,6 +20,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\ExceptionPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\FileContentsPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HideAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
@@ -65,8 +66,8 @@ class Ray
     /** @var \Symfony\Component\Stopwatch\Stopwatch[] */
     public static $stopWatches = [];
 
-    /** @var bool */
-    public static $enabled = true;
+    /** @var bool|null */
+    public static $enabled = null;
 
     public static function create(Client $client = null, string $uuid = null): self
     {
@@ -85,7 +86,7 @@ class Ray
 
         $this->uuid = $uuid ?? static::$fakeUuid ?? Uuid::uuid4()->toString();
 
-        static::$enabled = $this->settings->enable !== false;
+        static::$enabled = static::$enabled ?? $this->settings->enable ?? true;
     }
 
     public function enable(): self
@@ -104,12 +105,12 @@ class Ray
 
     public function enabled(): bool
     {
-        return static::$enabled;
+        return static::$enabled || static::$enabled === null;
     }
 
     public function disabled(): bool
     {
-        return ! static::$enabled;
+        return static::$enabled === false;
     }
 
     public static function useClient(Client $client): void
@@ -448,6 +449,15 @@ class Ray
         $payload = new HtmlPayload($html);
 
         return $this->sendRequest($payload);
+    }
+
+    public function exception(Exception $exception, array $meta = []): self
+    {
+        $payload = new ExceptionPayload($exception, $meta);
+
+        $this->sendRequest($payload);
+
+        return $this;
     }
 
     public function xml(string $xml): self
