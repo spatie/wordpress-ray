@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b38e6efb0f0923f1904fb38ede5f69b2d8f16de2',
+    'reference' => '16003f9c10c43e63783e7e60acfea638ab095062',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -70,7 +70,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b38e6efb0f0923f1904fb38ede5f69b2d8f16de2',
+      'reference' => '16003f9c10c43e63783e7e60acfea638ab095062',
     ),
     'symfony/polyfill-mbstring' => 
     array (

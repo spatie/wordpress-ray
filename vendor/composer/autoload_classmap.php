@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Spatie\\WordPressRay\\Loggers\\ErrorLogger' => $baseDir . '/src/Loggers/ErrorLogger.php',
     'Spatie\\WordPressRay\\Loggers\\HookLogger' => $baseDir . '/src/Loggers/HookLogger.php',
     'Spatie\\WordPressRay\\Loggers\\MailLogger' => $baseDir . '/src/Loggers/MailLogger.php',
     'Spatie\\WordPressRay\\Loggers\\QueryLogger' => $baseDir . '/src/Loggers/QueryLogger.php',

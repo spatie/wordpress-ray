@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5
+class ComposerStaticInitca7444f2c77fd7e6ab5a378e8b4badca
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -109,6 +109,7 @@ class ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Spatie\\WordPressRay\\Loggers\\ErrorLogger' => __DIR__ . '/../..' . '/src/Loggers/ErrorLogger.php',
         'Spatie\\WordPressRay\\Loggers\\HookLogger' => __DIR__ . '/../..' . '/src/Loggers/HookLogger.php',
         'Spatie\\WordPressRay\\Loggers\\MailLogger' => __DIR__ . '/../..' . '/src/Loggers/MailLogger.php',
         'Spatie\\WordPressRay\\Loggers\\QueryLogger' => __DIR__ . '/../..' . '/src/Loggers/QueryLogger.php',
@@ -313,9 +314,9 @@ class ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd1163d04030d0a3641e912ba4c29aec5::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitca7444f2c77fd7e6ab5a378e8b4badca::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitca7444f2c77fd7e6ab5a378e8b4badca::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitca7444f2c77fd7e6ab5a378e8b4badca::$classMap;
 
         }, null, ClassLoader::class);
     }
