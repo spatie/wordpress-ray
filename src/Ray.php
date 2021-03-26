@@ -2,6 +2,7 @@
 
 namespace Spatie\WordPressRay;
 
+use Spatie\WordPressRay\Loggers\ErrorLogger;
 use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
@@ -10,22 +11,24 @@ use Spatie\WordPressRay\Spatie\Ray\Ray as BaseRay;
 
 class Ray extends BaseRay
 {
-    /** @var \Spatie\WordPressRay\Loggers\QueryLogger */
-    protected static $queryLogger;
-
-    /** @var \Spatie\WordPressRay\Loggers\MailLogger */
-    protected static $mailLogger;
+    /** @var \Spatie\WordPressRay\Loggers\ErrorLogger */
+    protected static $errorLogger;
 
     /** @var \Spatie\WordPressRay\Loggers\HookLogger */
     protected static $hookLogger;
 
+    /** @var \Spatie\WordPressRay\Loggers\MailLogger */
+    protected static $mailLogger;
+
+    /** @var \Spatie\WordPressRay\Loggers\QueryLogger */
+    protected static $queryLogger;
+
     public static function bootForWordPress()
     {
-        static::$queryLogger = new QueryLogger();
-
-        static::$mailLogger = new MailLogger();
-
+        static::$errorLogger = new ErrorLogger();
         static::$hookLogger = new HookLogger();
+        static::$mailLogger = new MailLogger();
+        static::$queryLogger = new QueryLogger();
 
         Payload::$originFactoryClass = OriginFactory::class;
 
@@ -37,6 +40,20 @@ class Ray extends BaseRay
     public function isEnabled(): bool
     {
         return static::$enabled;
+    }
+
+    public function showWordPressErrors(): self
+    {
+        static::$errorLogger->showErrors();
+
+        return $this;
+    }
+
+    public function stopShowingWordPressErrors(): self
+    {
+        static::$errorLogger->stopShowingErrors();
+
+        return $this;
     }
 
     public function showMails(): self

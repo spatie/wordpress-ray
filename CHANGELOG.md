@@ -2,7 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
-## 1.2.4 + 2021-03-02
+## 1.3.0 - 2021-03-26
+
+- add `showWordPressErrors`
+
+## 1.2.4 - 2021-03-02
 
 - upgrade ray to 1.21.1
 
