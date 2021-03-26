@@ -2,8 +2,6 @@
 
 namespace Spatie\WordPressRay\Loggers;
 
-use Spatie\WordPressRay\Payloads\HookPayload;
-
 class ErrorLogger
 {
     /** @var bool */
