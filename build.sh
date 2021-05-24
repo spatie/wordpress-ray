@@ -47,10 +47,10 @@ echo "# Generating custom autoloader..."
 
 php <<\EOF
 <?php
-$autoload = str_replace(['<?php', 'return'], ['', '$output = '],file_get_contents('vendor/autoload.php'));
+$autoload = str_replace(['<?php', 'return'], ['', '$loader = '],file_get_contents('vendor/autoload.php'));
 $scoperAutoload = file_get_contents('vendor/scoper-autoload.php');
 $scoperAutoload = str_replace('$loader = require_once __DIR__.\'/autoload.php\';', $autoload, $scoperAutoload);
-file_put_contents('vendor/ray-autoload.php',$scoperAutoload);
+file_put_contents('vendor/autoload.php',$scoperAutoload);
 EOF
 
 rm vendor/scoper-autoload.php

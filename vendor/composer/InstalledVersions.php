@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a73c2d94c40fea85c79c768b2988ae800920657b',
+    'reference' => 'ef1b55460932610cf458b8cec357f10d7acc459e',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -111,7 +111,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a73c2d94c40fea85c79c768b2988ae800920657b',
+      'reference' => 'ef1b55460932610cf458b8cec357f10d7acc459e',
     ),
     'symfony/polyfill-ctype' => 
     array (
