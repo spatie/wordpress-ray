@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper;
+namespace Symfony\Component\VarDumper\Dumper;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
 
 /**
  * @author Kévin Thérage <therage.kevin@gmail.com>

@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Spatie\Ray\ArgumentConverter;
+use Spatie\Ray\ArgumentConverter;
 
 class TablePayload extends Payload
 {

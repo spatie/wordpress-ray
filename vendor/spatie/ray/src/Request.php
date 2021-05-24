@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray;
+namespace Spatie\Ray;
 
-use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
+use Spatie\Ray\Payloads\Payload;
 
 class Request
 {

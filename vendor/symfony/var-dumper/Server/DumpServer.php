@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Server;
+namespace Symfony\Component\VarDumper\Server;
 
-use Spatie\WordPressRay\Psr\Log\LoggerInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * A server collecting Data clones sent by a ServerDumper.
@@ -52,6 +52,10 @@ class DumpServer
         }
 
         foreach ($this->getMessages() as $clientId => $message) {
+            if ($this->logger) {
+                $this->logger->info('Received a payload from client {clientId}', ['clientId' => $clientId]);
+            }
+
             $payload = @unserialize(base64_decode($message), ['allowed_classes' => [Data::class, Stub::class]]);
 
             // Impossible to decode the message, give up.
@@ -71,7 +75,7 @@ class DumpServer
                 continue;
             }
 
-            list($data, $context) = $payload;
+            [$data, $context] = $payload;
 
             $callback($data, $context, $clientId);
         }

@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray;
+namespace Spatie\Ray;
 
 use Exception;
-use Spatie\WordPressRay\Spatie\Ray\Exceptions\StopExecutionRequested;
+use Spatie\Ray\Exceptions\StopExecutionRequested;
 
 class Client
 {

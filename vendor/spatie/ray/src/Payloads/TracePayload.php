@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Spatie\Backtrace\Frame;
-use Spatie\WordPressRay\Spatie\Ray\Concerns\RemovesRayFrames;
+use Spatie\Backtrace\Frame;
+use Spatie\Ray\Concerns\RemovesRayFrames;
 
 class TracePayload extends Payload
 {

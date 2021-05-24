@@ -1,46 +1,48 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray;
+namespace Spatie\Ray;
 
-use Spatie\WordPressRay\Carbon\Carbon;
+use Carbon\Carbon;
 use Closure;
 use Composer\InstalledVersions;
 use Exception;
-use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
-use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
-use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
-use Spatie\WordPressRay\Spatie\Macroable\Macroable;
-use Spatie\WordPressRay\Spatie\Ray\Concerns\RayColors;
-use Spatie\WordPressRay\Spatie\Ray\Concerns\RaySizes;
-use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\CallerPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\ClearAllPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\ExceptionPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\FileContentsPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\HideAppPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\HtmlPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\ImagePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\JsonStringPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\NewScreenPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\NotifyPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\ShowAppPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\TablePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\XmlPayload;
-use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
-use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
-use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
-use Spatie\WordPressRay\Symfony\Component\Stopwatch\Stopwatch;
+use Ramsey\Uuid\Uuid;
+use Spatie\Backtrace\Backtrace;
+use Spatie\LaravelRay\Ray as LaravelRay;
+use Spatie\Macroable\Macroable;
+use Spatie\Ray\Concerns\RayColors;
+use Spatie\Ray\Concerns\RaySizes;
+use Spatie\Ray\Origin\DefaultOriginFactory;
+use Spatie\Ray\Payloads\CallerPayload;
+use Spatie\Ray\Payloads\CarbonPayload;
+use Spatie\Ray\Payloads\ClearAllPayload;
+use Spatie\Ray\Payloads\ColorPayload;
+use Spatie\Ray\Payloads\CreateLockPayload;
+use Spatie\Ray\Payloads\CustomPayload;
+use Spatie\Ray\Payloads\DecodedJsonPayload;
+use Spatie\Ray\Payloads\ExceptionPayload;
+use Spatie\Ray\Payloads\FileContentsPayload;
+use Spatie\Ray\Payloads\HideAppPayload;
+use Spatie\Ray\Payloads\HidePayload;
+use Spatie\Ray\Payloads\HtmlPayload;
+use Spatie\Ray\Payloads\ImagePayload;
+use Spatie\Ray\Payloads\JsonStringPayload;
+use Spatie\Ray\Payloads\LogPayload;
+use Spatie\Ray\Payloads\MeasurePayload;
+use Spatie\Ray\Payloads\NewScreenPayload;
+use Spatie\Ray\Payloads\NotifyPayload;
+use Spatie\Ray\Payloads\PhpInfoPayload;
+use Spatie\Ray\Payloads\RemovePayload;
+use Spatie\Ray\Payloads\ShowAppPayload;
+use Spatie\Ray\Payloads\SizePayload;
+use Spatie\Ray\Payloads\TablePayload;
+use Spatie\Ray\Payloads\TracePayload;
+use Spatie\Ray\Payloads\XmlPayload;
+use Spatie\Ray\Settings\Settings;
+use Spatie\Ray\Settings\SettingsFactory;
+use Spatie\Ray\Support\Counters;
+use Symfony\Component\Stopwatch\Stopwatch;
+use Throwable;
 
 class Ray
 {
@@ -314,25 +316,9 @@ class Ray
 
     public function phpinfo(string ...$properties): self
     {
-        if (! count($properties)) {
-            return $this->table([
-                'PHP version' => phpversion(),
-                'Memory limit' => ini_get('memory_limit'),
-                'Max file upload size' => ini_get('max_file_uploads'),
-                'Max post size' => ini_get('post_max_size'),
-                'PHP ini file' => php_ini_loaded_file(),
-                "PHP scanned ini file" => php_ini_scanned_files() ,
-                'Extensions' => implode(', ', get_loaded_extensions()),
-            ], 'PHPInfo');
-        }
+        $payload = new PhpInfoPayload(...$properties);
 
-        $properties = array_flip($properties);
-
-        foreach ($properties as $property => $value) {
-            $properties[$property] = ini_get($property);
-        }
-
-        return $this->table($properties, 'PHPInfo');
+        return $this->sendRequest($payload);
     }
 
     public function showWhen($boolOrCallable): self
@@ -429,6 +415,11 @@ class Ray
         return $this;
     }
 
+    public function counterValue(string $name): int
+    {
+        return self::$counters->get($name);
+    }
+
     public function pause(): self
     {
         $lockName = md5(time());
@@ -451,11 +442,13 @@ class Ray
         return $this->sendRequest($payload);
     }
 
-    public function exception(Exception $exception, array $meta = []): self
+    public function exception(Throwable $exception, array $meta = []): self
     {
         $payload = new ExceptionPayload($exception, $meta);
 
         $this->sendRequest($payload);
+
+        $this->red();
 
         return $this;
     }

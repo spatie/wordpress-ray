@@ -1,13 +1,13 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray;
+namespace Spatie\Ray;
 
-use Spatie\WordPressRay\Carbon\CarbonInterface;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\BoolPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\NullPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
+use Carbon\CarbonInterface;
+use Spatie\Ray\Payloads\BoolPayload;
+use Spatie\Ray\Payloads\CarbonPayload;
+use Spatie\Ray\Payloads\LogPayload;
+use Spatie\Ray\Payloads\NullPayload;
+use Spatie\Ray\Payloads\Payload;
 
 class PayloadFactory
 {

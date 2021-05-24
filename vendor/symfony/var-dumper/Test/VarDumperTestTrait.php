@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Test;
+namespace Symfony\Component\VarDumper\Test;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
 
 /**
  * @author Nicolas Grekas <p@tchwork.com>
@@ -42,20 +42,17 @@ trait VarDumperTestTrait
         $this->varDumperConfig['flags'] = null;
     }
 
-    public function assertDumpEquals($expected, $data, $filter = 0, $message = '')
+    public function assertDumpEquals($expected, $data, int $filter = 0, string $message = '')
     {
         $this->assertSame($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
-    public function assertDumpMatchesFormat($expected, $data, $filter = 0, $message = '')
+    public function assertDumpMatchesFormat($expected, $data, int $filter = 0, string $message = '')
     {
         $this->assertStringMatchesFormat($this->prepareExpectation($expected, $filter), $this->getDump($data, null, $filter), $message);
     }
 
-    /**
-     * @return string|null
-     */
-    protected function getDump($data, $key = null, $filter = 0)
+    protected function getDump($data, $key = null, int $filter = 0): ?string
     {
         if (null === $flags = $this->varDumperConfig['flags']) {
             $flags = getenv('DUMP_LIGHT_ARRAY') ? CliDumper::DUMP_LIGHT_ARRAY : 0;

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider;
+namespace Symfony\Component\VarDumper\Dumper\ContextProvider;
 
-use Spatie\WordPressRay\Symfony\Component\HttpFoundation\RequestStack;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ReflectionCaster;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\VarDumper\Caster\ReflectionCaster;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
 
 /**
  * Tries to provide context from a request.

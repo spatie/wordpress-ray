@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * @author Grégoire Pineau <lyrixx@lyrixx.info>

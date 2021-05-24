@@ -2,6 +2,26 @@
 
 All notable changes to `ray` will be documented in this file
 
+## 1.22.1 - 2021-04-28
+
+- allow Throwables to be logged
+
+## 1.22.0 - 2021-04-28
+
+- access named counter values (#437)
+
+## 1.21.4 - 2021-04-17
+
+- color exceptions red by default
+
+## 1.21.3 - 2021-04-14
+
+- allow spatie/macroable v2 [#426](https://github.com/spatie/ray/pull/426)
+
+## 1.21.2 - 2021-03-04
+
+- fix hostname for other ray packages
+
 ## 1.21.1 - 2021-03-03
 
 - do not require hostname

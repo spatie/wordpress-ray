@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Carbon\CarbonInterface;
+use Carbon\CarbonInterface;
 
 class CarbonPayload extends Payload
 {

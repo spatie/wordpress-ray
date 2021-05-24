@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\Stopwatch;
+namespace Symfony\Component\Stopwatch;
 
 /**
  * Represents an Period for an Event.
@@ -72,5 +72,10 @@ class StopwatchPeriod
     public function getMemory()
     {
         return $this->memory;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%.2F MiB - %d ms', $this->getMemory() / 1024 / 1024, $this->getDuration());
     }
 }

@@ -9,14 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Command\Descriptor;
+namespace Symfony\Component\VarDumper\Command\Descriptor;
 
-use Spatie\WordPressRay\Symfony\Component\Console\Formatter\OutputFormatterStyle;
-use Spatie\WordPressRay\Symfony\Component\Console\Input\ArrayInput;
-use Spatie\WordPressRay\Symfony\Component\Console\Output\OutputInterface;
-use Spatie\WordPressRay\Symfony\Component\Console\Style\SymfonyStyle;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\CliDumper;
+use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\VarDumper\Dumper\CliDumper;
 
 /**
  * Describe collected data clones for cli output.

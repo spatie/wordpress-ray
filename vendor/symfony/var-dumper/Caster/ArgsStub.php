@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * Represents a list of function arguments.
@@ -24,7 +24,7 @@ class ArgsStub extends EnumStub
 
     public function __construct(array $args, string $function, ?string $class)
     {
-        list($variadic, $params) = self::getParameters($function, $class);
+        [$variadic, $params] = self::getParameters($function, $class);
 
         $values = [];
         foreach ($args as $k => $v) {

@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Ds\Collection;
-use Spatie\WordPressRay\Ds\Map;
-use Spatie\WordPressRay\Ds\Pair;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Ds\Collection;
+use Ds\Map;
+use Ds\Pair;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * Casts Ds extension classes to array representation.
  *
  * @author Jáchym Toušek <enumag@gmail.com>
  *
- * @final since Symfony 4.4
+ * @final
  */
 class DsCaster
 {

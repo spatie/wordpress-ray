@@ -1,14 +1,14 @@
 <?php
 
-use Spatie\WordPressRay\Illuminate\Contracts\Container\BindingResolutionException;
-use Spatie\WordPressRay\Spatie\CraftRay\Ray as CraftRay;
-use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
-use Spatie\WordPressRay\Spatie\Ray\Ray;
+use Illuminate\Contracts\Container\BindingResolutionException;
+use Spatie\CraftRay\Ray as CraftRay;
+use Spatie\LaravelRay\Ray as LaravelRay;
+use Spatie\Ray\Ray;
 
-use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
-use Spatie\WordPressRay\Spatie\RayBundle\Ray as SymfonyRay;
+use Spatie\Ray\Settings\SettingsFactory;
+use Spatie\RayBundle\Ray as SymfonyRay;
 use Spatie\WordPressRay\Ray as WordPressRay;
-use Spatie\WordPressRay\Spatie\YiiRay\Ray as YiiRay;
+use Spatie\YiiRay\Ray as YiiRay;
 
 if (! function_exists('ray')) {
     /**

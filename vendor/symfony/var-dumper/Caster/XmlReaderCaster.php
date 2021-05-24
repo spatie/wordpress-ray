@@ -8,20 +8,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
+namespace Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+use Symfony\Component\VarDumper\Cloner\Stub;
 
 /**
  * Casts XmlReader class to array representation.
  *
  * @author Baptiste Clavié <clavie.b@gmail.com>
  *
- * @final since Symfony 4.4
+ * @final
  */
 class XmlReaderCaster
 {
-    private static $nodeTypes = [
+    private const NODE_TYPES = [
         \XMLReader::NONE => 'NONE',
         \XMLReader::ELEMENT => 'ELEMENT',
         \XMLReader::ATTRIBUTE => 'ATTRIBUTE',
@@ -42,13 +42,13 @@ class XmlReaderCaster
         \XMLReader::XML_DECLARATION => 'XML_DECLARATION',
     ];
 
-    public static function castXmlReader(\XMLReader $reader, array $a, Stub $stub, $isNested)
+    public static function castXmlReader(\XMLReader $reader, array $a, Stub $stub, bool $isNested)
     {
         $props = Caster::PREFIX_VIRTUAL.'parserProperties';
         $info = [
             'localName' => $reader->localName,
             'prefix' => $reader->prefix,
-            'nodeType' => new ConstStub(self::$nodeTypes[$reader->nodeType], $reader->nodeType),
+            'nodeType' => new ConstStub(self::NODE_TYPES[$reader->nodeType], $reader->nodeType),
             'depth' => $reader->depth,
             'isDefault' => $reader->isDefault,
             'isEmptyElement' => \XMLReader::NONE === $reader->nodeType ? null : $reader->isEmptyElement,

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Concerns;
+namespace Spatie\Ray\Concerns;
 
 /** @mixin \Spatie\Ray\Ray */
 trait RaySizes

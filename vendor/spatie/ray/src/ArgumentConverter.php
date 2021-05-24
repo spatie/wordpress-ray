@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray;
+namespace Spatie\Ray;
 
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
 
 class ArgumentConverter
 {

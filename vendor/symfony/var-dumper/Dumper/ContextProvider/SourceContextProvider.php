@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider;
+namespace Symfony\Component\VarDumper\Dumper\ContextProvider;
 
-use Spatie\WordPressRay\Symfony\Component\HttpKernel\Debug\FileLinkFormatter;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\HtmlDumper;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\VarDumper;
-use Spatie\WordPressRay\Twig\Template;
+use Symfony\Component\HttpKernel\Debug\FileLinkFormatter;
+use Symfony\Component\VarDumper\Cloner\VarCloner;
+use Symfony\Component\VarDumper\Dumper\HtmlDumper;
+use Symfony\Component\VarDumper\VarDumper;
+use Twig\Template;
 
 /**
  * Tries to provide context from sources (class name, file, line, code excerpt, ...).
@@ -40,7 +40,7 @@ final class SourceContextProvider implements ContextProviderInterface
 
     public function getContext(): ?array
     {
-        $trace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT | DEBUG_BACKTRACE_IGNORE_ARGS, $this->limit);
+        $trace = debug_backtrace(\DEBUG_BACKTRACE_PROVIDE_OBJECT | \DEBUG_BACKTRACE_IGNORE_ARGS, $this->limit);
 
         $file = $trace[1]['file'];
         $line = $trace[1]['line'];

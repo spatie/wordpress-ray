@@ -1,9 +1,9 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
-use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
-use Spatie\WordPressRay\Spatie\Backtrace\Frame;
+use Spatie\Backtrace\Backtrace;
+use Spatie\Backtrace\Frame;
 use Throwable;
 
 class ExceptionPayload extends Payload
