@@ -7,3 +7,4 @@ coverage
 docs
 phpunit.xml
 psalm.xml
+vendor-bin
