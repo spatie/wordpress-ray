@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-namespace Symfony\Component\VarDumper\Caster;
-
-use Symfony\Component\VarDumper\Cloner\Stub;
-
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
  * Casts a caster's Stub.
  *
@@ -31,34 +29,26 @@ class StubCaster
             $stub->handle = $c->handle;
             $stub->cut = $c->cut;
             $stub->attr = $c->attr;
-
-            if (Stub::TYPE_REF === $c->type && !$c->class && \is_string($c->value) && !preg_match('//u', $c->value)) {
+            if (Stub::TYPE_REF === $c->type && !$c->class && \is_string($c->value) && !\preg_match('//u', $c->value)) {
                 $stub->type = Stub::TYPE_STRING;
                 $stub->class = Stub::STRING_BINARY;
             }
-
             $a = [];
         }
-
         return $a;
     }
-
     public static function castCutArray(CutArrayStub $c, array $a, Stub $stub, bool $isNested)
     {
         return $isNested ? $c->preservedSubset : $a;
     }
-
     public static function cutInternals($obj, array $a, Stub $stub, bool $isNested)
     {
         if ($isNested) {
             $stub->cut += \count($a);
-
             return [];
         }
-
         return $a;
     }
-
     public static function castEnum(EnumStub $c, array $a, Stub $stub, bool $isNested)
     {
         if ($isNested) {
@@ -67,18 +57,15 @@ class StubCaster
             $stub->value = null;
             $stub->cut = $c->cut;
             $stub->attr = $c->attr;
-
             $a = [];
-
             if ($c->value) {
-                foreach (array_keys($c->value) as $k) {
-                    $keys[] = !isset($k[0]) || "\0" !== $k[0] ? Caster::PREFIX_VIRTUAL.$k : $k;
+                foreach (\array_keys($c->value) as $k) {
+                    $keys[] = !isset($k[0]) || "\x00" !== $k[0] ? Caster::PREFIX_VIRTUAL . $k : $k;
                 }
                 // Preserve references with array_combine()
-                $a = array_combine($keys, $c->value);
+                $a = \array_combine($keys, $c->value);
             }
         }
-
         return $a;
     }
 }

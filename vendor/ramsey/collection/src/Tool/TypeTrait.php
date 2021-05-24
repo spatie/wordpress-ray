@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Tool;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Tool;
 
 use function is_array;
 use function is_bool;
@@ -24,7 +22,6 @@ use function is_object;
 use function is_resource;
 use function is_scalar;
 use function is_string;
-
 /**
  * Provides functionality to check values for specific types.
  */
@@ -36,7 +33,7 @@ trait TypeTrait
      * @param string $type The type to check the value against.
      * @param mixed $value The value to check.
      */
-    protected function checkType(string $type, $value): bool
+    protected function checkType(string $type, $value) : bool
     {
         switch ($type) {
             case 'array':
@@ -65,7 +62,7 @@ trait TypeTrait
             case 'string':
                 return is_string($value);
             case 'mixed':
-                return true;
+                return \true;
             default:
                 return $value instanceof $type;
         }

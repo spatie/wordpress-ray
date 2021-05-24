@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Validator;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Validator;
 
 /**
  * A validator validates a string as a proper UUID
@@ -28,8 +26,7 @@ interface ValidatorInterface
      *
      * @psalm-return non-empty-string
      */
-    public function getPattern(): string;
-
+    public function getPattern() : string;
     /**
      * Returns true if the provided string represents a UUID
      *
@@ -37,5 +34,5 @@ interface ValidatorInterface
      *
      * @return bool True if the string is a valid UUID, false otherwise
      */
-    public function validate(string $uuid): bool;
+    public function validate(string $uuid) : bool;
 }

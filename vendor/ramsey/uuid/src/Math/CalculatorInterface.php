@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Math;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Math;
-
-use Ramsey\Uuid\Type\Hexadecimal;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-use Ramsey\Uuid\Type\NumberInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\NumberInterface;
 /**
  * A calculator performs arithmetic operations on numbers
  *
@@ -33,8 +30,7 @@ interface CalculatorInterface
      *
      * @return NumberInterface The sum of all the parameters
      */
-    public function add(NumberInterface $augend, NumberInterface ...$addends): NumberInterface;
-
+    public function add(NumberInterface $augend, NumberInterface ...$addends) : NumberInterface;
     /**
      * Returns the difference of all the provided parameters
      *
@@ -43,8 +39,7 @@ interface CalculatorInterface
      *
      * @return NumberInterface The difference after subtracting all parameters
      */
-    public function subtract(NumberInterface $minuend, NumberInterface ...$subtrahends): NumberInterface;
-
+    public function subtract(NumberInterface $minuend, NumberInterface ...$subtrahends) : NumberInterface;
     /**
      * Returns the product of all the provided parameters
      *
@@ -53,8 +48,7 @@ interface CalculatorInterface
      *
      * @return NumberInterface The product of multiplying all the provided parameters
      */
-    public function multiply(NumberInterface $multiplicand, NumberInterface ...$multipliers): NumberInterface;
-
+    public function multiply(NumberInterface $multiplicand, NumberInterface ...$multipliers) : NumberInterface;
     /**
      * Returns the quotient of the provided parameters divided left-to-right
      *
@@ -67,13 +61,7 @@ interface CalculatorInterface
      *
      * @return NumberInterface The quotient of dividing the provided parameters left-to-right
      */
-    public function divide(
-        int $roundingMode,
-        int $scale,
-        NumberInterface $dividend,
-        NumberInterface ...$divisors
-    ): NumberInterface;
-
+    public function divide(int $roundingMode, int $scale, NumberInterface $dividend, NumberInterface ...$divisors) : NumberInterface;
     /**
      * Converts a value from an arbitrary base to a base-10 integer value
      *
@@ -82,8 +70,7 @@ interface CalculatorInterface
      *
      * @return IntegerObject The base-10 integer value of the converted value
      */
-    public function fromBase(string $value, int $base): IntegerObject;
-
+    public function fromBase(string $value, int $base) : IntegerObject;
     /**
      * Converts a base-10 integer value to an arbitrary base
      *
@@ -92,15 +79,13 @@ interface CalculatorInterface
      *
      * @return string The value represented in the specified base
      */
-    public function toBase(IntegerObject $value, int $base): string;
-
+    public function toBase(IntegerObject $value, int $base) : string;
     /**
      * Converts an Integer instance to a Hexadecimal instance
      */
-    public function toHexadecimal(IntegerObject $value): Hexadecimal;
-
+    public function toHexadecimal(IntegerObject $value) : Hexadecimal;
     /**
      * Converts a Hexadecimal instance to an Integer instance
      */
-    public function toInteger(Hexadecimal $value): IntegerObject;
+    public function toInteger(Hexadecimal $value) : IntegerObject;
 }

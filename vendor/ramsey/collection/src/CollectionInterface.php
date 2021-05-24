@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * A collection represents a group of objects, known as its elements.
@@ -29,12 +27,10 @@ interface CollectionInterface extends ArrayInterface
      * Ascending sort type.
      */
     public const SORT_ASC = 'asc';
-
     /**
      * Descending sort type.
      */
     public const SORT_DESC = 'desc';
-
     /**
      * Ensures that this collection contains the specified element (optional
      * operation).
@@ -60,8 +56,7 @@ interface CollectionInterface extends ArrayInterface
      * @return bool `true` if this collection changed as a result of the call.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function add($element): bool;
-
+    public function add($element) : bool;
     /**
      * Returns `true` if this collection contains the specified element.
      *
@@ -69,13 +64,11 @@ interface CollectionInterface extends ArrayInterface
      * @param bool $strict Whether to perform a strict type check on the value.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function contains($element, bool $strict = true): bool;
-
+    public function contains($element, bool $strict = \true) : bool;
     /**
      * Returns the type associated with this collection.
      */
-    public function getType(): string;
-
+    public function getType() : string;
     /**
      * Removes a single instance of the specified element from this collection,
      * if it is present.
@@ -85,8 +78,7 @@ interface CollectionInterface extends ArrayInterface
      * @return bool `true` if an element was removed as a result of this call.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function remove($element): bool;
-
+    public function remove($element) : bool;
     /**
      * Returns the values from the given property or method.
      *
@@ -94,22 +86,19 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return list<mixed>
      */
-    public function column(string $propertyOrMethod): array;
-
+    public function column(string $propertyOrMethod) : array;
     /**
      * Returns the first item of the collection.
      *
      * @return T
      */
     public function first();
-
     /**
      * Returns the last item of the collection.
      *
      * @return T
      */
     public function last();
-
     /**
      * Sort the collection by a property or method with the given sort order.
      *
@@ -122,8 +111,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function sort(string $propertyOrMethod, string $order = self::SORT_ASC): self;
-
+    public function sort(string $propertyOrMethod, string $order = self::SORT_ASC) : self;
     /**
      * Filter out items of the collection which don't match the criteria of
      * given callback.
@@ -138,8 +126,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function filter(callable $callback): self;
-
+    public function filter(callable $callback) : self;
     /**
      * Create a new collection where items match the criteria of given callback.
      *
@@ -151,8 +138,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function where(string $propertyOrMethod, $value): self;
-
+    public function where(string $propertyOrMethod, $value) : self;
     /**
      * Apply a given callback method on each item of the collection.
      *
@@ -170,8 +156,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @template TCallbackReturn
      */
-    public function map(callable $callback): self;
-
+    public function map(callable $callback) : self;
     /**
      * Create a new collection with divergent items between current and given
      * collection.
@@ -181,8 +166,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function diff(CollectionInterface $other): self;
-
+    public function diff(CollectionInterface $other) : self;
     /**
      * Create a new collection with intersecting item between current and given
      * collection.
@@ -192,8 +176,7 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function intersect(CollectionInterface $other): self;
-
+    public function intersect(CollectionInterface $other) : self;
     /**
      * Merge current items and items of given collections into a new one.
      *
@@ -201,5 +184,5 @@ interface CollectionInterface extends ArrayInterface
      *
      * @return CollectionInterface<T>
      */
-    public function merge(CollectionInterface ...$collections): self;
+    public function merge(CollectionInterface ...$collections) : self;
 }

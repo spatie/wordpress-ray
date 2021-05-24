@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr\Container;
+namespace Spatie\WordPressRay\Psr\Container;
 
 /**
  * No entry was found in the container.

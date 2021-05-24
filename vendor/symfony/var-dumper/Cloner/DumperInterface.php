@@ -8,8 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace Symfony\Component\VarDumper\Cloner;
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner;
 
 /**
  * DumperInterface used by Data objects.
@@ -25,7 +24,6 @@ interface DumperInterface
      * @param string|int|float|bool $value The scalar value being dumped
      */
     public function dumpScalar(Cursor $cursor, string $type, $value);
-
     /**
      * Dumps a string.
      *
@@ -34,7 +32,6 @@ interface DumperInterface
      * @param int    $cut The number of characters $str has been cut by
      */
     public function dumpString(Cursor $cursor, string $str, bool $bin, int $cut);
-
     /**
      * Dumps while entering an hash.
      *
@@ -43,7 +40,6 @@ interface DumperInterface
      * @param bool       $hasChild When the dump of the hash has child item
      */
     public function enterHash(Cursor $cursor, int $type, $class, bool $hasChild);
-
     /**
      * Dumps while leaving an hash.
      *

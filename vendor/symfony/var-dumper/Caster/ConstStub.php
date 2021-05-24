@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-namespace Symfony\Component\VarDumper\Caster;
-
-use Symfony\Component\VarDumper\Cloner\Stub;
-
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
  * Represents a PHP constant and its value.
  *
@@ -25,7 +23,6 @@ class ConstStub extends Stub
         $this->class = $name;
         $this->value = 1 < \func_num_args() ? $value : $name;
     }
-
     /**
      * @return string
      */

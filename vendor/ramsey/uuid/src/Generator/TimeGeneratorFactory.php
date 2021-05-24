@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
-
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Provider\NodeProviderInterface;
-use Ramsey\Uuid\Provider\TimeProviderInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
 /**
  * TimeGeneratorFactory retrieves a default time generator, based on the
  * environment
@@ -28,36 +25,25 @@ class TimeGeneratorFactory
      * @var NodeProviderInterface
      */
     private $nodeProvider;
-
     /**
      * @var TimeConverterInterface
      */
     private $timeConverter;
-
     /**
      * @var TimeProviderInterface
      */
     private $timeProvider;
-
-    public function __construct(
-        NodeProviderInterface $nodeProvider,
-        TimeConverterInterface $timeConverter,
-        TimeProviderInterface $timeProvider
-    ) {
+    public function __construct(NodeProviderInterface $nodeProvider, TimeConverterInterface $timeConverter, TimeProviderInterface $timeProvider)
+    {
         $this->nodeProvider = $nodeProvider;
         $this->timeConverter = $timeConverter;
         $this->timeProvider = $timeProvider;
     }
-
     /**
      * Returns a default time generator, based on the current environment
      */
-    public function getGenerator(): TimeGeneratorInterface
+    public function getGenerator() : TimeGeneratorInterface
     {
-        return new DefaultTimeGenerator(
-            $this->nodeProvider,
-            $this->timeConverter,
-            $this->timeProvider
-        );
+        return new DefaultTimeGenerator($this->nodeProvider, $this->timeConverter, $this->timeProvider);
     }
 }

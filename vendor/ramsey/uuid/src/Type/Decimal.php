@@ -9,15 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
-
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
 use function is_numeric;
-
 /**
  * A value object representing a decimal
  *
@@ -36,68 +32,52 @@ final class Decimal implements NumberInterface
      * @var string
      */
     private $value;
-
     /**
      * @var bool
      */
-    private $isNegative = false;
-
+    private $isNegative = \false;
     /**
      * @param mixed $value The decimal value to store
      */
     public function __construct($value)
     {
         $value = (string) $value;
-
         if (!is_numeric($value)) {
-            throw new InvalidArgumentException(
-                'Value must be a signed decimal or a string containing only '
-                . 'digits 0-9 and, optionally, a decimal point or sign (+ or -)'
-            );
+            throw new InvalidArgumentException('Value must be a signed decimal or a string containing only ' . 'digits 0-9 and, optionally, a decimal point or sign (+ or -)');
         }
-
         // Remove the leading +-symbol.
-        if (strpos($value, '+') === 0) {
-            $value = substr($value, 1);
+        if (\strpos($value, '+') === 0) {
+            $value = \substr($value, 1);
         }
-
         // For cases like `-0` or `-0.0000`, convert the value to `0`.
-        if (abs((float) $value) === 0.0) {
+        if (\abs((float) $value) === 0.0) {
             $value = '0';
         }
-
-        if (strpos($value, '-') === 0) {
-            $this->isNegative = true;
+        if (\strpos($value, '-') === 0) {
+            $this->isNegative = \true;
         }
-
         $this->value = $value;
     }
-
-    public function isNegative(): bool
+    public function isNegative() : bool
     {
         return $this->isNegative;
     }
-
-    public function toString(): string
+    public function toString() : string
     {
         return $this->value;
     }
-
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->toString();
     }
-
-    public function jsonSerialize(): string
+    public function jsonSerialize() : string
     {
         return $this->toString();
     }
-
-    public function serialize(): string
+    public function serialize() : string
     {
         return $this->toString();
     }
-
     /**
      * Constructs the object from a serialized string representation
      *
@@ -105,7 +85,7 @@ final class Decimal implements NumberInterface
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         $this->__construct($serialized);
     }

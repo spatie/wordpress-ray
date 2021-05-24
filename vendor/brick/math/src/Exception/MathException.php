@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Brick\Math\Exception;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Brick\Math\Exception;
 
 /**
  * Base class for all math exceptions.

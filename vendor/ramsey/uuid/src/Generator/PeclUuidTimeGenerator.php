@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 use const UUID_TYPE_TIME;
-
 /**
  * PeclUuidTimeGenerator generates strings of binary data for time-base UUIDs,
  * using ext-uuid
@@ -27,10 +24,9 @@ class PeclUuidTimeGenerator implements TimeGeneratorInterface
     /**
      * @inheritDoc
      */
-    public function generate($node = null, ?int $clockSeq = null): string
+    public function generate($node = null, ?int $clockSeq = null) : string
     {
-        $uuid = uuid_create(UUID_TYPE_TIME);
-
-        return uuid_parse($uuid);
+        $uuid = \uuid_create(\UUID_TYPE_TIME);
+        return \uuid_parse($uuid);
     }
 }

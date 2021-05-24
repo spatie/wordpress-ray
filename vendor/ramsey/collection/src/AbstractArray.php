@@ -9,17 +9,13 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 use ArrayIterator;
 use Traversable;
-
 use function serialize;
 use function unserialize;
-
 /**
  * This class provides a basic implementation of `ArrayInterface`, to minimize
  * the effort required to implement this interface.
@@ -35,7 +31,6 @@ abstract class AbstractArray implements ArrayInterface
      * @var array<array-key, T>
      */
     protected $data = [];
-
     /**
      * Constructs a new array object.
      *
@@ -49,17 +44,15 @@ abstract class AbstractArray implements ArrayInterface
             $this[$key] = $value;
         }
     }
-
     /**
      * Returns an iterator for this array.
      *
      * @link http://php.net/manual/en/iteratoraggregate.getiterator.php IteratorAggregate::getIterator()
      */
-    public function getIterator(): Traversable
+    public function getIterator() : Traversable
     {
         return new ArrayIterator($this->data);
     }
-
     /**
      * Returns `true` if the given offset exists in this array.
      *
@@ -67,11 +60,10 @@ abstract class AbstractArray implements ArrayInterface
      *
      * @param array-key $offset The offset to check.
      */
-    public function offsetExists($offset): bool
+    public function offsetExists($offset) : bool
     {
         return isset($this->data[$offset]);
     }
-
     /**
      * Returns the value at the specified offset.
      *
@@ -86,7 +78,6 @@ abstract class AbstractArray implements ArrayInterface
     {
         return $this->data[$offset] ?? null;
     }
-
     /**
      * Sets the given value to the given offset in the array.
      *
@@ -97,7 +88,7 @@ abstract class AbstractArray implements ArrayInterface
      * @param T $value The value to set at the given offset.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if ($offset === null) {
             $this->data[] = $value;
@@ -105,7 +96,6 @@ abstract class AbstractArray implements ArrayInterface
             $this->data[$offset] = $value;
         }
     }
-
     /**
      * Removes the given offset and its value from the array.
      *
@@ -113,11 +103,10 @@ abstract class AbstractArray implements ArrayInterface
      *
      * @param array-key $offset The offset to remove from the array.
      */
-    public function offsetUnset($offset): void
+    public function offsetUnset($offset) : void
     {
         unset($this->data[$offset]);
     }
-
     /**
      * Returns a serialized string representation of this array object.
      *
@@ -125,11 +114,10 @@ abstract class AbstractArray implements ArrayInterface
      *
      * @return string a PHP serialized string.
      */
-    public function serialize(): string
+    public function serialize() : string
     {
         return serialize($this->data);
     }
-
     /**
      * Converts a serialized string representation into an instance object.
      *
@@ -139,39 +127,34 @@ abstract class AbstractArray implements ArrayInterface
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         /** @var array<array-key, T> $data */
-        $data = unserialize($serialized, ['allowed_classes' => false]);
-
+        $data = unserialize($serialized, ['allowed_classes' => \false]);
         $this->data = $data;
     }
-
     /**
      * Returns the number of items in this array.
      *
      * @link http://php.net/manual/en/countable.count.php Countable::count()
      */
-    public function count(): int
+    public function count() : int
     {
-        return count($this->data);
+        return \count($this->data);
     }
-
-    public function clear(): void
+    public function clear() : void
     {
         $this->data = [];
     }
-
     /**
      * @inheritDoc
      */
-    public function toArray(): array
+    public function toArray() : array
     {
         return $this->data;
     }
-
-    public function isEmpty(): bool
+    public function isEmpty() : bool
     {
-        return count($this->data) === 0;
+        return \count($this->data) === 0;
     }
 }

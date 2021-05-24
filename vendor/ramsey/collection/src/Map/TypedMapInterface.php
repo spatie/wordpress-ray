@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
 /**
  * A `TypedMapInterface` represents a map of elements where key and value are
@@ -26,10 +24,9 @@ interface TypedMapInterface extends MapInterface
     /**
      * Return the type used on the key.
      */
-    public function getKeyType(): string;
-
+    public function getKeyType() : string;
     /**
      * Return the type forced on the values.
      */
-    public function getValueType(): string;
+    public function getValueType() : string;
 }

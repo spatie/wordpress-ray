@@ -9,27 +9,21 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid;
 
 use JsonSerializable;
-use Ramsey\Uuid\Fields\FieldsInterface;
-use Ramsey\Uuid\Type\Hexadecimal;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
+use Spatie\WordPressRay\Ramsey\Uuid\Fields\FieldsInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
 use Serializable;
-
 /**
  * A UUID is a universally unique identifier adhering to an agreed-upon
  * representation format and standard for generation
  *
  * @psalm-immutable
  */
-interface UuidInterface extends
-    DeprecatedUuidInterface,
-    JsonSerializable,
-    Serializable
+interface UuidInterface extends DeprecatedUuidInterface, JsonSerializable, Serializable
 {
     /**
      * Returns -1, 0, or 1 if the UUID is less than, equal to, or greater than
@@ -46,8 +40,7 @@ interface UuidInterface extends
      *
      * @return int -1, 0, or 1 if the UUID is less than, equal to, or greater than $other
      */
-    public function compareTo(UuidInterface $other): int;
-
+    public function compareTo(UuidInterface $other) : int;
     /**
      * Returns true if the UUID is equal to the provided object
      *
@@ -59,41 +52,35 @@ interface UuidInterface extends
      *
      * @return bool True if the other object is equal to this UUID
      */
-    public function equals(?object $other): bool;
-
+    public function equals(?object $other) : bool;
     /**
      * Returns the binary string representation of the UUID
      *
      * @psalm-return non-empty-string
      */
-    public function getBytes(): string;
-
+    public function getBytes() : string;
     /**
      * Returns the fields that comprise this UUID
      */
-    public function getFields(): FieldsInterface;
-
+    public function getFields() : FieldsInterface;
     /**
      * Returns the hexadecimal representation of the UUID
      */
-    public function getHex(): Hexadecimal;
-
+    public function getHex() : Hexadecimal;
     /**
      * Returns the integer representation of the UUID
      */
-    public function getInteger(): IntegerObject;
-
+    public function getInteger() : IntegerObject;
     /**
      * Returns the string standard representation of the UUID
      *
      * @psalm-return non-empty-string
      */
-    public function toString(): string;
-
+    public function toString() : string;
     /**
      * Casts the UUID to the string standard representation
      *
      * @psalm-return non-empty-string
      */
-    public function __toString(): string;
+    public function __toString() : string;
 }

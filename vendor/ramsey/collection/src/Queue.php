@@ -9,16 +9,13 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\InvalidArgumentException;
-use Ramsey\Collection\Exception\NoSuchElementException;
-use Ramsey\Collection\Tool\TypeTrait;
-use Ramsey\Collection\Tool\ValueToStringTrait;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
+use Spatie\WordPressRay\Ramsey\Collection\Tool\TypeTrait;
+use Spatie\WordPressRay\Ramsey\Collection\Tool\ValueToStringTrait;
 /**
  * This class provides a basic implementation of `QueueInterface`, to minimize
  * the effort required to implement this interface.
@@ -31,7 +28,6 @@ class Queue extends AbstractArray implements QueueInterface
 {
     use TypeTrait;
     use ValueToStringTrait;
-
     /**
      * The type of elements stored in this queue.
      *
@@ -41,14 +37,12 @@ class Queue extends AbstractArray implements QueueInterface
      * @var string
      */
     private $queueType;
-
     /**
      * The index of the head of the queue.
      *
      * @var int
      */
     protected $index = 0;
-
     /**
      * Constructs a queue object of the specified type, optionally with the
      * specified data.
@@ -61,7 +55,6 @@ class Queue extends AbstractArray implements QueueInterface
         $this->queueType = $queueType;
         parent::__construct($data);
     }
-
     /**
      * {@inheritDoc}
      *
@@ -69,56 +62,43 @@ class Queue extends AbstractArray implements QueueInterface
      * serves only to fulfill the `ArrayAccess` interface requirements. It is
      * invoked by other operations when adding values to the queue.
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        if ($this->checkType($this->getType(), $value) === false) {
-            throw new InvalidArgumentException(
-                'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($value)
-            );
+        if ($this->checkType($this->getType(), $value) === \false) {
+            throw new InvalidArgumentException('Value must be of type ' . $this->getType() . '; value is ' . $this->toolValueToString($value));
         }
-
         $this->data[] = $value;
     }
-
     /**
      * @inheritDoc
      */
-    public function add($element): bool
+    public function add($element) : bool
     {
         $this[] = $element;
-
-        return true;
+        return \true;
     }
-
     /**
      * @inheritDoc
      */
     public function element()
     {
         $element = $this->peek();
-
         if ($element === null) {
-            throw new NoSuchElementException(
-                'Can\'t return element from Queue. Queue is empty.'
-            );
+            throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
         return $element;
     }
-
     /**
      * @inheritDoc
      */
-    public function offer($element): bool
+    public function offer($element) : bool
     {
         try {
             return $this->add($element);
         } catch (InvalidArgumentException $e) {
-            return false;
+            return \false;
         }
     }
-
     /**
      * @inheritDoc
      */
@@ -127,10 +107,8 @@ class Queue extends AbstractArray implements QueueInterface
         if ($this->count() === 0) {
             return null;
         }
-
         return $this[$this->index];
     }
-
     /**
      * @inheritDoc
      */
@@ -139,30 +117,23 @@ class Queue extends AbstractArray implements QueueInterface
         if ($this->count() === 0) {
             return null;
         }
-
         $head = $this[$this->index];
-
         unset($this[$this->index]);
         $this->index++;
-
         return $head;
     }
-
     /**
      * @inheritDoc
      */
     public function remove()
     {
         $head = $this->poll();
-
         if ($head === null) {
             throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
         return $head;
     }
-
-    public function getType(): string
+    public function getType() : string
     {
         return $this->queueType;
     }

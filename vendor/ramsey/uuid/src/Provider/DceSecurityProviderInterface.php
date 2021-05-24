@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider;
-
-use Ramsey\Uuid\Rfc4122\UuidV2;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidV2;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
 /**
  * A DCE provider provides access to local domain identifiers for version 2,
  * DCE Security, UUIDs
@@ -30,12 +27,11 @@ interface DceSecurityProviderInterface
      *
      * @link https://en.wikipedia.org/wiki/User_identifier User identifier
      */
-    public function getUid(): IntegerObject;
-
+    public function getUid() : IntegerObject;
     /**
      * Returns a group identifier for the system
      *
      * @link https://en.wikipedia.org/wiki/Group_identifier Group identifier
      */
-    public function getGid(): IntegerObject;
+    public function getGid() : IntegerObject;
 }

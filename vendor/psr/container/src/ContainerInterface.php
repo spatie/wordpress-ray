@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Psr\Container;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Psr\Container;
 
 /**
  * Describes the interface of a container that exposes methods to read its entries.
@@ -20,7 +19,6 @@ interface ContainerInterface
      * @return mixed Entry.
      */
     public function get(string $id);
-
     /**
      * Returns true if the container can return an entry for the given identifier.
      * Returns false otherwise.

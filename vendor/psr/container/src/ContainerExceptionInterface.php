@@ -1,6 +1,6 @@
 <?php
 
-namespace Psr\Container;
+namespace Spatie\WordPressRay\Psr\Container;
 
 /**
  * Base interface representing a generic exception in a container.

@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
-
-use Ramsey\Collection\ArrayInterface;
-
+use Spatie\WordPressRay\Ramsey\Collection\ArrayInterface;
 /**
  * An object that maps keys to values.
  *
@@ -31,8 +28,7 @@ interface MapInterface extends ArrayInterface
      *
      * @param array-key $key The key to check in the map.
      */
-    public function containsKey($key): bool;
-
+    public function containsKey($key) : bool;
     /**
      * Returns `true` if this map maps one or more keys to the specified value.
      *
@@ -41,15 +37,13 @@ interface MapInterface extends ArrayInterface
      * @param T $value The value to check in the map.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function containsValue($value): bool;
-
+    public function containsValue($value) : bool;
     /**
      * Return an array of the keys contained in this map.
      *
      * @return list<array-key>
      */
-    public function keys(): array;
-
+    public function keys() : array;
     /**
      * Returns the value to which the specified key is mapped, `null` if this
      * map contains no mapping for the key, or (optionally) `$defaultValue` if
@@ -62,7 +56,6 @@ interface MapInterface extends ArrayInterface
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
     public function get($key, $defaultValue = null);
-
     /**
      * Associates the specified value with the specified key in this map.
      *
@@ -77,7 +70,6 @@ interface MapInterface extends ArrayInterface
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
     public function put($key, $value);
-
     /**
      * Associates the specified value with the specified key in this map only if
      * it is not already set.
@@ -93,7 +85,6 @@ interface MapInterface extends ArrayInterface
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
     public function putIfAbsent($key, $value);
-
     /**
      * Removes the mapping for a key from this map if it is present.
      *
@@ -104,7 +95,6 @@ interface MapInterface extends ArrayInterface
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
     public function remove($key);
-
     /**
      * Removes the entry for the specified key only if it is currently mapped to
      * the specified value.
@@ -117,8 +107,7 @@ interface MapInterface extends ArrayInterface
      * @return bool true if the value was removed.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function removeIf($key, $value): bool;
-
+    public function removeIf($key, $value) : bool;
     /**
      * Replaces the entry for the specified key only if it is currently mapped
      * to some value.
@@ -131,7 +120,6 @@ interface MapInterface extends ArrayInterface
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
     public function replace($key, $value);
-
     /**
      * Replaces the entry for the specified key only if currently mapped to the
      * specified value.
@@ -145,5 +133,5 @@ interface MapInterface extends ArrayInterface
      * @return bool true if the value was replaced.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function replaceIf($key, $oldValue, $newValue): bool;
+    public function replaceIf($key, $oldValue, $newValue) : bool;
 }

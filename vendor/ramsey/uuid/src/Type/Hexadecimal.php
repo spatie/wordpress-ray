@@ -9,18 +9,14 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
-
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
 use function ctype_xdigit;
 use function strpos;
 use function strtolower;
 use function substr;
-
 /**
  * A value object representing a hexadecimal number
  *
@@ -36,47 +32,36 @@ final class Hexadecimal implements TypeInterface
      * @var string
      */
     private $value;
-
     /**
      * @param string $value The hexadecimal value to store
      */
     public function __construct(string $value)
     {
         $value = strtolower($value);
-
         if (strpos($value, '0x') === 0) {
             $value = substr($value, 2);
         }
-
         if (!ctype_xdigit($value)) {
-            throw new InvalidArgumentException(
-                'Value must be a hexadecimal number'
-            );
+            throw new InvalidArgumentException('Value must be a hexadecimal number');
         }
-
         $this->value = $value;
     }
-
-    public function toString(): string
+    public function toString() : string
     {
         return $this->value;
     }
-
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->toString();
     }
-
-    public function jsonSerialize(): string
+    public function jsonSerialize() : string
     {
         return $this->toString();
     }
-
-    public function serialize(): string
+    public function serialize() : string
     {
         return $this->toString();
     }
-
     /**
      * Constructs the object from a serialized string representation
      *
@@ -84,7 +69,7 @@ final class Hexadecimal implements TypeInterface
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         $this->__construct($serialized);
     }

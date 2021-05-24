@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid;
 
 /**
  * Provides binary math utilities
@@ -31,14 +29,12 @@ class BinaryUtils
      *
      * @psalm-pure
      */
-    public static function applyVariant(int $clockSeq): int
+    public static function applyVariant(int $clockSeq) : int
     {
         $clockSeq = $clockSeq & 0x3fff;
         $clockSeq |= 0x8000;
-
         return $clockSeq;
     }
-
     /**
      * Applies the RFC 4122 version number to the 16-bit `time_hi_and_version` field
      *
@@ -53,11 +49,10 @@ class BinaryUtils
      *
      * @psalm-pure
      */
-    public static function applyVersion(int $timeHi, int $version): int
+    public static function applyVersion(int $timeHi, int $version) : int
     {
-        $timeHi = $timeHi & 0x0fff;
+        $timeHi = $timeHi & 0xfff;
         $timeHi |= $version << 12;
-
         return $timeHi;
     }
 }

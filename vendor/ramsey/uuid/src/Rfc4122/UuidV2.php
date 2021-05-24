@@ -9,28 +9,23 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Rfc4122;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Rfc4122;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Exception\DateTimeException;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-use Ramsey\Uuid\Uuid;
+use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\DateTimeException;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 use Throwable;
-
 use function hexdec;
 use function str_pad;
-
 use const STR_PAD_LEFT;
-
 /**
  * DCE Security version, or version 2, UUIDs include local domain identifier,
  * local ID for the specified domain, and node values that are combined into a
@@ -58,22 +53,13 @@ final class UuidV2 extends Uuid implements UuidInterface
      * @param TimeConverterInterface $timeConverter The time converter to use
      *     for converting timestamps extracted from a UUID to unix timestamps
      */
-    public function __construct(
-        Rfc4122FieldsInterface $fields,
-        NumberConverterInterface $numberConverter,
-        CodecInterface $codec,
-        TimeConverterInterface $timeConverter
-    ) {
+    public function __construct(Rfc4122FieldsInterface $fields, NumberConverterInterface $numberConverter, CodecInterface $codec, TimeConverterInterface $timeConverter)
+    {
         if ($fields->getVersion() !== Uuid::UUID_TYPE_DCE_SECURITY) {
-            throw new InvalidArgumentException(
-                'Fields used to create a UuidV2 must represent a '
-                . 'version 2 (DCE Security) UUID'
-            );
+            throw new InvalidArgumentException('Fields used to create a UuidV2 must represent a ' . 'version 2 (DCE Security) UUID');
         }
-
         parent::__construct($fields, $numberConverter, $codec, $timeConverter);
     }
-
     /**
      * Returns a DateTimeInterface object representing the timestamp associated
      * with the UUID
@@ -93,51 +79,38 @@ final class UuidV2 extends Uuid implements UuidInterface
      * @return DateTimeImmutable A PHP DateTimeImmutable instance representing
      *     the timestamp of a version 2 UUID
      */
-    public function getDateTime(): DateTimeInterface
+    public function getDateTime() : DateTimeInterface
     {
         $time = $this->timeConverter->convertTime($this->fields->getTimestamp());
-
         try {
-            return new DateTimeImmutable(
-                '@'
-                . $time->getSeconds()->toString()
-                . '.'
-                . str_pad($time->getMicroseconds()->toString(), 6, '0', STR_PAD_LEFT)
-            );
+            return new DateTimeImmutable('@' . $time->getSeconds()->toString() . '.' . str_pad($time->getMicroseconds()->toString(), 6, '0', \STR_PAD_LEFT));
         } catch (Throwable $e) {
             throw new DateTimeException($e->getMessage(), (int) $e->getCode(), $e);
         }
     }
-
     /**
      * Returns the local domain used to create this version 2 UUID
      */
-    public function getLocalDomain(): int
+    public function getLocalDomain() : int
     {
         /** @var Rfc4122FieldsInterface $fields */
         $fields = $this->getFields();
-
         return (int) hexdec($fields->getClockSeqLow()->toString());
     }
-
     /**
      * Returns the string name of the local domain
      */
-    public function getLocalDomainName(): string
+    public function getLocalDomainName() : string
     {
         return Uuid::DCE_DOMAIN_NAMES[$this->getLocalDomain()];
     }
-
     /**
      * Returns the local identifier for the domain used to create this version 2 UUID
      */
-    public function getLocalIdentifier(): IntegerObject
+    public function getLocalIdentifier() : IntegerObject
     {
         /** @var Rfc4122FieldsInterface $fields */
         $fields = $this->getFields();
-
-        return new IntegerObject(
-            $this->numberConverter->fromHex($fields->getTimeLow()->toString())
-        );
+        return new IntegerObject($this->numberConverter->fromHex($fields->getTimeLow()->toString()));
     }
 }

@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Converter;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Converter;
 
 /**
  * A number converter converts UUIDs from hexadecimal characters into
@@ -37,8 +35,7 @@ interface NumberConverterInterface
      *
      * @psalm-pure
      */
-    public function fromHex(string $hex): string;
-
+    public function fromHex(string $hex) : string;
     /**
      * Converts a string integer representation into a hexadecimal string
      * representation of the number
@@ -53,5 +50,5 @@ interface NumberConverterInterface
      *
      * @psalm-pure
      */
-    public function toHex(string $number): string;
+    public function toHex(string $number) : string;
 }

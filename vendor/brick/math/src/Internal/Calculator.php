@@ -1,12 +1,10 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Brick\Math\Internal;
 
-namespace Brick\Math\Internal;
-
-use Brick\Math\Exception\RoundingNecessaryException;
-use Brick\Math\RoundingMode;
-
+use Spatie\WordPressRay\Brick\Math\Exception\RoundingNecessaryException;
+use Spatie\WordPressRay\Brick\Math\RoundingMode;
 /**
  * Performs basic operations on arbitrary size integers.
  *
@@ -26,19 +24,16 @@ abstract class Calculator
      * The maximum exponent value allowed for the pow() method.
      */
     public const MAX_POWER = 1000000;
-
     /**
      * The alphabet for converting from and to base 2 to 36, lowercase.
      */
     public const ALPHABET = '0123456789abcdefghijklmnopqrstuvwxyz';
-
     /**
      * The Calculator instance in use.
      *
      * @var Calculator|null
      */
     private static $instance;
-
     /**
      * Sets the Calculator instance to use.
      *
@@ -48,11 +43,10 @@ abstract class Calculator
      *
      * @return void
      */
-    final public static function set(?Calculator $calculator) : void
+    public static final function set(?Calculator $calculator) : void
     {
         self::$instance = $calculator;
     }
-
     /**
      * Returns the Calculator instance to use.
      *
@@ -63,16 +57,14 @@ abstract class Calculator
      * @psalm-pure
      * @psalm-suppress ImpureStaticProperty
      */
-    final public static function get() : Calculator
+    public static final function get() : Calculator
     {
         if (self::$instance === null) {
             /** @psalm-suppress ImpureMethodCall */
             self::$instance = self::detect();
         }
-
         return self::$instance;
     }
-
     /**
      * Returns the fastest available Calculator implementation.
      *
@@ -85,14 +77,11 @@ abstract class Calculator
         if (\extension_loaded('gmp')) {
             return new Calculator\GmpCalculator();
         }
-
         if (\extension_loaded('bcmath')) {
             return new Calculator\BcMathCalculator();
         }
-
         return new Calculator\NativeCalculator();
     }
-
     /**
      * Extracts the sign & digits of the operands.
      *
@@ -101,17 +90,10 @@ abstract class Calculator
      *
      * @return array{0: bool, 1: bool, 2: string, 3: string} Whether $a and $b are negative, followed by their digits.
      */
-    final protected function init(string $a, string $b) : array
+    protected final function init(string $a, string $b) : array
     {
-        return [
-            $aNeg = ($a[0] === '-'),
-            $bNeg = ($b[0] === '-'),
-
-            $aNeg ? \substr($a, 1) : $a,
-            $bNeg ? \substr($b, 1) : $b,
-        ];
+        return [$aNeg = $a[0] === '-', $bNeg = $b[0] === '-', $aNeg ? \substr($a, 1) : $a, $bNeg ? \substr($b, 1) : $b];
     }
-
     /**
      * Returns the absolute value of a number.
      *
@@ -119,11 +101,10 @@ abstract class Calculator
      *
      * @return string The absolute value.
      */
-    final public function abs(string $n) : string
+    public final function abs(string $n) : string
     {
-        return ($n[0] === '-') ? \substr($n, 1) : $n;
+        return $n[0] === '-' ? \substr($n, 1) : $n;
     }
-
     /**
      * Negates a number.
      *
@@ -131,19 +112,16 @@ abstract class Calculator
      *
      * @return string The negated value.
      */
-    final public function neg(string $n) : string
+    public final function neg(string $n) : string
     {
         if ($n === '0') {
             return '0';
         }
-
         if ($n[0] === '-') {
             return \substr($n, 1);
         }
-
         return '-' . $n;
     }
-
     /**
      * Compares two numbers.
      *
@@ -152,21 +130,17 @@ abstract class Calculator
      *
      * @return int [-1, 0, 1] If the first number is less than, equal to, or greater than the second number.
      */
-    final public function cmp(string $a, string $b) : int
+    public final function cmp(string $a, string $b) : int
     {
         [$aNeg, $bNeg, $aDig, $bDig] = $this->init($a, $b);
-
-        if ($aNeg && ! $bNeg) {
+        if ($aNeg && !$bNeg) {
             return -1;
         }
-
-        if ($bNeg && ! $aNeg) {
+        if ($bNeg && !$aNeg) {
             return 1;
         }
-
         $aLen = \strlen($aDig);
         $bLen = \strlen($bDig);
-
         if ($aLen < $bLen) {
             $result = -1;
         } elseif ($aLen > $bLen) {
@@ -174,10 +148,8 @@ abstract class Calculator
         } else {
             $result = $aDig <=> $bDig;
         }
-
         return $aNeg ? -$result : $result;
     }
-
     /**
      * Adds two numbers.
      *
@@ -186,8 +158,7 @@ abstract class Calculator
      *
      * @return string The sum.
      */
-    abstract public function add(string $a, string $b) : string;
-
+    public abstract function add(string $a, string $b) : string;
     /**
      * Subtracts two numbers.
      *
@@ -196,8 +167,7 @@ abstract class Calculator
      *
      * @return string The difference.
      */
-    abstract public function sub(string $a, string $b) : string;
-
+    public abstract function sub(string $a, string $b) : string;
     /**
      * Multiplies two numbers.
      *
@@ -206,8 +176,7 @@ abstract class Calculator
      *
      * @return string The product.
      */
-    abstract public function mul(string $a, string $b) : string;
-
+    public abstract function mul(string $a, string $b) : string;
     /**
      * Returns the quotient of the division of two numbers.
      *
@@ -216,8 +185,7 @@ abstract class Calculator
      *
      * @return string The quotient.
      */
-    abstract public function divQ(string $a, string $b) : string;
-
+    public abstract function divQ(string $a, string $b) : string;
     /**
      * Returns the remainder of the division of two numbers.
      *
@@ -226,8 +194,7 @@ abstract class Calculator
      *
      * @return string The remainder.
      */
-    abstract public function divR(string $a, string $b) : string;
-
+    public abstract function divR(string $a, string $b) : string;
     /**
      * Returns the quotient and remainder of the division of two numbers.
      *
@@ -236,8 +203,7 @@ abstract class Calculator
      *
      * @return string[] An array containing the quotient and remainder.
      */
-    abstract public function divQR(string $a, string $b) : array;
-
+    public abstract function divQR(string $a, string $b) : array;
     /**
      * Exponentiates a number.
      *
@@ -246,8 +212,7 @@ abstract class Calculator
      *
      * @return string The power.
      */
-    abstract public function pow(string $a, int $e) : string;
-
+    public abstract function pow(string $a, int $e) : string;
     /**
      * @param string $a
      * @param string $b The modulus; must not be zero.
@@ -258,7 +223,6 @@ abstract class Calculator
     {
         return $this->divR($this->add($this->divR($a, $b), $b), $b);
     }
-
     /**
      * Returns the modular multiplicative inverse of $x modulo $m.
      *
@@ -276,24 +240,18 @@ abstract class Calculator
         if ($m === '1') {
             return '0';
         }
-
         $modVal = $x;
-
-        if ($x[0] === '-' || ($this->cmp($this->abs($x), $m) >= 0)) {
+        if ($x[0] === '-' || $this->cmp($this->abs($x), $m) >= 0) {
             $modVal = $this->mod($x, $m);
         }
-
         $x = '0';
         $y = '0';
         $g = $this->gcdExtended($modVal, $m, $x, $y);
-
         if ($g !== '1') {
             return null;
         }
-
         return $this->mod($this->add($this->mod($x, $m), $m), $m);
     }
-
     /**
      * Raises a number into power with modulo.
      *
@@ -303,8 +261,7 @@ abstract class Calculator
      *
      * @return string The power.
      */
-    abstract public function modPow(string $base, string $exp, string $mod) : string;
-
+    public abstract function modPow(string $base, string $exp, string $mod) : string;
     /**
      * Returns the greatest common divisor of the two numbers.
      *
@@ -321,34 +278,25 @@ abstract class Calculator
         if ($a === '0') {
             return $this->abs($b);
         }
-
         if ($b === '0') {
             return $this->abs($a);
         }
-
         return $this->gcd($b, $this->divR($a, $b));
     }
-
     private function gcdExtended(string $a, string $b, string &$x, string &$y) : string
     {
         if ($a === '0') {
             $x = '0';
             $y = '1';
-
             return $b;
         }
-
         $x1 = '0';
         $y1 = '0';
-
         $gcd = $this->gcdExtended($this->mod($b, $a), $a, $x1, $y1);
-
         $x = $this->sub($y1, $this->mul($this->divQ($b, $a), $x1));
         $y = $x1;
-
         return $gcd;
     }
-
     /**
      * Returns the square root of the given number, rounded down.
      *
@@ -359,8 +307,7 @@ abstract class Calculator
      *
      * @return string The square root.
      */
-    abstract public function sqrt(string $n) : string;
-
+    public abstract function sqrt(string $n) : string;
     /**
      * Converts a number from an arbitrary base.
      *
@@ -376,7 +323,6 @@ abstract class Calculator
     {
         return $this->fromArbitraryBase(\strtolower($number), self::ALPHABET, $base);
     }
-
     /**
      * Converts a number to an arbitrary base.
      *
@@ -390,21 +336,16 @@ abstract class Calculator
      */
     public function toBase(string $number, int $base) : string
     {
-        $negative = ($number[0] === '-');
-
+        $negative = $number[0] === '-';
         if ($negative) {
             $number = \substr($number, 1);
         }
-
         $number = $this->toArbitraryBase($number, self::ALPHABET, $base);
-
         if ($negative) {
             return '-' . $number;
         }
-
         return $number;
     }
-
     /**
      * Converts a non-negative number in an arbitrary base using a custom alphabet, to base 10.
      *
@@ -415,43 +356,31 @@ abstract class Calculator
      *
      * @return string The number in base 10, following the Calculator conventions.
      */
-    final public function fromArbitraryBase(string $number, string $alphabet, int $base) : string
+    public final function fromArbitraryBase(string $number, string $alphabet, int $base) : string
     {
         // remove leading "zeros"
         $number = \ltrim($number, $alphabet[0]);
-
         if ($number === '') {
             return '0';
         }
-
         // optimize for "one"
         if ($number === $alphabet[1]) {
             return '1';
         }
-
         $result = '0';
         $power = '1';
-
         $base = (string) $base;
-
         for ($i = \strlen($number) - 1; $i >= 0; $i--) {
             $index = \strpos($alphabet, $number[$i]);
-
             if ($index !== 0) {
-                $result = $this->add($result, ($index === 1)
-                    ? $power
-                    : $this->mul($power, (string) $index)
-                );
+                $result = $this->add($result, $index === 1 ? $power : $this->mul($power, (string) $index));
             }
-
             if ($i !== 0) {
                 $power = $this->mul($power, $base);
             }
         }
-
         return $result;
     }
-
     /**
      * Converts a non-negative number to an arbitrary base using a custom alphabet.
      *
@@ -461,25 +390,20 @@ abstract class Calculator
      *
      * @return string The converted number in the given alphabet.
      */
-    final public function toArbitraryBase(string $number, string $alphabet, int $base) : string
+    public final function toArbitraryBase(string $number, string $alphabet, int $base) : string
     {
         if ($number === '0') {
             return $alphabet[0];
         }
-
         $base = (string) $base;
         $result = '';
-
         while ($number !== '0') {
             [$number, $remainder] = $this->divQR($number, $base);
             $remainder = (int) $remainder;
-
             $result .= $alphabet[$remainder];
         }
-
         return \strrev($result);
     }
-
     /**
      * Performs a rounded division.
      *
@@ -494,77 +418,59 @@ abstract class Calculator
      * @throws \InvalidArgumentException  If the rounding mode is invalid.
      * @throws RoundingNecessaryException If RoundingMode::UNNECESSARY is provided but rounding is necessary.
      */
-    final public function divRound(string $a, string $b, int $roundingMode) : string
+    public final function divRound(string $a, string $b, int $roundingMode) : string
     {
         [$quotient, $remainder] = $this->divQR($a, $b);
-
-        $hasDiscardedFraction = ($remainder !== '0');
+        $hasDiscardedFraction = $remainder !== '0';
         $isPositiveOrZero = ($a[0] === '-') === ($b[0] === '-');
-
-        $discardedFractionSign = function() use ($remainder, $b) : int {
+        $discardedFractionSign = function () use($remainder, $b) : int {
             $r = $this->abs($this->mul($remainder, '2'));
             $b = $this->abs($b);
-
             return $this->cmp($r, $b);
         };
-
-        $increment = false;
-
+        $increment = \false;
         switch ($roundingMode) {
             case RoundingMode::UNNECESSARY:
                 if ($hasDiscardedFraction) {
                     throw RoundingNecessaryException::roundingNecessary();
                 }
                 break;
-
             case RoundingMode::UP:
                 $increment = $hasDiscardedFraction;
                 break;
-
             case RoundingMode::DOWN:
                 break;
-
             case RoundingMode::CEILING:
                 $increment = $hasDiscardedFraction && $isPositiveOrZero;
                 break;
-
             case RoundingMode::FLOOR:
-                $increment = $hasDiscardedFraction && ! $isPositiveOrZero;
+                $increment = $hasDiscardedFraction && !$isPositiveOrZero;
                 break;
-
             case RoundingMode::HALF_UP:
                 $increment = $discardedFractionSign() >= 0;
                 break;
-
             case RoundingMode::HALF_DOWN:
                 $increment = $discardedFractionSign() > 0;
                 break;
-
             case RoundingMode::HALF_CEILING:
                 $increment = $isPositiveOrZero ? $discardedFractionSign() >= 0 : $discardedFractionSign() > 0;
                 break;
-
             case RoundingMode::HALF_FLOOR:
                 $increment = $isPositiveOrZero ? $discardedFractionSign() > 0 : $discardedFractionSign() >= 0;
                 break;
-
             case RoundingMode::HALF_EVEN:
                 $lastDigit = (int) $quotient[-1];
-                $lastDigitIsEven = ($lastDigit % 2 === 0);
+                $lastDigitIsEven = $lastDigit % 2 === 0;
                 $increment = $lastDigitIsEven ? $discardedFractionSign() > 0 : $discardedFractionSign() >= 0;
                 break;
-
             default:
                 throw new \InvalidArgumentException('Invalid rounding mode.');
         }
-
         if ($increment) {
             return $this->add($quotient, $isPositiveOrZero ? '1' : '-1');
         }
-
         return $quotient;
     }
-
     /**
      * Calculates bitwise AND of two numbers.
      *
@@ -580,7 +486,6 @@ abstract class Calculator
     {
         return $this->bitwise('and', $a, $b);
     }
-
     /**
      * Calculates bitwise OR of two numbers.
      *
@@ -596,7 +501,6 @@ abstract class Calculator
     {
         return $this->bitwise('or', $a, $b);
     }
-
     /**
      * Calculates bitwise XOR of two numbers.
      *
@@ -612,7 +516,6 @@ abstract class Calculator
     {
         return $this->bitwise('xor', $a, $b);
     }
-
     /**
      * Performs a bitwise operation on a decimal number.
      *
@@ -625,57 +528,44 @@ abstract class Calculator
     private function bitwise(string $operator, string $a, string $b) : string
     {
         [$aNeg, $bNeg, $aDig, $bDig] = $this->init($a, $b);
-
         $aBin = $this->toBinary($aDig);
         $bBin = $this->toBinary($bDig);
-
         $aLen = \strlen($aBin);
         $bLen = \strlen($bBin);
-
         if ($aLen > $bLen) {
             $bBin = \str_repeat("\x00", $aLen - $bLen) . $bBin;
         } elseif ($bLen > $aLen) {
             $aBin = \str_repeat("\x00", $bLen - $aLen) . $aBin;
         }
-
         if ($aNeg) {
             $aBin = $this->twosComplement($aBin);
         }
         if ($bNeg) {
             $bBin = $this->twosComplement($bBin);
         }
-
         switch ($operator) {
             case 'and':
                 $value = $aBin & $bBin;
                 $negative = ($aNeg and $bNeg);
                 break;
-
             case 'or':
                 $value = $aBin | $bBin;
                 $negative = ($aNeg or $bNeg);
                 break;
-
             case 'xor':
                 $value = $aBin ^ $bBin;
                 $negative = ($aNeg xor $bNeg);
                 break;
-
             // @codeCoverageIgnoreStart
             default:
                 throw new \InvalidArgumentException('Invalid bitwise operator.');
-            // @codeCoverageIgnoreEnd
         }
-
         if ($negative) {
             $value = $this->twosComplement($value);
         }
-
         $result = $this->toDecimal($value);
-
         return $negative ? $this->neg($result) : $result;
     }
-
     /**
      * @psalm-suppress InvalidOperand
      * @see https://github.com/vimeo/psalm/issues/4456
@@ -687,27 +577,20 @@ abstract class Calculator
     private function twosComplement(string $number) : string
     {
         $xor = \str_repeat("\xff", \strlen($number));
-
         $number ^= $xor;
-
         for ($i = \strlen($number) - 1; $i >= 0; $i--) {
             $byte = \ord($number[$i]);
-
             if (++$byte !== 256) {
                 $number[$i] = \chr($byte);
                 break;
             }
-
             $number[$i] = "\x00";
-
             if ($i === 0) {
                 $number = "\x01" . $number;
             }
         }
-
         return $number;
     }
-
     /**
      * Converts a decimal number to a binary string.
      *
@@ -718,15 +601,12 @@ abstract class Calculator
     private function toBinary(string $number) : string
     {
         $result = '';
-
         while ($number !== '0') {
             [$number, $remainder] = $this->divQR($number, '256');
             $result .= \chr((int) $remainder);
         }
-
         return \strrev($result);
     }
-
     /**
      * Returns the positive decimal representation of a binary number.
      *
@@ -738,22 +618,15 @@ abstract class Calculator
     {
         $result = '0';
         $power = '1';
-
         for ($i = \strlen($bytes) - 1; $i >= 0; $i--) {
             $index = \ord($bytes[$i]);
-
             if ($index !== 0) {
-                $result = $this->add($result, ($index === 1)
-                    ? $power
-                    : $this->mul($power, (string) $index)
-                );
+                $result = $this->add($result, $index === 1 ? $power : $this->mul($power, (string) $index));
             }
-
             if ($i !== 0) {
                 $power = $this->mul($power, '256');
             }
         }
-
         return $result;
     }
 }

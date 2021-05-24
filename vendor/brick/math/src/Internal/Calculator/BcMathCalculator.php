@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Brick\Math\Internal\Calculator;
 
-namespace Brick\Math\Internal\Calculator;
-
-use Brick\Math\Internal\Calculator;
-
+use Spatie\WordPressRay\Brick\Math\Internal\Calculator;
 /**
  * Calculator implementation built around the bcmath library.
  *
@@ -22,7 +20,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcadd($a, $b, 0);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -30,7 +27,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcsub($a, $b, 0);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -38,7 +34,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcmul($a, $b, 0);
     }
-
     /**
      * {@inheritdoc}
      *
@@ -49,7 +44,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcdiv($a, $b, 0);
     }
-
     /**
      * {@inheritdoc}
      *
@@ -58,32 +52,26 @@ class BcMathCalculator extends Calculator
      */
     public function divR(string $a, string $b) : string
     {
-        if (version_compare(PHP_VERSION, '7.2') >= 0) {
+        if (\version_compare(\PHP_VERSION, '7.2') >= 0) {
             return \bcmod($a, $b, 0);
         }
-
         return \bcmod($a, $b);
     }
-
     /**
      * {@inheritdoc}
      */
     public function divQR(string $a, string $b) : array
     {
         $q = \bcdiv($a, $b, 0);
-
-        if (version_compare(PHP_VERSION, '7.2') >= 0) {
+        if (\version_compare(\PHP_VERSION, '7.2') >= 0) {
             $r = \bcmod($a, $b, 0);
         } else {
             $r = \bcmod($a, $b);
         }
-
-        assert($q !== null);
-        assert($r !== null);
-
+        \assert($q !== null);
+        \assert($r !== null);
         return [$q, $r];
     }
-
     /**
      * {@inheritdoc}
      */
@@ -91,7 +79,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcpow($a, (string) $e, 0);
     }
-
     /**
      * {@inheritdoc}
      *
@@ -102,7 +89,6 @@ class BcMathCalculator extends Calculator
     {
         return \bcpowmod($base, $exp, $mod, 0);
     }
-
     /**
      * {@inheritDoc}
      *

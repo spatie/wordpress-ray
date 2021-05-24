@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Fields;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Fields;
 
 use Serializable;
-
 /**
  * UUIDs are comprised of unsigned integers, the bytes of which are separated
  * into fields and arranged in a particular layout defined by the specification
@@ -28,5 +25,5 @@ interface FieldsInterface extends Serializable
     /**
      * Returns the bytes that comprise the fields
      */
-    public function getBytes(): string;
+    public function getBytes() : string;
 }

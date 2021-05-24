@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\InvalidArgumentException;
-use Ramsey\Collection\Exception\NoSuchElementException;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
 /**
  * This class provides a basic implementation of `DoubleEndedQueueInterface`, to
  * minimize the effort required to implement this interface.
@@ -33,71 +30,54 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
      * @var int
      */
     private $tail = -1;
-
     /**
      * @inheritDoc
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        if ($this->checkType($this->getType(), $value) === false) {
-            throw new InvalidArgumentException(
-                'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($value)
-            );
+        if ($this->checkType($this->getType(), $value) === \false) {
+            throw new InvalidArgumentException('Value must be of type ' . $this->getType() . '; value is ' . $this->toolValueToString($value));
         }
-
         $this->tail++;
-
         $this->data[$this->tail] = $value;
     }
-
     /**
      * @inheritDoc
      */
-    public function addFirst($element): bool
+    public function addFirst($element) : bool
     {
-        if ($this->checkType($this->getType(), $element) === false) {
-            throw new InvalidArgumentException(
-                'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($element)
-            );
+        if ($this->checkType($this->getType(), $element) === \false) {
+            throw new InvalidArgumentException('Value must be of type ' . $this->getType() . '; value is ' . $this->toolValueToString($element));
         }
-
         $this->index--;
-
         $this->data[$this->index] = $element;
-
-        return true;
+        return \true;
     }
-
     /**
      * @inheritDoc
      */
-    public function addLast($element): bool
+    public function addLast($element) : bool
     {
         return $this->add($element);
     }
-
     /**
      * @inheritDoc
      */
-    public function offerFirst($element): bool
+    public function offerFirst($element) : bool
     {
         try {
             return $this->addFirst($element);
         } catch (InvalidArgumentException $e) {
-            return false;
+            return \false;
         }
     }
-
     /**
      * @inheritDoc
      */
-    public function offerLast($element): bool
+    public function offerLast($element) : bool
     {
         return $this->offer($element);
     }
-
     /**
      * @inheritDoc
      */
@@ -105,21 +85,17 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
     {
         return $this->remove();
     }
-
     /**
      * @inheritDoc
      */
     public function removeLast()
     {
         $tail = $this->pollLast();
-
         if ($tail === null) {
             throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
         return $tail;
     }
-
     /**
      * @inheritDoc
      */
@@ -127,7 +103,6 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
     {
         return $this->poll();
     }
-
     /**
      * @inheritDoc
      */
@@ -136,15 +111,11 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
         if ($this->count() === 0) {
             return null;
         }
-
         $tail = $this[$this->tail];
-
         unset($this[$this->tail]);
         $this->tail--;
-
         return $tail;
     }
-
     /**
      * @inheritDoc
      */
@@ -152,7 +123,6 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
     {
         return $this->element();
     }
-
     /**
      * @inheritDoc
      */
@@ -161,10 +131,8 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
         if ($this->count() === 0) {
             throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
         return $this->data[$this->tail];
     }
-
     /**
      * @inheritDoc
      */
@@ -172,7 +140,6 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
     {
         return $this->peek();
     }
-
     /**
      * @inheritDoc
      */
@@ -181,7 +148,6 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
         if ($this->count() === 0) {
             return null;
         }
-
         return $this->data[$this->tail];
     }
 }

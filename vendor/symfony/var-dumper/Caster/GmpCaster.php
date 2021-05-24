@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-namespace Symfony\Component\VarDumper\Caster;
-
-use Symfony\Component\VarDumper\Cloner\Stub;
-
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
  * Casts GMP objects to array representation.
  *
@@ -23,10 +21,9 @@ use Symfony\Component\VarDumper\Cloner\Stub;
  */
 class GmpCaster
 {
-    public static function castGmp(\GMP $gmp, array $a, Stub $stub, bool $isNested, int $filter): array
+    public static function castGmp(\GMP $gmp, array $a, Stub $stub, bool $isNested, int $filter) : array
     {
-        $a[Caster::PREFIX_VIRTUAL.'value'] = new ConstStub(gmp_strval($gmp), gmp_strval($gmp));
-
+        $a[Caster::PREFIX_VIRTUAL . 'value'] = new ConstStub(\gmp_strval($gmp), \gmp_strval($gmp));
         return $a;
     }
 }

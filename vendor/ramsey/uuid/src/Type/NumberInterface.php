@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
 /**
  * NumberInterface ensures consistency in numeric values returned by ramsey/uuid
@@ -24,5 +22,5 @@ interface NumberInterface extends TypeInterface
     /**
      * Returns true if this number is less than zero
      */
-    public function isNegative(): bool;
+    public function isNegative() : bool;
 }

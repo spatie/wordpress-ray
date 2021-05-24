@@ -9,19 +9,15 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
-
-use Ramsey\Uuid\Exception\NameException;
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\NameException;
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 use function sprintf;
 use function uuid_generate_md5;
 use function uuid_generate_sha1;
 use function uuid_parse;
-
 /**
  * PeclUuidNameGenerator generates strings of binary data from a namespace and a
  * name, using ext-uuid
@@ -31,24 +27,18 @@ use function uuid_parse;
 class PeclUuidNameGenerator implements NameGeneratorInterface
 {
     /** @psalm-pure */
-    public function generate(UuidInterface $ns, string $name, string $hashAlgorithm): string
+    public function generate(UuidInterface $ns, string $name, string $hashAlgorithm) : string
     {
         switch ($hashAlgorithm) {
             case 'md5':
                 $uuid = (string) uuid_generate_md5($ns->toString(), $name);
-
                 break;
             case 'sha1':
                 $uuid = (string) uuid_generate_sha1($ns->toString(), $name);
-
                 break;
             default:
-                throw new NameException(sprintf(
-                    'Unable to hash namespace and name with algorithm \'%s\'',
-                    $hashAlgorithm
-                ));
+                throw new NameException(sprintf('Unable to hash namespace and name with algorithm \'%s\'', $hashAlgorithm));
         }
-
         return (string) uuid_parse($uuid);
     }
 }

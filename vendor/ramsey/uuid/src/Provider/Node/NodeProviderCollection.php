@@ -9,26 +9,22 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider\Node;
-
-use Ramsey\Collection\AbstractCollection;
-use Ramsey\Collection\CollectionInterface;
-use Ramsey\Uuid\Provider\NodeProviderInterface;
-use Ramsey\Uuid\Type\Hexadecimal;
-
+use Spatie\WordPressRay\Ramsey\Collection\AbstractCollection;
+use Spatie\WordPressRay\Ramsey\Collection\CollectionInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
 /**
  * A collection of NodeProviderInterface objects
  */
 class NodeProviderCollection extends AbstractCollection implements CollectionInterface
 {
-    public function getType(): string
+    public function getType() : string
     {
         return NodeProviderInterface::class;
     }
-
     /**
      * Re-constructs the object from its serialized form
      *
@@ -37,18 +33,10 @@ class NodeProviderCollection extends AbstractCollection implements CollectionInt
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         /** @var mixed[] $data */
-        $data = unserialize($serialized, [
-            'allowed_classes' => [
-                Hexadecimal::class,
-                RandomNodeProvider::class,
-                StaticNodeProvider::class,
-                SystemNodeProvider::class,
-            ],
-        ]);
-
+        $data = \unserialize($serialized, ['allowed_classes' => [Hexadecimal::class, RandomNodeProvider::class, StaticNodeProvider::class, SystemNodeProvider::class]]);
         $this->data = $data;
     }
 }

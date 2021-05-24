@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Fields;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Fields;
 
 use function base64_decode;
 use function strlen;
-
 /**
  * Provides common serialization functionality to fields
  *
@@ -27,21 +24,18 @@ trait SerializableFieldsTrait
     /**
      * @param string $bytes The bytes that comprise the fields
      */
-    abstract public function __construct(string $bytes);
-
+    public abstract function __construct(string $bytes);
     /**
      * Returns the bytes that comprise the fields
      */
-    abstract public function getBytes(): string;
-
+    public abstract function getBytes() : string;
     /**
      * Returns a string representation of object
      */
-    public function serialize(): string
+    public function serialize() : string
     {
         return $this->getBytes();
     }
-
     /**
      * Constructs the object from a serialized string representation
      *
@@ -49,7 +43,7 @@ trait SerializableFieldsTrait
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         if (strlen($serialized) === 16) {
             $this->__construct($serialized);

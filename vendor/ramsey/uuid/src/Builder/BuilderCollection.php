@@ -9,42 +9,37 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Builder;
-
-use Ramsey\Collection\AbstractCollection;
-use Ramsey\Collection\CollectionInterface;
-use Ramsey\Uuid\Converter\Number\GenericNumberConverter;
-use Ramsey\Uuid\Converter\Time\GenericTimeConverter;
-use Ramsey\Uuid\Converter\Time\PhpTimeConverter;
-use Ramsey\Uuid\Guid\GuidBuilder;
-use Ramsey\Uuid\Math\BrickMathCalculator;
-use Ramsey\Uuid\Nonstandard\UuidBuilder as NonstandardUuidBuilder;
-use Ramsey\Uuid\Rfc4122\UuidBuilder as Rfc4122UuidBuilder;
+use Spatie\WordPressRay\Ramsey\Collection\AbstractCollection;
+use Spatie\WordPressRay\Ramsey\Collection\CollectionInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\Number\GenericNumberConverter;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\Time\GenericTimeConverter;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\Time\PhpTimeConverter;
+use Spatie\WordPressRay\Ramsey\Uuid\Guid\GuidBuilder;
+use Spatie\WordPressRay\Ramsey\Uuid\Math\BrickMathCalculator;
+use Spatie\WordPressRay\Ramsey\Uuid\Nonstandard\UuidBuilder as NonstandardUuidBuilder;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidBuilder as Rfc4122UuidBuilder;
 use Traversable;
-
 /**
  * A collection of UuidBuilderInterface objects
  */
 class BuilderCollection extends AbstractCollection implements CollectionInterface
 {
-    public function getType(): string
+    public function getType() : string
     {
         return UuidBuilderInterface::class;
     }
-
     /**
      * @psalm-mutation-free
      * @psalm-suppress ImpureMethodCall
      * @psalm-suppress InvalidTemplateParam
      */
-    public function getIterator(): Traversable
+    public function getIterator() : Traversable
     {
         return parent::getIterator();
     }
-
     /**
      * Re-constructs the object from its serialized form
      *
@@ -53,21 +48,10 @@ class BuilderCollection extends AbstractCollection implements CollectionInterfac
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         /** @var mixed[] $data */
-        $data = unserialize($serialized, [
-            'allowed_classes' => [
-                BrickMathCalculator::class,
-                GenericNumberConverter::class,
-                GenericTimeConverter::class,
-                GuidBuilder::class,
-                NonstandardUuidBuilder::class,
-                PhpTimeConverter::class,
-                Rfc4122UuidBuilder::class,
-            ],
-        ]);
-
+        $data = \unserialize($serialized, ['allowed_classes' => [BrickMathCalculator::class, GenericNumberConverter::class, GenericTimeConverter::class, GuidBuilder::class, NonstandardUuidBuilder::class, PhpTimeConverter::class, Rfc4122UuidBuilder::class]]);
         $this->data = $data;
     }
 }

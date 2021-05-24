@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
-
-use Ramsey\Collection\Tool\TypeTrait;
-
+use Spatie\WordPressRay\Ramsey\Collection\Tool\TypeTrait;
 /**
  * A `TypedMap` represents a map of elements where key and value are typed.
  *
@@ -88,7 +85,6 @@ use Ramsey\Collection\Tool\TypeTrait;
 class TypedMap extends AbstractTypedMap
 {
     use TypeTrait;
-
     /**
      * The data type of keys stored in this collection.
      *
@@ -98,7 +94,6 @@ class TypedMap extends AbstractTypedMap
      * @var string data type of the map key.
      */
     private $keyType;
-
     /**
      * The data type of values stored in this collection.
      *
@@ -108,7 +103,6 @@ class TypedMap extends AbstractTypedMap
      * @var string data type of the map value.
      */
     private $valueType;
-
     /**
      * Constructs a map object of the specified key and value types,
      * optionally with the specified data.
@@ -123,13 +117,11 @@ class TypedMap extends AbstractTypedMap
         $this->valueType = $valueType;
         parent::__construct($data);
     }
-
-    public function getKeyType(): string
+    public function getKeyType() : string
     {
         return $this->keyType;
     }
-
-    public function getValueType(): string
+    public function getValueType() : string
     {
         return $this->valueType;
     }

@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\NoSuchElementException;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
 /**
  * A queue is a collection in which the entities in the collection are kept in
  * order.
@@ -129,8 +126,7 @@ interface QueueInterface extends ArrayInterface
      *     `\RuntimeException`.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function add($element): bool;
-
+    public function add($element) : bool;
     /**
      * Retrieves, but does not remove, the head of this queue.
      *
@@ -144,7 +140,6 @@ interface QueueInterface extends ArrayInterface
      * @throws NoSuchElementException if this queue is empty.
      */
     public function element();
-
     /**
      * Inserts the specified element into this queue if it is possible to do so
      * immediately without violating capacity restrictions.
@@ -160,8 +155,7 @@ interface QueueInterface extends ArrayInterface
      * @return bool `true` if the element was added to this queue, else `false`.
      */
     // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function offer($element): bool;
-
+    public function offer($element) : bool;
     /**
      * Retrieves, but does not remove, the head of this queue, or returns `null`
      * if this queue is empty.
@@ -171,7 +165,6 @@ interface QueueInterface extends ArrayInterface
      * @return T|null the head of this queue, or `null` if this queue is empty.
      */
     public function peek();
-
     /**
      * Retrieves and removes the head of this queue, or returns `null`
      * if this queue is empty.
@@ -181,7 +174,6 @@ interface QueueInterface extends ArrayInterface
      * @return T|null the head of this queue, or `null` if this queue is empty.
      */
     public function poll();
-
     /**
      * Retrieves and removes the head of this queue.
      *
@@ -195,9 +187,8 @@ interface QueueInterface extends ArrayInterface
      * @throws NoSuchElementException if this queue is empty.
      */
     public function remove();
-
     /**
      * Returns the type associated with this queue.
      */
-    public function getType(): string;
+    public function getType() : string;
 }

@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * This class contains the basic implementation of a collection that does not
@@ -27,24 +25,21 @@ abstract class AbstractSet extends AbstractCollection
     /**
      * @inheritDoc
      */
-    public function add($element): bool
+    public function add($element) : bool
     {
         if ($this->contains($element)) {
-            return false;
+            return \false;
         }
-
         return parent::add($element);
     }
-
     /**
      * @inheritDoc
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
         if ($this->contains($value)) {
             return;
         }
-
         parent::offsetSet($offset, $value);
     }
 }

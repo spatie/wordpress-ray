@@ -8,12 +8,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper;
 
-namespace Symfony\Component\VarDumper\Dumper;
-
-use Symfony\Component\VarDumper\Cloner\Data;
-use Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
-
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Data;
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider\ContextProviderInterface;
 /**
  * @author Kévin Thérage <therage.kevin@gmail.com>
  */
@@ -21,7 +19,6 @@ class ContextualizedDumper implements DataDumperInterface
 {
     private $wrappedDumper;
     private $contextProviders;
-
     /**
      * @param ContextProviderInterface[] $contextProviders
      */
@@ -30,14 +27,12 @@ class ContextualizedDumper implements DataDumperInterface
         $this->wrappedDumper = $wrappedDumper;
         $this->contextProviders = $contextProviders;
     }
-
     public function dump(Data $data)
     {
         $context = [];
         foreach ($this->contextProviders as $contextProvider) {
             $context[\get_class($contextProvider)] = $contextProvider->getContext();
         }
-
         $this->wrappedDumper->dump($data->withContext($context));
     }
 }

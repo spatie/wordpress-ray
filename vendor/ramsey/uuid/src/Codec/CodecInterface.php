@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Codec;
-
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 /**
  * A codec encodes and decodes a UUID according to defined rules
  *
@@ -33,8 +30,7 @@ interface CodecInterface
      *
      * @psalm-return non-empty-string
      */
-    public function encode(UuidInterface $uuid): string;
-
+    public function encode(UuidInterface $uuid) : string;
     /**
      * Returns a binary string representation of a UuidInterface
      *
@@ -45,8 +41,7 @@ interface CodecInterface
      *
      * @psalm-return non-empty-string
      */
-    public function encodeBinary(UuidInterface $uuid): string;
-
+    public function encodeBinary(UuidInterface $uuid) : string;
     /**
      * Returns a UuidInterface derived from a hexadecimal string representation
      *
@@ -56,8 +51,7 @@ interface CodecInterface
      * @return UuidInterface An instance of a UUID decoded from a hexadecimal
      *     string representation
      */
-    public function decode(string $encodedUuid): UuidInterface;
-
+    public function decode(string $encodedUuid) : UuidInterface;
     /**
      * Returns a UuidInterface derived from a binary string representation
      *
@@ -67,5 +61,5 @@ interface CodecInterface
      * @return UuidInterface An instance of a UUID decoded from a binary string
      *     representation
      */
-    public function decodeBytes(string $bytes): UuidInterface;
+    public function decodeBytes(string $bytes) : UuidInterface;
 }

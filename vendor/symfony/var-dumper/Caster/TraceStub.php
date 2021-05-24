@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-namespace Symfony\Component\VarDumper\Caster;
-
-use Symfony\Component\VarDumper\Cloner\Stub;
-
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
  * Represents a backtrace as returned by debug_backtrace() or Exception->getTrace().
  *
@@ -24,8 +22,7 @@ class TraceStub extends Stub
     public $sliceOffset;
     public $sliceLength;
     public $numberingOffset;
-
-    public function __construct(array $trace, bool $keepArgs = true, int $sliceOffset = 0, int $sliceLength = null, int $numberingOffset = 0)
+    public function __construct(array $trace, bool $keepArgs = \true, int $sliceOffset = 0, int $sliceLength = null, int $numberingOffset = 0)
     {
         $this->value = $trace;
         $this->keepArgs = $keepArgs;

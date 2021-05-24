@@ -9,18 +9,14 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
-
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
 use function ctype_digit;
 use function ltrim;
 use function strpos;
 use function substr;
-
 /**
  * A value object representing an integer
  *
@@ -39,12 +35,10 @@ final class Integer implements NumberInterface
      * @var string
      */
     private $value;
-
     /**
      * @var bool
      */
-    private $isNegative = false;
-
+    private $isNegative = \false;
     /**
      * @param mixed $value The integer value to store
      */
@@ -52,62 +46,47 @@ final class Integer implements NumberInterface
     {
         $value = (string) $value;
         $sign = '+';
-
         // If the value contains a sign, remove it for ctype_digit() check.
         if (strpos($value, '-') === 0 || strpos($value, '+') === 0) {
             $sign = substr($value, 0, 1);
             $value = substr($value, 1);
         }
-
         if (!ctype_digit($value)) {
-            throw new InvalidArgumentException(
-                'Value must be a signed integer or a string containing only '
-                . 'digits 0-9 and, optionally, a sign (+ or -)'
-            );
+            throw new InvalidArgumentException('Value must be a signed integer or a string containing only ' . 'digits 0-9 and, optionally, a sign (+ or -)');
         }
-
         // Trim any leading zeros.
         $value = ltrim($value, '0');
-
         // Set to zero if the string is empty after trimming zeros.
         if ($value === '') {
             $value = '0';
         }
-
         // Add the negative sign back to the value.
         if ($sign === '-' && $value !== '0') {
             $value = $sign . $value;
-            $this->isNegative = true;
+            $this->isNegative = \true;
         }
-
         $this->value = $value;
     }
-
-    public function isNegative(): bool
+    public function isNegative() : bool
     {
         return $this->isNegative;
     }
-
-    public function toString(): string
+    public function toString() : string
     {
         return $this->value;
     }
-
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->toString();
     }
-
-    public function jsonSerialize(): string
+    public function jsonSerialize() : string
     {
         return $this->toString();
     }
-
-    public function serialize(): string
+    public function serialize() : string
     {
         return $this->toString();
     }
-
     /**
      * Constructs the object from a serialized string representation
      *
@@ -115,7 +94,7 @@ final class Integer implements NumberInterface
      *
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         $this->__construct($serialized);
     }

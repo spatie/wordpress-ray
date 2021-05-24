@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * A collection represents a group of objects.
@@ -84,7 +82,6 @@ class Collection extends AbstractCollection
      * @var string
      */
     private $collectionType;
-
     /**
      * Constructs a collection object of the specified type, optionally with the
      * specified data.
@@ -98,8 +95,7 @@ class Collection extends AbstractCollection
         $this->collectionType = $collectionType;
         parent::__construct($data);
     }
-
-    public function getType(): string
+    public function getType() : string
     {
         return $this->collectionType;
     }

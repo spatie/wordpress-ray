@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 /**
  * RandomGeneratorFactory retrieves a default random generator, based on the
@@ -23,7 +21,7 @@ class RandomGeneratorFactory
     /**
      * Returns a default random generator, based on the current environment
      */
-    public function getGenerator(): RandomGeneratorInterface
+    public function getGenerator() : RandomGeneratorInterface
     {
         return new RandomBytesGenerator();
     }

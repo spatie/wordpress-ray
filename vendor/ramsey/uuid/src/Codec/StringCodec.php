@@ -9,24 +9,20 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Codec;
-
-use Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
-use Ramsey\Uuid\Rfc4122\FieldsInterface;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidUuidStringException;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\FieldsInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 use function hex2bin;
 use function implode;
 use function str_replace;
 use function strlen;
 use function substr;
-
 /**
  * StringCodec encodes and decodes RFC 4122 UUIDs
  *
@@ -40,7 +36,6 @@ class StringCodec implements CodecInterface
      * @var UuidBuilderInterface
      */
     private $builder;
-
     /**
      * Constructs a StringCodec
      *
@@ -50,88 +45,54 @@ class StringCodec implements CodecInterface
     {
         $this->builder = $builder;
     }
-
-    public function encode(UuidInterface $uuid): string
+    public function encode(UuidInterface $uuid) : string
     {
         /** @var FieldsInterface $fields */
         $fields = $uuid->getFields();
-
-        return $fields->getTimeLow()->toString()
-            . '-'
-            . $fields->getTimeMid()->toString()
-            . '-'
-            . $fields->getTimeHiAndVersion()->toString()
-            . '-'
-            . $fields->getClockSeqHiAndReserved()->toString()
-            . $fields->getClockSeqLow()->toString()
-            . '-'
-            . $fields->getNode()->toString();
+        return $fields->getTimeLow()->toString() . '-' . $fields->getTimeMid()->toString() . '-' . $fields->getTimeHiAndVersion()->toString() . '-' . $fields->getClockSeqHiAndReserved()->toString() . $fields->getClockSeqLow()->toString() . '-' . $fields->getNode()->toString();
     }
-
     /**
      * @psalm-return non-empty-string
      * @psalm-suppress MoreSpecificReturnType we know that the retrieved `string` is never empty
      * @psalm-suppress LessSpecificReturnStatement we know that the retrieved `string` is never empty
      */
-    public function encodeBinary(UuidInterface $uuid): string
+    public function encodeBinary(UuidInterface $uuid) : string
     {
         return $uuid->getFields()->getBytes();
     }
-
     /**
      * @throws InvalidUuidStringException
      *
      * @inheritDoc
      */
-    public function decode(string $encodedUuid): UuidInterface
+    public function decode(string $encodedUuid) : UuidInterface
     {
         return $this->builder->build($this, $this->getBytes($encodedUuid));
     }
-
-    public function decodeBytes(string $bytes): UuidInterface
+    public function decodeBytes(string $bytes) : UuidInterface
     {
         if (strlen($bytes) !== 16) {
-            throw new InvalidArgumentException(
-                '$bytes string should contain 16 characters.'
-            );
+            throw new InvalidArgumentException('$bytes string should contain 16 characters.');
         }
-
         return $this->builder->build($this, $bytes);
     }
-
     /**
      * Returns the UUID builder
      */
-    protected function getBuilder(): UuidBuilderInterface
+    protected function getBuilder() : UuidBuilderInterface
     {
         return $this->builder;
     }
-
     /**
      * Returns a byte string of the UUID
      */
-    protected function getBytes(string $encodedUuid): string
+    protected function getBytes(string $encodedUuid) : string
     {
-        $parsedUuid = str_replace(
-            ['urn:', 'uuid:', 'URN:', 'UUID:', '{', '}', '-'],
-            '',
-            $encodedUuid
-        );
-
-        $components = [
-            substr($parsedUuid, 0, 8),
-            substr($parsedUuid, 8, 4),
-            substr($parsedUuid, 12, 4),
-            substr($parsedUuid, 16, 4),
-            substr($parsedUuid, 20),
-        ];
-
+        $parsedUuid = str_replace(['urn:', 'uuid:', 'URN:', 'UUID:', '{', '}', '-'], '', $encodedUuid);
+        $components = [substr($parsedUuid, 0, 8), substr($parsedUuid, 8, 4), substr($parsedUuid, 12, 4), substr($parsedUuid, 16, 4), substr($parsedUuid, 20)];
         if (!Uuid::isValid(implode('-', $components))) {
-            throw new InvalidUuidStringException(
-                'Invalid UUID string: ' . $encodedUuid
-            );
+            throw new InvalidUuidStringException('Invalid UUID string: ' . $encodedUuid);
         }
-
         return (string) hex2bin($parsedUuid);
     }
 }

@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
-
-use RandomLib\Factory;
-use RandomLib\Generator;
-
+use Spatie\WordPressRay\RandomLib\Factory;
+use Spatie\WordPressRay\RandomLib\Generator;
 /**
  * RandomLibAdapter generates strings of random binary data using the
  * paragonie/random-lib library
@@ -29,7 +26,6 @@ class RandomLibAdapter implements RandomGeneratorInterface
      * @var Generator
      */
     private $generator;
-
     /**
      * Constructs a RandomLibAdapter
      *
@@ -44,11 +40,9 @@ class RandomLibAdapter implements RandomGeneratorInterface
             $factory = new Factory();
             $generator = $factory->getHighStrengthGenerator();
         }
-
         $this->generator = $generator;
     }
-
-    public function generate(int $length): string
+    public function generate(int $length) : string
     {
         return $this->generator->generate($length);
     }

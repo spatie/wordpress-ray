@@ -1,11 +1,9 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Brick\Math\Internal\Calculator;
 
-namespace Brick\Math\Internal\Calculator;
-
-use Brick\Math\Internal\Calculator;
-
+use Spatie\WordPressRay\Brick\Math\Internal\Calculator;
 /**
  * Calculator implementation built around the GMP library.
  *
@@ -22,7 +20,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_add($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -30,7 +27,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_sub($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -38,7 +34,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_mul($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -46,7 +41,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_div_q($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -54,20 +48,14 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_div_r($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
     public function divQR(string $a, string $b) : array
     {
         [$q, $r] = \gmp_div_qr($a, $b);
-
-        return [
-            \gmp_strval($q),
-            \gmp_strval($r)
-        ];
+        return [\gmp_strval($q), \gmp_strval($r)];
     }
-
     /**
      * {@inheritdoc}
      */
@@ -75,21 +63,17 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_pow($a, $e));
     }
-
     /**
      * {@inheritdoc}
      */
     public function modInverse(string $x, string $m) : ?string
     {
         $result = \gmp_invert($x, $m);
-
-        if ($result === false) {
+        if ($result === \false) {
             return null;
         }
-
         return \gmp_strval($result);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -97,7 +81,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_powm($base, $exp, $mod));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -105,7 +88,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_gcd($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -113,7 +95,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_init($number, $base));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -121,7 +102,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval($number, $base);
     }
-
     /**
      * {@inheritdoc}
      */
@@ -129,7 +109,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_and($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -137,7 +116,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_or($a, $b));
     }
-
     /**
      * {@inheritdoc}
      */
@@ -145,7 +123,6 @@ class GmpCalculator extends Calculator
     {
         return \gmp_strval(\gmp_xor($a, $b));
     }
-
     /**
      * {@inheritDoc}
      */

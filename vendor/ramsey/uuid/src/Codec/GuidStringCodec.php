@@ -9,17 +9,13 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Codec;
-
-use Ramsey\Uuid\Guid\Guid;
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Guid\Guid;
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 use function bin2hex;
 use function substr;
-
 /**
  * GuidStringCodec encodes and decodes globally unique identifiers (GUID)
  *
@@ -29,27 +25,21 @@ use function substr;
  */
 class GuidStringCodec extends StringCodec
 {
-    public function decode(string $encodedUuid): UuidInterface
+    public function decode(string $encodedUuid) : UuidInterface
     {
         $bytes = $this->getBytes($encodedUuid);
-
         return $this->getBuilder()->build($this, $this->swapBytes($bytes));
     }
-
-    public function decodeBytes(string $bytes): UuidInterface
+    public function decodeBytes(string $bytes) : UuidInterface
     {
         // Specifically call parent::decode to preserve correct byte order
         return parent::decode(bin2hex($bytes));
     }
-
     /**
      * Swaps bytes according to the GUID rules
      */
-    private function swapBytes(string $bytes): string
+    private function swapBytes(string $bytes) : string
     {
-        return $bytes[3] . $bytes[2] . $bytes[1] . $bytes[0]
-            . $bytes[5] . $bytes[4]
-            . $bytes[7] . $bytes[6]
-            . substr($bytes, 8);
+        return $bytes[3] . $bytes[2] . $bytes[1] . $bytes[0] . $bytes[5] . $bytes[4] . $bytes[7] . $bytes[6] . substr($bytes, 8);
     }
 }

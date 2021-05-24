@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\WordPressRay;
+
 if (\PHP_VERSION_ID < 80000) {
     interface Stringable
     {

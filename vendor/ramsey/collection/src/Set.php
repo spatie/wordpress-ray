@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * A set is a collection that contains no duplicate elements.
@@ -48,7 +46,6 @@ class Set extends AbstractSet
      * @var string
      */
     private $setType;
-
     /**
      * Constructs a set object of the specified type, optionally with the
      * specified data.
@@ -61,8 +58,7 @@ class Set extends AbstractSet
         $this->setType = $setType;
         parent::__construct($data);
     }
-
-    public function getType(): string
+    public function getType() : string
     {
         return $this->setType;
     }
