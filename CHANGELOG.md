@@ -2,6 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## 1.4.1 - 2021-05-25
+
+- fix compatibility issues
+- use scoper to build package
+
 ## 1.3.0 - 2021-03-26
 
 - add `showWordPressErrors`
