@@ -8,38 +8,81 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-declare (strict_types=1);
 namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Guid\Guid;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
-use function bin2hex;
-use function substr;
 /**
  * GuidStringCodec encodes and decodes globally unique identifiers (GUID)
  *
- * @see Guid
- *
- * @psalm-immutable
+ * @link https://en.wikipedia.org/wiki/Globally_unique_identifier
  */
 class GuidStringCodec extends StringCodec
 {
-    public function decode(string $encodedUuid) : UuidInterface
+    /**
+     * Encodes a UuidInterface as a string representation of a GUID
+     *
+     * @param UuidInterface $uuid
+     * @return string Hexadecimal string representation of a GUID
+     */
+    public function encode(UuidInterface $uuid)
     {
-        $bytes = $this->getBytes($encodedUuid);
-        return $this->getBuilder()->build($this, $this->swapBytes($bytes));
-    }
-    public function decodeBytes(string $bytes) : UuidInterface
-    {
-        // Specifically call parent::decode to preserve correct byte order
-        return parent::decode(bin2hex($bytes));
+        $components = \array_values($uuid->getFieldsHex());
+        // Swap byte-order on the first three fields
+        $this->swapFields($components);
+        return \vsprintf('%08s-%04s-%04s-%02s%02s-%012s', $components);
     }
     /**
-     * Swaps bytes according to the GUID rules
+     * Encodes a UuidInterface as a binary representation of a GUID
+     *
+     * @param UuidInterface $uuid
+     * @return string Binary string representation of a GUID
      */
-    private function swapBytes(string $bytes) : string
+    public function encodeBinary(UuidInterface $uuid)
     {
-        return $bytes[3] . $bytes[2] . $bytes[1] . $bytes[0] . $bytes[5] . $bytes[4] . $bytes[7] . $bytes[6] . substr($bytes, 8);
+        $components = \array_values($uuid->getFieldsHex());
+        return \hex2bin(\implode('', $components));
+    }
+    /**
+     * Decodes a string representation of a GUID into a UuidInterface object instance
+     *
+     * @param string $encodedUuid
+     * @return UuidInterface
+     */
+    public function decode($encodedUuid)
+    {
+        $components = $this->extractComponents($encodedUuid);
+        $this->swapFields($components);
+        return $this->getBuilder()->build($this, $this->getFields($components));
+    }
+    /**
+     * Decodes a binary representation of a GUID into a UuidInterface object instance
+     *
+     * @param string $bytes
+     * @return UuidInterface
+     */
+    public function decodeBytes($bytes)
+    {
+        // Specifically call parent::decode to preserve correct byte order
+        return parent::decode(\bin2hex($bytes));
+    }
+    /**
+     * Swaps fields to support GUID byte order
+     *
+     * @param array $components An array of UUID components (the UUID exploded on its dashes)
+     * @return void
+     */
+    protected function swapFields(array &$components)
+    {
+        $hex = \unpack('H*', \pack('L', \hexdec($components[0])));
+        $components[0] = $hex[1];
+        $hex = \unpack('H*', \pack('S', \hexdec($components[1])));
+        $components[1] = $hex[1];
+        $hex = \unpack('H*', \pack('S', \hexdec($components[2])));
+        $components[2] = $hex[1];
     }
 }

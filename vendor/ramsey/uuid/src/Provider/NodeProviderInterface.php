@@ -8,20 +8,22 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-declare (strict_types=1);
 namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
 /**
- * A node provider retrieves or generates a node ID
+ * NodeProviderInterface provides functionality to get the node ID (or host ID
+ * in the form of the system's MAC address) from a specific type of node provider
  */
 interface NodeProviderInterface
 {
     /**
-     * Returns a node ID
+     * Returns the system node ID
      *
-     * @return Hexadecimal The node ID as a hexadecimal string
+     * @return string System node ID as a hexadecimal string
      */
-    public function getNode() : Hexadecimal;
+    public function getNode();
 }

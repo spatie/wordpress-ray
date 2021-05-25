@@ -11,247 +11,136 @@ namespace Spatie\WordPressRay;
  * file that was distributed with this source code.
  */
 use Spatie\WordPressRay\Symfony\Polyfill\Mbstring as p;
-if (\PHP_VERSION_ID >= 80000) {
-    return require __DIR__ . '/bootstrap80.php';
-}
-if (!\function_exists('mb_convert_encoding')) {
-    function mb_convert_encoding($string, $to_encoding, $from_encoding = null)
+if (!\function_exists('mb_strlen')) {
+    \define('MB_CASE_UPPER', 0);
+    \define('MB_CASE_LOWER', 1);
+    \define('MB_CASE_TITLE', 2);
+    function mb_convert_encoding($s, $to, $from = null)
     {
-        return p\Mbstring::mb_convert_encoding($string, $to_encoding, $from_encoding);
+        return p\Mbstring::mb_convert_encoding($s, $to, $from);
     }
-}
-if (!\function_exists('mb_decode_mimeheader')) {
-    function mb_decode_mimeheader($string)
+    function mb_decode_mimeheader($s)
     {
-        return p\Mbstring::mb_decode_mimeheader($string);
+        return p\Mbstring::mb_decode_mimeheader($s);
     }
-}
-if (!\function_exists('mb_encode_mimeheader')) {
-    function mb_encode_mimeheader($string, $charset = null, $transfer_encoding = null, $newline = "\r\n", $indent = 0)
+    function mb_encode_mimeheader($s, $charset = null, $transferEnc = null, $lf = null, $indent = null)
     {
-        return p\Mbstring::mb_encode_mimeheader($string, $charset, $transfer_encoding, $newline, $indent);
+        return p\Mbstring::mb_encode_mimeheader($s, $charset, $transferEnc, $lf, $indent);
     }
-}
-if (!\function_exists('mb_decode_numericentity')) {
-    function mb_decode_numericentity($string, $map, $encoding = null)
+    function mb_convert_case($s, $mode, $enc = null)
     {
-        return p\Mbstring::mb_decode_numericentity($string, $map, $encoding);
+        return p\Mbstring::mb_convert_case($s, $mode, $enc);
     }
-}
-if (!\function_exists('mb_encode_numericentity')) {
-    function mb_encode_numericentity($string, $map, $encoding = null, $hex = \false)
+    function mb_internal_encoding($enc = null)
     {
-        return p\Mbstring::mb_encode_numericentity($string, $map, $encoding, $hex);
+        return p\Mbstring::mb_internal_encoding($enc);
     }
-}
-if (!\function_exists('mb_convert_case')) {
-    function mb_convert_case($string, $mode, $encoding = null)
+    function mb_language($lang = null)
     {
-        return p\Mbstring::mb_convert_case($string, $mode, $encoding);
+        return p\Mbstring::mb_language($lang);
     }
-}
-if (!\function_exists('mb_internal_encoding')) {
-    function mb_internal_encoding($encoding = null)
-    {
-        return p\Mbstring::mb_internal_encoding($encoding);
-    }
-}
-if (!\function_exists('mb_language')) {
-    function mb_language($language = null)
-    {
-        return p\Mbstring::mb_language($language);
-    }
-}
-if (!\function_exists('mb_list_encodings')) {
     function mb_list_encodings()
     {
         return p\Mbstring::mb_list_encodings();
     }
-}
-if (!\function_exists('mb_encoding_aliases')) {
     function mb_encoding_aliases($encoding)
     {
         return p\Mbstring::mb_encoding_aliases($encoding);
     }
-}
-if (!\function_exists('mb_check_encoding')) {
-    function mb_check_encoding($value = null, $encoding = null)
+    function mb_check_encoding($var = null, $encoding = null)
     {
-        return p\Mbstring::mb_check_encoding($value, $encoding);
+        return p\Mbstring::mb_check_encoding($var, $encoding);
     }
-}
-if (!\function_exists('mb_detect_encoding')) {
-    function mb_detect_encoding($string, $encodings = null, $strict = \false)
+    function mb_detect_encoding($str, $encodingList = null, $strict = \false)
     {
-        return p\Mbstring::mb_detect_encoding($string, $encodings, $strict);
+        return p\Mbstring::mb_detect_encoding($str, $encodingList, $strict);
     }
-}
-if (!\function_exists('mb_detect_order')) {
-    function mb_detect_order($encoding = null)
+    function mb_detect_order($encodingList = null)
     {
-        return p\Mbstring::mb_detect_order($encoding);
+        return p\Mbstring::mb_detect_order($encodingList);
     }
-}
-if (!\function_exists('mb_parse_str')) {
-    function mb_parse_str($string, &$result = [])
+    function mb_parse_str($s, &$result = array())
     {
-        \parse_str($string, $result);
+        \parse_str($s, $result);
     }
-}
-if (!\function_exists('mb_strlen')) {
-    function mb_strlen($string, $encoding = null)
+    function mb_strlen($s, $enc = null)
     {
-        return p\Mbstring::mb_strlen($string, $encoding);
+        return p\Mbstring::mb_strlen($s, $enc);
     }
-}
-if (!\function_exists('mb_strpos')) {
-    function mb_strpos($haystack, $needle, $offset = 0, $encoding = null)
+    function mb_strpos($s, $needle, $offset = 0, $enc = null)
     {
-        return p\Mbstring::mb_strpos($haystack, $needle, $offset, $encoding);
+        return p\Mbstring::mb_strpos($s, $needle, $offset, $enc);
     }
-}
-if (!\function_exists('mb_strtolower')) {
-    function mb_strtolower($string, $encoding = null)
+    function mb_strtolower($s, $enc = null)
     {
-        return p\Mbstring::mb_strtolower($string, $encoding);
+        return p\Mbstring::mb_strtolower($s, $enc);
     }
-}
-if (!\function_exists('mb_strtoupper')) {
-    function mb_strtoupper($string, $encoding = null)
+    function mb_strtoupper($s, $enc = null)
     {
-        return p\Mbstring::mb_strtoupper($string, $encoding);
+        return p\Mbstring::mb_strtoupper($s, $enc);
     }
-}
-if (!\function_exists('mb_substitute_character')) {
-    function mb_substitute_character($substitute_character = null)
+    function mb_substitute_character($char = null)
     {
-        return p\Mbstring::mb_substitute_character($substitute_character);
+        return p\Mbstring::mb_substitute_character($char);
     }
-}
-if (!\function_exists('mb_substr')) {
-    function mb_substr($string, $start, $length = 2147483647, $encoding = null)
+    function mb_substr($s, $start, $length = 2147483647, $enc = null)
     {
-        return p\Mbstring::mb_substr($string, $start, $length, $encoding);
+        return p\Mbstring::mb_substr($s, $start, $length, $enc);
     }
-}
-if (!\function_exists('mb_stripos')) {
-    function mb_stripos($haystack, $needle, $offset = 0, $encoding = null)
+    function mb_stripos($s, $needle, $offset = 0, $enc = null)
     {
-        return p\Mbstring::mb_stripos($haystack, $needle, $offset, $encoding);
+        return p\Mbstring::mb_stripos($s, $needle, $offset, $enc);
     }
-}
-if (!\function_exists('mb_stristr')) {
-    function mb_stristr($haystack, $needle, $before_needle = \false, $encoding = null)
+    function mb_stristr($s, $needle, $part = \false, $enc = null)
     {
-        return p\Mbstring::mb_stristr($haystack, $needle, $before_needle, $encoding);
+        return p\Mbstring::mb_stristr($s, $needle, $part, $enc);
     }
-}
-if (!\function_exists('mb_strrchr')) {
-    function mb_strrchr($haystack, $needle, $before_needle = \false, $encoding = null)
+    function mb_strrchr($s, $needle, $part = \false, $enc = null)
     {
-        return p\Mbstring::mb_strrchr($haystack, $needle, $before_needle, $encoding);
+        return p\Mbstring::mb_strrchr($s, $needle, $part, $enc);
     }
-}
-if (!\function_exists('mb_strrichr')) {
-    function mb_strrichr($haystack, $needle, $before_needle = \false, $encoding = null)
+    function mb_strrichr($s, $needle, $part = \false, $enc = null)
     {
-        return p\Mbstring::mb_strrichr($haystack, $needle, $before_needle, $encoding);
+        return p\Mbstring::mb_strrichr($s, $needle, $part, $enc);
     }
-}
-if (!\function_exists('mb_strripos')) {
-    function mb_strripos($haystack, $needle, $offset = 0, $encoding = null)
+    function mb_strripos($s, $needle, $offset = 0, $enc = null)
     {
-        return p\Mbstring::mb_strripos($haystack, $needle, $offset, $encoding);
+        return p\Mbstring::mb_strripos($s, $needle, $offset, $enc);
     }
-}
-if (!\function_exists('mb_strrpos')) {
-    function mb_strrpos($haystack, $needle, $offset = 0, $encoding = null)
+    function mb_strrpos($s, $needle, $offset = 0, $enc = null)
     {
-        return p\Mbstring::mb_strrpos($haystack, $needle, $offset, $encoding);
+        return p\Mbstring::mb_strrpos($s, $needle, $offset, $enc);
     }
-}
-if (!\function_exists('mb_strstr')) {
-    function mb_strstr($haystack, $needle, $before_needle = \false, $encoding = null)
+    function mb_strstr($s, $needle, $part = \false, $enc = null)
     {
-        return p\Mbstring::mb_strstr($haystack, $needle, $before_needle, $encoding);
+        return p\Mbstring::mb_strstr($s, $needle, $part, $enc);
     }
-}
-if (!\function_exists('mb_get_info')) {
     function mb_get_info($type = 'all')
     {
         return p\Mbstring::mb_get_info($type);
     }
-}
-if (!\function_exists('mb_http_output')) {
-    function mb_http_output($encoding = null)
+    function mb_http_output($enc = null)
     {
-        return p\Mbstring::mb_http_output($encoding);
+        return p\Mbstring::mb_http_output($enc);
     }
-}
-if (!\function_exists('mb_strwidth')) {
-    function mb_strwidth($string, $encoding = null)
+    function mb_strwidth($s, $enc = null)
     {
-        return p\Mbstring::mb_strwidth($string, $encoding);
+        return p\Mbstring::mb_strwidth($s, $enc);
     }
-}
-if (!\function_exists('mb_substr_count')) {
-    function mb_substr_count($haystack, $needle, $encoding = null)
+    function mb_substr_count($haystack, $needle, $enc = null)
     {
-        return p\Mbstring::mb_substr_count($haystack, $needle, $encoding);
+        return p\Mbstring::mb_substr_count($haystack, $needle, $enc);
     }
-}
-if (!\function_exists('mb_output_handler')) {
-    function mb_output_handler($string, $status)
+    function mb_output_handler($contents, $status)
     {
-        return p\Mbstring::mb_output_handler($string, $status);
+        return p\Mbstring::mb_output_handler($contents, $status);
     }
-}
-if (!\function_exists('mb_http_input')) {
-    function mb_http_input($type = null)
+    function mb_http_input($type = '')
     {
         return p\Mbstring::mb_http_input($type);
     }
-}
-if (!\function_exists('mb_convert_variables')) {
-    function mb_convert_variables($to_encoding, $from_encoding, &...$vars)
+    function mb_convert_variables($toEncoding, $fromEncoding, &$a = null, &$b = null, &$c = null, &$d = null, &$e = null, &$f = null)
     {
-        return p\Mbstring::mb_convert_variables($to_encoding, $from_encoding, ...$vars);
+        return p\Mbstring::mb_convert_variables($toEncoding, $fromEncoding, $v0, $a, $b, $c, $d, $e, $f);
     }
-}
-if (!\function_exists('mb_ord')) {
-    function mb_ord($string, $encoding = null)
-    {
-        return p\Mbstring::mb_ord($string, $encoding);
-    }
-}
-if (!\function_exists('mb_chr')) {
-    function mb_chr($codepoint, $encoding = null)
-    {
-        return p\Mbstring::mb_chr($codepoint, $encoding);
-    }
-}
-if (!\function_exists('mb_scrub')) {
-    function mb_scrub($string, $encoding = null)
-    {
-        $encoding = null === $encoding ? \mb_internal_encoding() : $encoding;
-        return \mb_convert_encoding($string, $encoding, $encoding);
-    }
-}
-if (!\function_exists('mb_str_split')) {
-    function mb_str_split($string, $length = 1, $encoding = null)
-    {
-        return p\Mbstring::mb_str_split($string, $length, $encoding);
-    }
-}
-if (\extension_loaded('mbstring')) {
-    return;
-}
-if (!\defined('MB_CASE_UPPER')) {
-    \define('MB_CASE_UPPER', 0);
-}
-if (!\defined('MB_CASE_LOWER')) {
-    \define('MB_CASE_LOWER', 1);
-}
-if (!\defined('MB_CASE_TITLE')) {
-    \define('MB_CASE_TITLE', 2);
 }

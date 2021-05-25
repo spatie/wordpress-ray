@@ -8,42 +8,46 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-declare (strict_types=1);
 namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Exception\NodeException;
 use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
-use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
 /**
- * FallbackNodeProvider retrieves the system node ID by stepping through a list
- * of providers until a node ID can be obtained
+ * FallbackNodeProvider attempts to gain the system host ID from an array of
+ * providers, falling back to the next in line in the event a host ID can not be
+ * obtained
  */
 class FallbackNodeProvider implements NodeProviderInterface
 {
     /**
-     * @var NodeProviderCollection
+     * @var NodeProviderInterface[]
      */
     private $nodeProviders;
     /**
-     * @param NodeProviderCollection $providers Array of node providers
+     * Constructs a `FallbackNodeProvider` using an array of node providers
+     *
+     * @param NodeProviderInterface[] $providers Array of node providers
      */
-    public function __construct(NodeProviderCollection $providers)
+    public function __construct(array $providers)
     {
         $this->nodeProviders = $providers;
     }
-    public function getNode() : Hexadecimal
+    /**
+     * Returns the system node ID by iterating over an array of node providers
+     * and returning the first non-empty value found
+     *
+     * @return string System node ID as a hexadecimal string
+     */
+    public function getNode()
     {
-        $lastProviderException = null;
-        /** @var NodeProviderInterface $provider */
         foreach ($this->nodeProviders as $provider) {
-            try {
-                return $provider->getNode();
-            } catch (NodeException $exception) {
-                $lastProviderException = $exception;
-                continue;
+            if ($node = $provider->getNode()) {
+                return $node;
             }
         }
-        throw new NodeException('Unable to find a suitable node provider', 0, $lastProviderException);
+        return null;
     }
 }

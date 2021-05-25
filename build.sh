@@ -7,7 +7,7 @@ rm composer.lock
 
 echo "# Composer install with dev dependencies..."
 
-composer install
+composer update --prefer-lowest --with-all-dependencies
 
 composer bin php-scoper require --dev humbug/php-scoper
 

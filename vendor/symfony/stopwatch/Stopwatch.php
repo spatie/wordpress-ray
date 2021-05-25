@@ -54,7 +54,7 @@ class Stopwatch implements ResetInterface
      *
      * @throws \LogicException When the section to re-open is not reachable
      */
-    public function openSection(string $id = null)
+    public function openSection($id = null)
     {
         $current = \end($this->activeSections);
         if (null !== $id && null === $current->get($id)) {
@@ -71,9 +71,11 @@ class Stopwatch implements ResetInterface
      *
      * @see getSectionEvents()
      *
+     * @param string $id The identifier of the section
+     *
      * @throws \LogicException When there's no started section to be stopped
      */
-    public function stopSection(string $id)
+    public function stopSection($id)
     {
         $this->stop('__section__');
         if (1 == \count($this->activeSections)) {
@@ -85,54 +87,67 @@ class Stopwatch implements ResetInterface
     /**
      * Starts an event.
      *
+     * @param string      $name     The event name
+     * @param string|null $category The event category
+     *
      * @return StopwatchEvent
      */
-    public function start(string $name, string $category = null)
+    public function start($name, $category = null)
     {
         return \end($this->activeSections)->startEvent($name, $category);
     }
     /**
      * Checks if the event was started.
      *
+     * @param string $name The event name
+     *
      * @return bool
      */
-    public function isStarted(string $name)
+    public function isStarted($name)
     {
         return \end($this->activeSections)->isEventStarted($name);
     }
     /**
      * Stops an event.
      *
+     * @param string $name The event name
+     *
      * @return StopwatchEvent
      */
-    public function stop(string $name)
+    public function stop($name)
     {
         return \end($this->activeSections)->stopEvent($name);
     }
     /**
      * Stops then restarts an event.
      *
+     * @param string $name The event name
+     *
      * @return StopwatchEvent
      */
-    public function lap(string $name)
+    public function lap($name)
     {
         return \end($this->activeSections)->stopEvent($name)->start();
     }
     /**
      * Returns a specific event by name.
      *
+     * @param string $name The event name
+     *
      * @return StopwatchEvent
      */
-    public function getEvent(string $name)
+    public function getEvent($name)
     {
         return \end($this->activeSections)->getEvent($name);
     }
     /**
      * Gets all events for a given section.
      *
+     * @param string $id A section identifier
+     *
      * @return StopwatchEvent[]
      */
-    public function getSectionEvents(string $id)
+    public function getSectionEvents($id)
     {
         return isset($this->sections[$id]) ? $this->sections[$id]->getEvents() : [];
     }

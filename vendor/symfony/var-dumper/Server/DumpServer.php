@@ -45,9 +45,6 @@ class DumpServer
             $this->start();
         }
         foreach ($this->getMessages() as $clientId => $message) {
-            if ($this->logger) {
-                $this->logger->info('Received a payload from client {clientId}', ['clientId' => $clientId]);
-            }
             $payload = @\unserialize(\base64_decode($message), ['allowed_classes' => [Data::class, Stub::class]]);
             // Impossible to decode the message, give up.
             if (\false === $payload) {
@@ -62,7 +59,7 @@ class DumpServer
                 }
                 continue;
             }
-            [$data, $context] = $payload;
+            list($data, $context) = $payload;
             $callback($data, $context, $clientId);
         }
     }
