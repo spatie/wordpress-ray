@@ -31,7 +31,6 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NewScreenPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NotifyPayload;
-use Spatie\WordPressRay\Spatie\Ray\Payloads\PhpInfoPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ShowAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
@@ -42,7 +41,6 @@ use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
 use Spatie\WordPressRay\Symfony\Component\Stopwatch\Stopwatch;
-use Throwable;
 class Ray
 {
     use RayColors;
@@ -242,8 +240,14 @@ class Ray
     }
     public function phpinfo(string ...$properties) : self
     {
-        $payload = new PhpInfoPayload(...$properties);
-        return $this->sendRequest($payload);
+        if (!\count($properties)) {
+            return $this->table(['PHP version' => \phpversion(), 'Memory limit' => \ini_get('memory_limit'), 'Max file upload size' => \ini_get('max_file_uploads'), 'Max post size' => \ini_get('post_max_size'), 'PHP ini file' => \php_ini_loaded_file(), "PHP scanned ini file" => \php_ini_scanned_files(), 'Extensions' => \implode(', ', \get_loaded_extensions())], 'PHPInfo');
+        }
+        $properties = \array_flip($properties);
+        foreach ($properties as $property => $value) {
+            $properties[$property] = \ini_get($property);
+        }
+        return $this->table($properties, 'PHPInfo');
     }
     public function showWhen($boolOrCallable) : self
     {
@@ -311,10 +315,6 @@ class Ray
         self::$counters->clear();
         return $this;
     }
-    public function counterValue(string $name) : int
-    {
-        return self::$counters->get($name);
-    }
     public function pause() : self
     {
         $lockName = \md5(\time());
@@ -330,11 +330,10 @@ class Ray
         $payload = new HtmlPayload($html);
         return $this->sendRequest($payload);
     }
-    public function exception(Throwable $exception, array $meta = []) : self
+    public function exception(Exception $exception, array $meta = []) : self
     {
         $payload = new ExceptionPayload($exception, $meta);
         $this->sendRequest($payload);
-        $this->red();
         return $this;
     }
     public function xml(string $xml) : self

@@ -13,15 +13,15 @@ namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 use Spatie\WordPressRay\Symfony\Component\HttpFoundation\Request;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
- * @final
+ * @final since Symfony 4.4
  */
 class SymfonyCaster
 {
-    private const REQUEST_GETTERS = ['pathInfo' => 'getPathInfo', 'requestUri' => 'getRequestUri', 'baseUrl' => 'getBaseUrl', 'basePath' => 'getBasePath', 'method' => 'getMethod', 'format' => 'getRequestFormat'];
-    public static function castRequest(Request $request, array $a, Stub $stub, bool $isNested)
+    private static $requestGetters = ['pathInfo' => 'getPathInfo', 'requestUri' => 'getRequestUri', 'baseUrl' => 'getBaseUrl', 'basePath' => 'getBasePath', 'method' => 'getMethod', 'format' => 'getRequestFormat'];
+    public static function castRequest(Request $request, array $a, Stub $stub, $isNested)
     {
         $clone = null;
-        foreach (self::REQUEST_GETTERS as $prop => $getter) {
+        foreach (self::$requestGetters as $prop => $getter) {
             $key = Caster::PREFIX_PROTECTED . $prop;
             if (\array_key_exists($key, $a) && null === $a[$key]) {
                 if (null === $clone) {
@@ -32,7 +32,7 @@ class SymfonyCaster
         }
         return $a;
     }
-    public static function castHttpClient($client, array $a, Stub $stub, bool $isNested)
+    public static function castHttpClient($client, array $a, Stub $stub, $isNested)
     {
         $multiKey = \sprintf("\x00%s\x00multi", \get_class($client));
         if (isset($a[$multiKey])) {
@@ -40,7 +40,7 @@ class SymfonyCaster
         }
         return $a;
     }
-    public static function castHttpClientResponse($response, array $a, Stub $stub, bool $isNested)
+    public static function castHttpClientResponse($response, array $a, Stub $stub, $isNested)
     {
         $stub->cut += \count($a);
         $a = [];

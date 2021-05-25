@@ -15,12 +15,12 @@
 namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 /**
- * PeclUuidRandomGenerator provides functionality to generate strings of random
- * binary data using the PECL UUID PHP extension
+ * MtRandRandomGenerator provides functionality to generate strings of random
+ * binary data using the `mt_rand()` PHP function
  *
- * @link https://pecl.php.net/package/uuid
+ * @link http://php.net/mt_rand
  */
-class PeclUuidRandomGenerator implements RandomGeneratorInterface
+class MtRandGenerator implements RandomGeneratorInterface
 {
     /**
      * Generates a string of random binary data of the specified length
@@ -30,7 +30,10 @@ class PeclUuidRandomGenerator implements RandomGeneratorInterface
      */
     public function generate($length)
     {
-        $uuid = \uuid_create(\UUID_TYPE_RANDOM);
-        return \uuid_parse($uuid);
+        $bytes = '';
+        for ($i = 1; $i <= $length; $i++) {
+            $bytes = \chr(\mt_rand(0, 255)) . $bytes;
+        }
+        return $bytes;
     }
 }

@@ -4,22 +4,15 @@ namespace Spatie\WordPressRay\Spatie\Ray\Origin;
 
 class Origin
 {
-    /** @var string|null */
-    public $file;
-    /** @var string|null */
-    public $lineNumber;
-    /** @var string|null */
-    public $hostname;
     /**
      * @param string|null $file
      * @param int|null $lineNumber
-     * @param string|null $hostname
      */
-    public function __construct($file, $lineNumber, $hostname = null)
+    public function __construct($file, $lineNumber, $hostname = '')
     {
         $this->file = $file;
         $this->lineNumber = $lineNumber;
-        $this->hostname = $hostname ?? Hostname::get();
+        $this->hostname = $hostname;
     }
     public function toArray() : array
     {

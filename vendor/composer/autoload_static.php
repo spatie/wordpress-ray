@@ -4,14 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita61b604348fddcf127b07f139a75f12c
+class ComposerStaticInit4fc85f1f1b94219e0153f4fb8465e058
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '3074abeef0bacf5811f59e9dee6311d1' => __DIR__ . '/..' . '/spatie/ray/src/helpers.php',
     );
 
@@ -20,8 +19,8 @@ class ComposerStaticInita61b604348fddcf127b07f139a75f12c
         array (
             'Spatie\\WordPressRay\\Tests\\' => 26,
             'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php80\\' => 43,
+            'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php72\\' => 43,
             'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\' => 46,
-            'Spatie\\WordPressRay\\Symfony\\Polyfill\\Ctype\\' => 43,
             'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\' => 46,
             'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\' => 48,
             'Spatie\\WordPressRay\\Symfony\\Component\\Stopwatch\\' => 48,
@@ -29,9 +28,7 @@ class ComposerStaticInita61b604348fddcf127b07f139a75f12c
             'Spatie\\WordPressRay\\Spatie\\Macroable\\' => 37,
             'Spatie\\WordPressRay\\Spatie\\Backtrace\\' => 37,
             'Spatie\\WordPressRay\\Ramsey\\Uuid\\' => 32,
-            'Spatie\\WordPressRay\\Ramsey\\Collection\\' => 38,
             'Spatie\\WordPressRay\\Psr\\Container\\' => 34,
-            'Spatie\\WordPressRay\\Brick\\Math\\' => 31,
             'Spatie\\WordPressRay\\' => 20,
         ),
     );
@@ -45,13 +42,13 @@ class ComposerStaticInita61b604348fddcf127b07f139a75f12c
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+        'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
         'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
-        ),
-        'Spatie\\WordPressRay\\Symfony\\Polyfill\\Ctype\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\' => 
         array (
@@ -81,17 +78,9 @@ class ComposerStaticInita61b604348fddcf127b07f139a75f12c
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
         ),
-        'Spatie\\WordPressRay\\Ramsey\\Collection\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/ramsey/collection/src',
-        ),
         'Spatie\\WordPressRay\\Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
-        'Spatie\\WordPressRay\\Brick\\Math\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/brick/math/src',
         ),
         'Spatie\\WordPressRay\\' => 
         array (
@@ -101,18 +90,16 @@ class ComposerStaticInita61b604348fddcf127b07f139a75f12c
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Spatie\\WordPressRay\\Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Spatie\\WordPressRay\\Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-        'Spatie\\WordPressRay\\UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'Spatie\\WordPressRay\\ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita61b604348fddcf127b07f139a75f12c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita61b604348fddcf127b07f139a75f12c::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInita61b604348fddcf127b07f139a75f12c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4fc85f1f1b94219e0153f4fb8465e058::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4fc85f1f1b94219e0153f4fb8465e058::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4fc85f1f1b94219e0153f4fb8465e058::$classMap;
 
         }, null, ClassLoader::class);
     }

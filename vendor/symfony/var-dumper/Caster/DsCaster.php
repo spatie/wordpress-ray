@@ -19,7 +19,7 @@ use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
  *
  * @author Jáchym Toušek <enumag@gmail.com>
  *
- * @final
+ * @final since Symfony 4.4
  */
 class DsCaster
 {

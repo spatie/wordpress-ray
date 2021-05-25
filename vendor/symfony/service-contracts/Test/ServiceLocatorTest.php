@@ -59,7 +59,7 @@ abstract class ServiceLocatorTest extends TestCase
     public function testThrowsOnUndefinedInternalService()
     {
         if (!$this->getExpectedException()) {
-            $this->expectException(\Spatie\WordPressRay\Psr\Container\NotFoundExceptionInterface::class);
+            $this->expectException('Spatie\\WordPressRay\\Psr\\Container\\NotFoundExceptionInterface');
             $this->expectExceptionMessage('The service "foo" has a dependency on a non-existent service "bar". This locator only knows about the "foo" service.');
         }
         $locator = $this->getServiceLocator(['foo' => function () use(&$locator) {
@@ -69,7 +69,7 @@ abstract class ServiceLocatorTest extends TestCase
     }
     public function testThrowsOnCircularReference()
     {
-        $this->expectException(\Spatie\WordPressRay\Psr\Container\ContainerExceptionInterface::class);
+        $this->expectException('Spatie\\WordPressRay\\Psr\\Container\\ContainerExceptionInterface');
         $this->expectExceptionMessage('Circular reference detected for service "bar", path: "bar -> baz -> bar".');
         $locator = $this->getServiceLocator(['foo' => function () use(&$locator) {
             return $locator->get('bar');

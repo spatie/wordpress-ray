@@ -57,13 +57,6 @@ final class Php80
         }
         return ((\get_parent_class($class) ?: \key(\class_implements($class))) ?: 'class') . '@anonymous';
     }
-    public static function get_resource_id($res) : int
-    {
-        if (!\is_resource($res) && null === @\get_resource_type($res)) {
-            throw new \TypeError(\sprintf('Argument 1 passed to get_resource_id() must be of the type resource, %s given', \get_debug_type($res)));
-        }
-        return (int) $res;
-    }
     public static function preg_last_error_msg() : string
     {
         switch (\preg_last_error()) {
@@ -88,13 +81,5 @@ final class Php80
     public static function str_contains(string $haystack, string $needle) : bool
     {
         return '' === $needle || \false !== \strpos($haystack, $needle);
-    }
-    public static function str_starts_with(string $haystack, string $needle) : bool
-    {
-        return 0 === \strncmp($haystack, $needle, \strlen($needle));
-    }
-    public static function str_ends_with(string $haystack, string $needle) : bool
-    {
-        return '' === $needle || '' !== $haystack && 0 === \substr_compare($haystack, $needle, -\strlen($needle));
     }
 }

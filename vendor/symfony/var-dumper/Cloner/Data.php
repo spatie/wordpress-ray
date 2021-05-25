@@ -108,11 +108,11 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     public function getIterator()
     {
         if (!\is_array($value = $this->getValue())) {
-            throw new \LogicException(\sprintf('"%s" object holds non-iterable type "%s".', self::class, \get_debug_type($value)));
+            throw new \LogicException(\sprintf('"%s" object holds non-iterable type "%s".', self::class, \gettype($value)));
         }
         yield from $value;
     }
-    public function __get(string $key)
+    public function __get($key)
     {
         if (null !== ($data = $this->seek($key))) {
             $item = $this->getStub($data->data[$data->position][$data->key]);
@@ -123,7 +123,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * @return bool
      */
-    public function __isset(string $key)
+    public function __isset($key)
     {
         return null !== $this->seek($key);
     }
@@ -160,9 +160,11 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Returns a depth limited clone of $this.
      *
+     * @param int $maxDepth The max dumped depth level
+     *
      * @return static
      */
-    public function withMaxDepth(int $maxDepth)
+    public function withMaxDepth($maxDepth)
     {
         $data = clone $this;
         $data->maxDepth = (int) $maxDepth;
@@ -171,9 +173,11 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
     /**
      * Limits the number of elements per depth level.
      *
+     * @param int $maxItemsPerDepth The max number of items dumped per depth level
+     *
      * @return static
      */
-    public function withMaxItemsPerDepth(int $maxItemsPerDepth)
+    public function withMaxItemsPerDepth($maxItemsPerDepth)
     {
         $data = clone $this;
         $data->maxItemsPerDepth = (int) $maxItemsPerDepth;
@@ -186,7 +190,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
      *
      * @return static
      */
-    public function withRefHandles(bool $useRefHandles)
+    public function withRefHandles($useRefHandles)
     {
         $data = clone $this;
         $data->useRefHandles = $useRefHandles ? -1 : 0;
@@ -286,7 +290,7 @@ class Data implements \ArrayAccess, \Countable, \IteratorAggregate
                 }
                 $cursor->hardRefTo = $refs[$r];
                 $cursor->hardRefHandle = $this->useRefHandles & $item->handle;
-                $cursor->hardRefCount = 0 < $item->handle ? $item->refCount : 0;
+                $cursor->hardRefCount = $item->refCount;
             }
             $cursor->attr = $item->attr;
             $type = $item->class ?: \gettype($item->value);

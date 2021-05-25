@@ -38,7 +38,7 @@ class LinkStub extends ConstStub
             $this->attr['href'] = $href;
             return;
         }
-        if (!\is_file($href)) {
+        if (!\file_exists($href)) {
             return;
         }
         if ($line) {
@@ -65,7 +65,7 @@ class LinkStub extends ConstStub
                 if ('C' === $class[0] && 0 === \strpos($class, 'ComposerAutoloaderInit')) {
                     $r = new \ReflectionClass($class);
                     $v = \dirname($r->getFileName(), 2);
-                    if (\is_file($v . '/composer/installed.json')) {
+                    if (\file_exists($v . '/composer/installed.json')) {
                         self::$vendorRoots[] = $v . \DIRECTORY_SEPARATOR;
                     }
                 }
@@ -81,7 +81,7 @@ class LinkStub extends ConstStub
             }
         }
         $parent = $dir;
-        while (!@\is_file($parent . '/composer.json')) {
+        while (!@\file_exists($parent . '/composer.json')) {
             if (!@\file_exists($parent)) {
                 // open_basedir restriction in effect
                 break;

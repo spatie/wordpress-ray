@@ -58,17 +58,21 @@ class CliDumper extends AbstractDumper
     }
     /**
      * Enables/disables colored output.
+     *
+     * @param bool $colors
      */
-    public function setColors(bool $colors)
+    public function setColors($colors)
     {
-        $this->colors = $colors;
+        $this->colors = (bool) $colors;
     }
     /**
      * Sets the maximum number of characters per line for dumped strings.
+     *
+     * @param int $maxStringWidth
      */
-    public function setMaxStringWidth(int $maxStringWidth)
+    public function setMaxStringWidth($maxStringWidth)
     {
-        $this->maxStringWidth = $maxStringWidth;
+        $this->maxStringWidth = (int) $maxStringWidth;
     }
     /**
      * Configures styles.
@@ -91,7 +95,7 @@ class CliDumper extends AbstractDumper
     /**
      * {@inheritdoc}
      */
-    public function dumpScalar(Cursor $cursor, string $type, $value)
+    public function dumpScalar(Cursor $cursor, $type, $value)
     {
         $this->dumpKey($cursor);
         $style = 'const';
@@ -140,7 +144,7 @@ class CliDumper extends AbstractDumper
     /**
      * {@inheritdoc}
      */
-    public function dumpString(Cursor $cursor, string $str, bool $bin, int $cut)
+    public function dumpString(Cursor $cursor, $str, $bin, $cut)
     {
         $this->dumpKey($cursor);
         $attr = $cursor->attr;
@@ -152,7 +156,7 @@ class CliDumper extends AbstractDumper
             $this->endValue($cursor);
         } else {
             $attr += ['length' => 0 <= $cut ? \mb_strlen($str, 'UTF-8') + $cut : 0, 'binary' => $bin];
-            $str = $bin && \false !== \strpos($str, "\x00") ? [$str] : \explode("\n", $str);
+            $str = \explode("\n", $str);
             if (isset($str[1]) && !isset($str[2]) && !isset($str[1][0])) {
                 unset($str[1]);
                 $str[0] .= "\n";
@@ -219,11 +223,8 @@ class CliDumper extends AbstractDumper
     /**
      * {@inheritdoc}
      */
-    public function enterHash(Cursor $cursor, int $type, $class, bool $hasChild)
+    public function enterHash(Cursor $cursor, $type, $class, $hasChild)
     {
-        if (null === $this->colors) {
-            $this->colors = $this->supportsColors();
-        }
         $this->dumpKey($cursor);
         $attr = $cursor->attr;
         if ($this->collapseNextHash) {
@@ -236,7 +237,7 @@ class CliDumper extends AbstractDumper
         } elseif (Cursor::HASH_RESOURCE === $type) {
             $prefix = $this->style('note', $class . ' resource', $attr) . ($hasChild ? ' {' : ' ');
         } else {
-            $prefix = $class && !(self::DUMP_LIGHT_ARRAY & $this->flags) ? $this->style('note', 'array:' . $class) . ' [' : '[';
+            $prefix = $class && !(self::DUMP_LIGHT_ARRAY & $this->flags) ? $this->style('note', 'array:' . $class, $attr) . ' [' : '[';
         }
         if (($cursor->softRefCount || 0 < $cursor->softRefHandle) && empty($attr['cut_hash'])) {
             $prefix .= $this->style('ref', (Cursor::HASH_RESOURCE === $type ? '@' : '#') . (0 < $cursor->softRefHandle ? $cursor->softRefHandle : $cursor->softRefTo), ['count' => $cursor->softRefCount]);
@@ -253,7 +254,7 @@ class CliDumper extends AbstractDumper
     /**
      * {@inheritdoc}
      */
-    public function leaveHash(Cursor $cursor, int $type, $class, bool $hasChild, int $cut)
+    public function leaveHash(Cursor $cursor, $type, $class, $hasChild, $cut)
     {
         if (empty($cursor->attr['cut_hash'])) {
             $this->dumpEllipsis($cursor, $hasChild, $cut);
@@ -344,7 +345,7 @@ class CliDumper extends AbstractDumper
                                 $this->expandNextHash = \true;
                             }
                         }
-                        $this->line .= $bin . $this->style($style, $key[1], $attr) . ($attr['separator'] ?? ': ');
+                        $this->line .= $bin . $this->style($style, $key[1], $attr) . (isset($attr['separator']) ? $attr['separator'] : ': ');
                     } else {
                         // This case should not happen
                         $this->line .= '-' . $bin . '"' . $this->style('private', $key, ['class' => '']) . '": ';
@@ -371,7 +372,7 @@ class CliDumper extends AbstractDumper
             $this->colors = $this->supportsColors();
         }
         if (null === $this->handlesHrefGracefully) {
-            $this->handlesHrefGracefully = 'JetBrains-JediTerm' !== \getenv('TERMINAL_EMULATOR') && (!\getenv('KONSOLE_VERSION') || (int) \getenv('KONSOLE_VERSION') > 201100);
+            $this->handlesHrefGracefully = 'JetBrains-JediTerm' !== \getenv('TERMINAL_EMULATOR') && !\getenv('KONSOLE_VERSION');
         }
         if (isset($attr['ellipsis'], $attr['ellipsis-type'])) {
             $prefix = \substr($value, 0, -$attr['ellipsis']);
@@ -394,7 +395,7 @@ class CliDumper extends AbstractDumper
             $s = $startCchr;
             $c = $c[$i = 0];
             do {
-                $s .= $map[$c[$i]] ?? \sprintf('\\x%02X', \ord($c[$i]));
+                $s .= isset($map[$c[$i]]) ? $map[$c[$i]] : \sprintf('\\x%02X', \ord($c[$i]));
             } while (isset($c[++$i]));
             return $s . $endCchr;
         }, $value, -1, $cchrCount);
@@ -412,7 +413,7 @@ class CliDumper extends AbstractDumper
         }
         href:
         if ($this->colors && $this->handlesHrefGracefully) {
-            if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], $attr['line'] ?? 0))) {
+            if (isset($attr['file']) && ($href = $this->getSourceLink($attr['file'], isset($attr['line']) ? $attr['line'] : 0))) {
                 if ('note' === $style) {
                     $value .= "\x1b]8;;{$href}\x1b\\^\x1b]8;;\x1b\\";
                 } else {
@@ -449,26 +450,24 @@ class CliDumper extends AbstractDumper
                         case '--color=yes':
                         case '--color=force':
                         case '--color=always':
-                        case '--colors=always':
                             return static::$defaultColors = \true;
                         case '--no-ansi':
                         case '--color=no':
                         case '--color=none':
                         case '--color=never':
-                        case '--colors=never':
                             return static::$defaultColors = \false;
                     }
                 }
             }
         }
         $h = \stream_get_meta_data($this->outputStream) + ['wrapper_type' => null];
-        $h = 'Output' === $h['stream_type'] && 'PHP' === $h['wrapper_type'] ? \fopen('php://stdout', 'w') : $this->outputStream;
+        $h = 'Output' === $h['stream_type'] && 'PHP' === $h['wrapper_type'] ? \fopen('php://stdout', 'wb') : $this->outputStream;
         return static::$defaultColors = $this->hasColorSupport($h);
     }
     /**
      * {@inheritdoc}
      */
-    protected function dumpLine(int $depth, bool $endOfValue = \false)
+    protected function dumpLine($depth, $endOfValue = \false)
     {
         if ($this->colors) {
             $this->line = \sprintf("\x1b[%sm%s\x1b[m", $this->styles['default'], $this->line);
@@ -512,7 +511,15 @@ class CliDumper extends AbstractDumper
         if (\DIRECTORY_SEPARATOR === '\\') {
             return \function_exists('sapi_windows_vt100_support') && @\sapi_windows_vt100_support($stream) || \false !== \getenv('ANSICON') || 'ON' === \getenv('ConEmuANSI') || 'xterm' === \getenv('TERM');
         }
-        return \stream_isatty($stream);
+        if (\function_exists('stream_isatty')) {
+            return @\stream_isatty($stream);
+        }
+        if (\function_exists('posix_isatty')) {
+            return @\posix_isatty($stream);
+        }
+        $stat = @\fstat($stream);
+        // Check if formatted mode is S_IFCHR
+        return $stat ? 020000 === ($stat['mode'] & 0170000) : \false;
     }
     /**
      * Returns true if the Windows terminal supports true color.
@@ -524,7 +531,7 @@ class CliDumper extends AbstractDumper
     private function isWindowsTrueColor() : bool
     {
         $result = 183 <= \getenv('ANSICON_VER') || 'ON' === \getenv('ConEmuANSI') || 'xterm' === \getenv('TERM') || 'Hyper' === \getenv('TERM_PROGRAM');
-        if (!$result) {
+        if (!$result && \PHP_VERSION_ID >= 70200) {
             $version = \sprintf('%s.%s.%s', \PHP_WINDOWS_VERSION_MAJOR, \PHP_WINDOWS_VERSION_MINOR, \PHP_WINDOWS_VERSION_BUILD);
             $result = $version >= '10.0.15063';
         }
