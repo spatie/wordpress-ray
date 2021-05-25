@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
-
 /**
  * Represents an enumeration of values.
  *
@@ -20,9 +18,8 @@ use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
  */
 class EnumStub extends Stub
 {
-    public $dumpKeys = true;
-
-    public function __construct(array $values, bool $dumpKeys = true)
+    public $dumpKeys = \true;
+    public function __construct(array $values, bool $dumpKeys = \true)
     {
         $this->value = $values;
         $this->dumpKeys = $dumpKeys;

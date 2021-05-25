@@ -15,8 +15,10 @@
 use Spatie\WordPressRay\Ray;
 
 // This will add the `ray()` function
-if (! class_exists(Ray::class) && is_file(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
+if (! class_exists(Ray::class)) {
+    if (is_file(__DIR__ . '/vendor/autoload.php')) {
+        require_once __DIR__ . '/vendor/autoload.php';
+    }
 }
 
 Ray::bootForWordPress();

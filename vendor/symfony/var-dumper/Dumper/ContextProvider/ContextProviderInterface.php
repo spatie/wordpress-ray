@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider;
 
 /**
@@ -21,5 +20,5 @@ interface ContextProviderInterface
     /**
      * @return array|null Context data or null if unable to provide any context
      */
-    public function getContext(): ?array;
+    public function getContext() : ?array;
 }

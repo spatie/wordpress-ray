@@ -8,7 +8,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
 /**
@@ -16,7 +15,7 @@ namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
  */
 class ImgStub extends ConstStub
 {
-    public function __construct(string $data, string $contentType, string $size)
+    public function __construct(string $data, string $contentType, string $size = '')
     {
         $this->value = '';
         $this->attr['img-data'] = $data;

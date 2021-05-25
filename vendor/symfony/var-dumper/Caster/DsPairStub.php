@@ -8,11 +8,9 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
-
 /**
  * @author Nicolas Grekas <p@tchwork.com>
  */
@@ -20,9 +18,6 @@ class DsPairStub extends Stub
 {
     public function __construct($key, $value)
     {
-        $this->value = [
-            Caster::PREFIX_VIRTUAL.'key' => $key,
-            Caster::PREFIX_VIRTUAL.'value' => $value,
-        ];
+        $this->value = [Caster::PREFIX_VIRTUAL . 'key' => $key, Caster::PREFIX_VIRTUAL . 'value' => $value];
     }
 }

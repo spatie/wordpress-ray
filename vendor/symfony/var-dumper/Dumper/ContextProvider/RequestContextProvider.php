@@ -8,13 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Dumper\ContextProvider;
 
 use Spatie\WordPressRay\Symfony\Component\HttpFoundation\RequestStack;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Caster\ReflectionCaster;
 use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\VarCloner;
-
 /**
  * Tries to provide context from a request.
  *
@@ -24,7 +22,6 @@ final class RequestContextProvider implements ContextProviderInterface
 {
     private $requestStack;
     private $cloner;
-
     public function __construct(RequestStack $requestStack)
     {
         $this->requestStack = $requestStack;
@@ -32,20 +29,12 @@ final class RequestContextProvider implements ContextProviderInterface
         $this->cloner->setMaxItems(0);
         $this->cloner->addCasters(ReflectionCaster::UNSET_CLOSURE_FILE_INFO);
     }
-
-    public function getContext(): ?array
+    public function getContext() : ?array
     {
-        if (null === $request = $this->requestStack->getCurrentRequest()) {
+        if (null === ($request = $this->requestStack->getCurrentRequest())) {
             return null;
         }
-
         $controller = $request->attributes->get('_controller');
-
-        return [
-            'uri' => $request->getUri(),
-            'method' => $request->getMethod(),
-            'controller' => $controller ? $this->cloner->cloneVar($controller) : $controller,
-            'identifier' => spl_object_hash($request),
-        ];
+        return ['uri' => $request->getUri(), 'method' => $request->getMethod(), 'controller' => $controller ? $this->cloner->cloneVar($controller) : $controller, 'identifier' => \spl_object_hash($request)];
     }
 }

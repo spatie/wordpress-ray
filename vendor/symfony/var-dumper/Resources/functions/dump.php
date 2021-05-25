@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\WordPressRay;
+
 /*
  * This file is part of the Symfony package.
  *
@@ -8,36 +10,29 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 use Spatie\WordPressRay\Symfony\Component\VarDumper\VarDumper;
-
-if (!function_exists('dump')) {
+if (!\function_exists('Spatie\\WordPressRay\\dump')) {
     /**
      * @author Nicolas Grekas <p@tchwork.com>
      */
     function dump($var, ...$moreVars)
     {
         VarDumper::dump($var);
-
         foreach ($moreVars as $v) {
             VarDumper::dump($v);
         }
-
-        if (1 < func_num_args()) {
-            return func_get_args();
+        if (1 < \func_num_args()) {
+            return \func_get_args();
         }
-
         return $var;
     }
 }
-
-if (!function_exists('dd')) {
+if (!\function_exists('Spatie\\WordPressRay\\dd')) {
     function dd(...$vars)
     {
         foreach ($vars as $v) {
             VarDumper::dump($v);
         }
-
         exit(1);
     }
 }
