@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'ef1b55460932610cf458b8cec357f10d7acc459e',
+    'reference' => '1ad7267c0dad105a57937f17d5fe8769b7c6951f',
     'name' => 'spatie/wordpress-ray',
   ),
   'versions' => 
@@ -65,12 +65,12 @@
     ),
     'spatie/macroable' => 
     array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7a99549fc001c925714b329220dea680c04bfa48',
+      'reference' => 'ec2c320f932e730607aff8052c44183cf3ecb072',
     ),
     'spatie/ray' => 
     array (
@@ -88,7 +88,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'ef1b55460932610cf458b8cec357f10d7acc459e',
+      'reference' => '1ad7267c0dad105a57937f17d5fe8769b7c6951f',
     ),
     'symfony/polyfill-ctype' => 
     array (

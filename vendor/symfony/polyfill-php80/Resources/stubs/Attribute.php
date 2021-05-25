@@ -2,7 +2,7 @@
 
 namespace Spatie\WordPressRay;
 
-#[Attribute(Attribute::TARGET_CLASS)]
+#[Attribute(\Attribute::TARGET_CLASS)]
 final class Attribute
 {
     public const TARGET_CLASS = 1;
@@ -20,5 +20,4 @@ final class Attribute
         $this->flags = $flags;
     }
 }
-#[Attribute(Attribute::TARGET_CLASS)]
 \class_alias('Spatie\\WordPressRay\\Attribute', 'Attribute', \false);

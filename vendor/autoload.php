@@ -8,13 +8,13 @@
 
 require_once __DIR__ . '/composer/autoload_real.php';
 
-$loader =  ComposerAutoloaderInit175b123dcca16f804ddf3a621caa4000::getLoader();
+$loader =  ComposerAutoloaderInita61b604348fddcf127b07f139a75f12c::getLoader();
 
 
 // Aliases for the whitelisted classes. For more information see:
 // https://github.com/humbug/php-scoper/blob/master/README.md#class-whitelisting
-if (!class_exists('ComposerAutoloaderInit175b123dcca16f804ddf3a621caa4000', false) && !interface_exists('ComposerAutoloaderInit175b123dcca16f804ddf3a621caa4000', false) && !trait_exists('ComposerAutoloaderInit175b123dcca16f804ddf3a621caa4000', false)) {
-    spl_autoload_call('Spatie\WordPressRay\ComposerAutoloaderInit175b123dcca16f804ddf3a621caa4000');
+if (!class_exists('ComposerAutoloaderInita61b604348fddcf127b07f139a75f12c', false) && !interface_exists('ComposerAutoloaderInita61b604348fddcf127b07f139a75f12c', false) && !trait_exists('ComposerAutoloaderInita61b604348fddcf127b07f139a75f12c', false)) {
+    spl_autoload_call('Spatie\WordPressRay\ComposerAutoloaderInita61b604348fddcf127b07f139a75f12c');
 }
 if (!class_exists('ValueError', false) && !interface_exists('ValueError', false) && !trait_exists('ValueError', false)) {
     spl_autoload_call('Spatie\WordPressRay\ValueError');
@@ -101,9 +101,9 @@ if (!function_exists('includeIfExists')) {
         return \Spatie\WordPressRay\includeIfExists(...func_get_args());
     }
 }
-if (!function_exists('composerRequire175b123dcca16f804ddf3a621caa4000')) {
-    function composerRequire175b123dcca16f804ddf3a621caa4000() {
-        return \Spatie\WordPressRay\composerRequire175b123dcca16f804ddf3a621caa4000(...func_get_args());
+if (!function_exists('composerRequirea61b604348fddcf127b07f139a75f12c')) {
+    function composerRequirea61b604348fddcf127b07f139a75f12c() {
+        return \Spatie\WordPressRay\composerRequirea61b604348fddcf127b07f139a75f12c(...func_get_args());
     }
 }
 if (!function_exists('base_path')) {
