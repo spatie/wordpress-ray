@@ -2,6 +2,10 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## 1.3.2 - 2021-05-25
+
+- fix compatibility issues
+
 ## 1.3.1 - 2021-05-25
 
 - fix compatibility issues
