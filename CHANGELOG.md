@@ -2,6 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## Unreleased
+
+- fix origin file path
+- add correct origin file path for `showWordPressErrors`
+
 ## 1.3.2 - 2021-05-25
 
 - fix compatibility issues
