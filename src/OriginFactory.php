@@ -40,6 +40,10 @@ class OriginFactory extends DefaultOriginFactory
             return $frames[$indexOfRay + 5];
         }
 
+        if (strpos($rayFrame->file, 'ray/vendor/autoload.php') !== false && $rayFrame->method === 'ray') {
+            return $frames[$indexOfRay + 1];
+        }
+
         return $rayFrame;
     }
 }
