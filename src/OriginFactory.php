@@ -4,6 +4,7 @@ namespace Spatie\WordPressRay;
 
 use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
+use Spatie\WordPressRay\Loggers\ErrorLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
 use Spatie\WordPressRay\Spatie\Backtrace\Frame;
 use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
@@ -38,6 +39,14 @@ class OriginFactory extends DefaultOriginFactory
 
         if ($searchFrame && $searchFrame->class === HookLogger::class) {
             return $frames[$indexOfRay + 5];
+        }
+
+        if ($searchFrame && $searchFrame->class === ErrorLogger::class) {
+            return $frames[$indexOfRay + 6];
+        }
+
+        if (strpos($rayFrame->file, 'ray/vendor/autoload.php') !== false && $rayFrame->method === 'ray') {
+            return $frames[$indexOfRay + 1];
         }
 
         return $rayFrame;
