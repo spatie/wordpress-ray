@@ -2,7 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
-## 1.3.3 - 2021-05-28
+## 1.4.0 - 2021-05-28
+
+- upgrade to the current version of spatie/ray
+
+## 1.3.3 - 2021-05-28`
 
 - fix origin file path
 - add correct origin file path for `showWordPressErrors`
