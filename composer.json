@@ -19,9 +19,8 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "spatie/backtrace": "^1.1.0",
-
-        "spatie/ray": "^1.21.1"
+        "spatie/backtrace": "^1.2.0",
+        "spatie/ray": "^1.30.2"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",

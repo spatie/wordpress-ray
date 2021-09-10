@@ -2,7 +2,7 @@
 
 namespace Spatie\WordPressRay\Spatie\Ray;
 
-use Spatie\WordPressRay\Carbon\Carbon;
+use Spatie\WordPressRay\Carbon\CarbonInterface;
 use Closure;
 use Spatie\WordPressRay\Composer\InstalledVersions;
 use Exception;
@@ -27,20 +27,28 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\HidePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\HtmlPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ImagePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\JsonStringPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\LabelPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\LogPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\MeasurePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NewScreenPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\NotifyPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\PhpInfoPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\RemovePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ShowAppPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\SizePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TablePayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\TextPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\TracePayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\XmlPayload;
 use Spatie\WordPressRay\Spatie\Ray\Settings\Settings;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\Ray\Support\Counters;
+use Spatie\WordPressRay\Spatie\Ray\Support\ExceptionHandler;
+use Spatie\WordPressRay\Spatie\Ray\Support\IgnoredValue;
+use Spatie\WordPressRay\Spatie\Ray\Support\Limiters;
+use Spatie\WordPressRay\Spatie\Ray\Support\RateLimiter;
 use Spatie\WordPressRay\Symfony\Component\Stopwatch\Stopwatch;
+use Throwable;
 class Ray
 {
     use RayColors;
@@ -52,14 +60,24 @@ class Ray
     protected static $client;
     /** @var \Spatie\Ray\Support\Counters */
     public static $counters;
+    /** @var \Spatie\Ray\Support\Limiters */
+    public static $limiters;
     /** @var string */
     public static $fakeUuid;
+    /** @var \Spatie\Ray\Origin\Origin|null */
+    public $limitOrigin = null;
     /** @var string */
     public $uuid = '';
+    /** @var bool */
+    public $canSendPayload = \true;
+    /** @var array|\Exception[] */
+    public static $caughtExceptions = [];
     /** @var \Symfony\Component\Stopwatch\Stopwatch[] */
     public static $stopWatches = [];
     /** @var bool|null */
     public static $enabled = null;
+    /** @var RateLimiter */
+    public static $rateLimiter;
     public static function create(Client $client = null, string $uuid = null) : self
     {
         $settings = SettingsFactory::createFromConfigFile();
@@ -70,8 +88,10 @@ class Ray
         $this->settings = $settings;
         self::$client = $client ?? self::$client ?? new Client($settings->port, $settings->host);
         self::$counters = self::$counters ?? new Counters();
+        self::$limiters = self::$limiters ?? new Limiters();
         $this->uuid = $uuid ?? static::$fakeUuid ?? Uuid::uuid4()->toString();
         static::$enabled = static::$enabled ?? $this->settings->enable ?? \true;
+        static::$rateLimiter = static::$rateLimiter ?? RateLimiter::disabled();
     }
     public function enable() : self
     {
@@ -112,6 +132,11 @@ class Ray
     public function color(string $color) : self
     {
         $payload = new ColorPayload($color);
+        return $this->sendRequest($payload);
+    }
+    public function label(string $label) : self
+    {
+        $payload = new LabelPayload($label);
         return $this->sendRequest($payload);
     }
     public function size(string $size) : self
@@ -240,15 +265,25 @@ class Ray
     }
     public function phpinfo(string ...$properties) : self
     {
-        if (!\count($properties)) {
-            return $this->table(['PHP version' => \phpversion(), 'Memory limit' => \ini_get('memory_limit'), 'Max file upload size' => \ini_get('max_file_uploads'), 'Max post size' => \ini_get('post_max_size'), 'PHP ini file' => \php_ini_loaded_file(), "PHP scanned ini file" => \php_ini_scanned_files(), 'Extensions' => \implode(', ', \get_loaded_extensions())], 'PHPInfo');
-        }
-        $properties = \array_flip($properties);
-        foreach ($properties as $property => $value) {
-            $properties[$property] = \ini_get($property);
-        }
-        return $this->table($properties, 'PHPInfo');
+        $payload = new PhpInfoPayload(...$properties);
+        return $this->sendRequest($payload);
     }
+    public function if($boolOrCallable, ?callable $callback = null) : self
+    {
+        if (\is_callable($boolOrCallable)) {
+            $boolOrCallable = (bool) $boolOrCallable();
+        }
+        if ($boolOrCallable && $callback !== null) {
+            $callback($this);
+        }
+        if ($callback === null) {
+            $this->canSendPayload = $boolOrCallable;
+        }
+        return $this;
+    }
+    /**
+     * @deprecated Use `if` instead of this method
+     */
     public function showWhen($boolOrCallable) : self
     {
         if (\is_callable($boolOrCallable)) {
@@ -259,10 +294,16 @@ class Ray
         }
         return $this;
     }
+    /**
+     * @deprecated Use `if` instead of this method
+     */
     public function showIf($boolOrCallable) : self
     {
         return $this->showWhen($boolOrCallable);
     }
+    /**
+     * @deprecated Use `if` instead of this method
+     */
     public function removeWhen($boolOrCallable) : self
     {
         if (\is_callable($boolOrCallable)) {
@@ -273,11 +314,14 @@ class Ray
         }
         return $this;
     }
+    /**
+     * @deprecated Use `if` instead of this method
+     */
     public function removeIf($boolOrCallable) : self
     {
         return $this->removeWhen($boolOrCallable);
     }
-    public function carbon(?Carbon $carbon) : self
+    public function carbon(?CarbonInterface $carbon) : self
     {
         $payload = new CarbonPayload($carbon);
         $this->sendRequest($payload);
@@ -315,6 +359,10 @@ class Ray
         self::$counters->clear();
         return $this;
     }
+    public function counterValue(string $name) : int
+    {
+        return self::$counters->get($name);
+    }
     public function pause() : self
     {
         $lockName = \md5(\time());
@@ -330,15 +378,21 @@ class Ray
         $payload = new HtmlPayload($html);
         return $this->sendRequest($payload);
     }
-    public function exception(Exception $exception, array $meta = []) : self
+    public function exception(Throwable $exception, array $meta = [])
     {
         $payload = new ExceptionPayload($exception, $meta);
         $this->sendRequest($payload);
+        $this->red();
         return $this;
     }
     public function xml(string $xml) : self
     {
         $payload = new XmlPayload($xml);
+        return $this->sendRequest($payload);
+    }
+    public function text(string $text) : self
+    {
+        $payload = new TextPayload($text);
         return $this->sendRequest($payload);
     }
     public function raw(...$arguments) : self
@@ -351,6 +405,40 @@ class Ray
         }, $arguments);
         return $this->sendRequest($payloads);
     }
+    public function limit(int $count) : self
+    {
+        $this->limitOrigin = (new DefaultOriginFactory())->getOrigin();
+        self::$limiters->initialize($this->limitOrigin, $count);
+        return $this;
+    }
+    public function once(...$arguments) : self
+    {
+        $this->limitOrigin = (new DefaultOriginFactory())->getOrigin();
+        self::$limiters->initialize($this->limitOrigin, 1);
+        if (!empty($arguments)) {
+            return $this->send(...$arguments);
+        }
+        return $this;
+    }
+    /**
+     * @param callable|string|null $callback
+     * @return \Spatie\Ray\Ray
+     */
+    public function catch($callback = null) : self
+    {
+        $result = (new ExceptionHandler())->catch($this, $callback);
+        if ($result instanceof Ray) {
+            return $result;
+        }
+        return $this;
+    }
+    public function throwExceptions() : self
+    {
+        while (!empty(self::$caughtExceptions)) {
+            throw \array_shift(self::$caughtExceptions);
+        }
+        return $this;
+    }
     public function send(...$arguments) : self
     {
         if (!\count($arguments)) {
@@ -358,6 +446,26 @@ class Ray
         }
         if ($this->settings->always_send_raw_values) {
             return $this->raw(...$arguments);
+        }
+        $arguments = \array_map(function ($argument) {
+            if (!\is_callable($argument)) {
+                return $argument;
+            }
+            try {
+                $result = $argument($this);
+                // use a specific class we can filter out instead of null so that null
+                // payloads can still be sent.
+                return $result instanceof Ray ? IgnoredValue::make() : $result;
+            } catch (Exception $exception) {
+                self::$caughtExceptions[] = $exception;
+                return IgnoredValue::make();
+            }
+        }, $arguments);
+        $arguments = \array_filter($arguments, function ($argument) {
+            return !$argument instanceof IgnoredValue;
+        });
+        if (empty($arguments)) {
+            return $this;
         }
         $payloads = PayloadFactory::createForValues($arguments);
         return $this->sendRequest($payloads);
@@ -394,6 +502,18 @@ class Ray
         if (!$this->enabled()) {
             return $this;
         }
+        if (empty($payloads)) {
+            return $this;
+        }
+        if (!$this->canSendPayload) {
+            return $this;
+        }
+        if (!empty($this->limitOrigin)) {
+            if (!self::$limiters->canSendPayload($this->limitOrigin)) {
+                return $this;
+            }
+            self::$limiters->increment($this->limitOrigin);
+        }
         if (!\is_array($payloads)) {
             $payloads = [$payloads];
         }
@@ -404,6 +524,10 @@ class Ray
         } catch (Exception $e) {
             // In WordPress this entire package will be rewritten
         }
+        if (self::rateLimiter()->isMaxReached() || self::rateLimiter()->isMaxPerSecondReached()) {
+            $this->notifyWhenRateLimitReached();
+            return $this;
+        }
         $allMeta = \array_merge(['php_version' => \phpversion(), 'php_version_id' => \PHP_VERSION_ID], $meta);
         foreach ($payloads as $payload) {
             $payload->remotePath = $this->settings->remote_path;
@@ -411,10 +535,25 @@ class Ray
         }
         $request = new Request($this->uuid, $payloads, $allMeta);
         self::$client->send($request);
+        self::rateLimiter()->hit();
         return $this;
     }
     public static function makePathOsSafe(string $path) : string
     {
         return \str_replace('/', \DIRECTORY_SEPARATOR, $path);
+    }
+    public static function rateLimiter() : RateLimiter
+    {
+        return self::$rateLimiter;
+    }
+    protected function notifyWhenRateLimitReached() : void
+    {
+        if (self::rateLimiter()->isNotified()) {
+            return;
+        }
+        $customPayload = new CustomPayload('Rate limit has been reached...', 'Rate limit');
+        $request = new Request($this->uuid, [$customPayload], []);
+        self::$client->send($request);
+        self::rateLimiter()->notify();
     }
 }

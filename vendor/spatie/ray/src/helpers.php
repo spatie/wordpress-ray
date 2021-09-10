@@ -43,6 +43,9 @@ if (!\function_exists('Spatie\\WordPressRay\\ray')) {
         $settings = SettingsFactory::createFromConfigFile();
         return (new $rayClass($settings))->send(...$args);
     }
+    \register_shutdown_function(function () {
+        ray()->throwExceptions();
+    });
 }
 if (!\function_exists('Spatie\\WordPressRay\\rd')) {
     function rd(...$args)
