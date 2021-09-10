@@ -4,7 +4,7 @@ Donate link: https://github.com/sponsors/spatie
 Tags: development, debugging
 Requires PHP: 7.3
 Requires at least: 5.5
-Tested up to: 5.6
+Tested up to: 5.8
 Stable tag: 1.5.0
 License: MIT
 
