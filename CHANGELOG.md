@@ -2,7 +2,11 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
-## 1.5.0 - 2021-09-19
+## 1.5.1 - 2021-09-10
+
+- fix as compatible with WordPress 5.8
+
+## 1.5.0 - 2021-09-10
 
 - upgrade to the current version of spatie/ray
 
