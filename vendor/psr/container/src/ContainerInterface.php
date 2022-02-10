@@ -1,9 +1,8 @@
 <?php
 
-/**
- * @license http://www.opensource.org/licenses/mit-license.php MIT (see the LICENSE file)
- */
-namespace Spatie\WordPressRay\Psr\Container;
+declare(strict_types=1);
+
+namespace Psr\Container;
 
 /**
  * Describes the interface of a container that exposes methods to read its entries.
@@ -20,7 +19,8 @@ interface ContainerInterface
      *
      * @return mixed Entry.
      */
-    public function get($id);
+    public function get(string $id);
+
     /**
      * Returns true if the container can return an entry for the given identifier.
      * Returns false otherwise.
@@ -32,5 +32,5 @@ interface ContainerInterface
      *
      * @return bool
      */
-    public function has($id);
+    public function has(string $id): bool;
 }

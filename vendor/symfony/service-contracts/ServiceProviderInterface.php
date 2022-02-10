@@ -8,9 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Spatie\WordPressRay\Symfony\Contracts\Service;
 
-use Spatie\WordPressRay\Psr\Container\ContainerInterface;
+namespace Symfony\Contracts\Service;
+
+use Psr\Container\ContainerInterface;
+
 /**
  * A ServiceProviderInterface exposes the identifiers and the types of services provided by a container.
  *
@@ -30,5 +32,5 @@ interface ServiceProviderInterface extends ContainerInterface
      *
      * @return string[] The provided service types, keyed by service names
      */
-    public function getProvidedServices() : array;
+    public function getProvidedServices(): array;
 }

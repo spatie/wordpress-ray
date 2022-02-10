@@ -1,21 +1,26 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
+namespace Spatie\Ray\Payloads;
 
 class ColorPayload extends Payload
 {
     /** @var mixed */
     protected $color;
+
     public function __construct(string $color)
     {
         $this->color = $color;
     }
-    public function getType() : string
+
+    public function getType(): string
     {
         return 'color';
     }
-    public function getContent() : array
+
+    public function getContent(): array
     {
-        return ['color' => $this->color];
+        return [
+            'color' => $this->color,
+        ];
     }
 }

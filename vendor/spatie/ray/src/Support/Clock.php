@@ -1,9 +1,10 @@
 <?php
 
-namespace Spatie\WordPressRay\Spatie\Ray\Support;
+namespace Spatie\Ray\Support;
 
 use DateTimeImmutable;
+
 interface Clock
 {
-    public function now() : DateTimeImmutable;
+    public function now(): DateTimeImmutable;
 }

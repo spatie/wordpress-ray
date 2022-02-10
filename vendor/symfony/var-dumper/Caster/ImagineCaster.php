@@ -8,23 +8,30 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-use Spatie\WordPressRay\Imagine\Image\ImageInterface;
-use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
+namespace Symfony\Component\VarDumper\Caster;
+
+use Imagine\Image\ImageInterface;
+use Symfony\Component\VarDumper\Cloner\Stub;
+
 /**
  * @author Grégoire Pineau <lyrixx@lyrixx.info>
  */
 final class ImagineCaster
 {
-    public static function castImage(ImageInterface $c, array $a, Stub $stub, bool $isNested) : array
+    public static function castImage(ImageInterface $c, array $a, Stub $stub, bool $isNested): array
     {
         $imgData = $c->get('png');
         if (\strlen($imgData) > 1 * 1000 * 1000) {
-            $a += [Caster::PREFIX_VIRTUAL . 'image' => new ConstStub($c->getSize())];
+            $a += [
+                Caster::PREFIX_VIRTUAL.'image' => new ConstStub($c->getSize()),
+            ];
         } else {
-            $a += [Caster::PREFIX_VIRTUAL . 'image' => new ImgStub($imgData, 'image/png', $c->getSize())];
+            $a += [
+                Caster::PREFIX_VIRTUAL.'image' => new ImgStub($imgData, 'image/png', $c->getSize()),
+            ];
         }
+
         return $a;
     }
 }
