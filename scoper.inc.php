@@ -28,11 +28,10 @@ return [
             'composer.lock'
         ]),
     ],
-    'files-whitelist' => [],
     'whitelist' => [
         'Spatie\WordPressRay\*',
     ],
-    'whitelist-global-constants' => true,
-    'whitelist-global-classes' => true,
-    'whitelist-global-functions' => true,
+    'expose-global-constants' => true,
+    'expose-global-classes' => true,
+    'expose-global-functions' => true,
 ];
