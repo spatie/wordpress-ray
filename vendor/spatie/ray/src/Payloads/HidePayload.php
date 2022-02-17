@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\Ray\Payloads;
+namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
 
 class HidePayload extends Payload
 {
-    public function getType(): string
+    public function getType() : string
     {
         return 'hide';
     }

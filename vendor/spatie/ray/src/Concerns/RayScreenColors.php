@@ -1,36 +1,31 @@
 <?php
 
-namespace Spatie\Ray\Concerns;
+namespace Spatie\WordPressRay\Spatie\Ray\Concerns;
 
 /** @mixin \Spatie\Ray\Ray */
 trait RayScreenColors
 {
-    public function screenGreen(): self
+    public function screenGreen() : self
     {
         return $this->screenColor('green');
     }
-
-    public function screenOrange(): self
+    public function screenOrange() : self
     {
         return $this->screenColor('orange');
     }
-
-    public function screenRed(): self
+    public function screenRed() : self
     {
         return $this->screenColor('red');
     }
-
-    public function screenPurple(): self
+    public function screenPurple() : self
     {
         return $this->screenColor('purple');
     }
-
-    public function screenBlue(): self
+    public function screenBlue() : self
     {
         return $this->screenColor('blue');
     }
-
-    public function screenGray(): self
+    public function screenGray() : self
     {
         return $this->screenColor('gray');
     }

@@ -1,16 +1,16 @@
 <?php
 
-use Illuminate\Contracts\Container\BindingResolutionException;
-use Spatie\CraftRay\Ray as CraftRay;
-use Spatie\LaravelRay\Ray as LaravelRay;
-use Spatie\Ray\Ray;
+namespace Spatie\WordPressRay;
 
-use Spatie\Ray\Settings\SettingsFactory;
-use Spatie\RayBundle\Ray as SymfonyRay;
+use Spatie\WordPressRay\Illuminate\Contracts\Container\BindingResolutionException;
+use Spatie\WordPressRay\Spatie\CraftRay\Ray as CraftRay;
+use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
+use Spatie\WordPressRay\Spatie\Ray\Ray;
+use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
+use Spatie\WordPressRay\Spatie\RayBundle\Ray as SymfonyRay;
 use Spatie\WordPressRay\Ray as WordPressRay;
-use Spatie\YiiRay\Ray as YiiRay;
-
-if (! function_exists('ray')) {
+use Spatie\WordPressRay\Spatie\YiiRay\Ray as YiiRay;
+if (!\function_exists('Spatie\\WordPressRay\\ray')) {
     /**
      * @param mixed ...$args
      *
@@ -18,7 +18,7 @@ if (! function_exists('ray')) {
      */
     function ray(...$args)
     {
-        if (class_exists(LaravelRay::class)) {
+        if (\class_exists(LaravelRay::class)) {
             try {
                 return app(LaravelRay::class)->send(...$args);
             } catch (BindingResolutionException $exception) {
@@ -27,36 +27,27 @@ if (! function_exists('ray')) {
                 // in `getPackageProviders` of the base test suite
             }
         }
-
-        if (class_exists(CraftRay::class)) {
+        if (\class_exists(CraftRay::class)) {
             return Yii::$container->get(CraftRay::class)->send(...$args);
         }
-
-        if (class_exists(YiiRay::class)) {
+        if (\class_exists(YiiRay::class)) {
             return Yii::$container->get(YiiRay::class)->send(...$args);
         }
-
         $rayClass = Ray::class;
-
-        if (class_exists(WordPressRay::class)) {
+        if (\class_exists(WordPressRay::class)) {
             $rayClass = WordPressRay::class;
         }
-
-        if (class_exists(SymfonyRay::class)) {
+        if (\class_exists(SymfonyRay::class)) {
             $rayClass = SymfonyRay::class;
         }
-
         $settings = SettingsFactory::createFromConfigFile();
-
         return (new $rayClass($settings))->send(...$args);
     }
-
-    register_shutdown_function(function () {
+    \register_shutdown_function(function () {
         ray()->throwExceptions();
     });
 }
-
-if (! function_exists('rd')) {
+if (!\function_exists('Spatie\\WordPressRay\\rd')) {
     function rd(...$args)
     {
         ray(...$args)->die();

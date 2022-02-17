@@ -1,26 +1,21 @@
 <?php
 
-namespace Spatie\Ray\Payloads;
+namespace Spatie\WordPressRay\Spatie\Ray\Payloads;
 
 class ScreenColorPayload extends Payload
 {
     /** @var string */
     protected $color;
-
     public function __construct(string $color)
     {
         $this->color = $color;
     }
-
-    public function getType(): string
+    public function getType() : string
     {
         return 'screen_color';
     }
-
-    public function getContent(): array
+    public function getContent() : array
     {
-        return [
-            'color' => $this->color,
-        ];
+        return ['color' => $this->color];
     }
 }

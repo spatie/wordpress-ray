@@ -1,8 +1,8 @@
 <?php
 
-namespace Spatie\Ray\Origin;
+namespace Spatie\WordPressRay\Spatie\Ray\Origin;
 
 interface OriginFactory
 {
-    public function getOrigin(): Origin;
+    public function getOrigin() : Origin;
 }

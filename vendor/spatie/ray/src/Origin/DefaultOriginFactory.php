@@ -1,43 +1,31 @@
 <?php
 
-namespace Spatie\Ray\Origin;
+namespace Spatie\WordPressRay\Spatie\Ray\Origin;
 
-use Spatie\Backtrace\Backtrace;
-use Spatie\Backtrace\Frame;
-use Spatie\Ray\Ray;
-
+use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
+use Spatie\WordPressRay\Spatie\Backtrace\Frame;
+use Spatie\WordPressRay\Spatie\Ray\Ray;
 class DefaultOriginFactory implements OriginFactory
 {
-    public function getOrigin(): Origin
+    public function getOrigin() : Origin
     {
         $frame = $this->getFrame();
-
-        return new Origin(
-            $frame ? $frame->file : null,
-            $frame ? $frame->lineNumber : null,
-            Hostname::get()
-        );
+        return new Origin($frame ? $frame->file : null, $frame ? $frame->lineNumber : null, Hostname::get());
     }
-
     /**
      * @return \Spatie\Backtrace\Frame|null
      */
     protected function getFrame()
     {
         $frames = $this->getAllFrames();
-
         $indexOfRay = $this->getIndexOfRayFrame($frames);
-
         return $frames[$indexOfRay] ?? null;
     }
-
-    protected function getAllFrames(): array
+    protected function getAllFrames() : array
     {
         $frames = Backtrace::create()->frames();
-
-        return array_reverse($frames, true);
+        return \array_reverse($frames, \true);
     }
-
     /**
      * @param array $frames
      *
@@ -47,24 +35,19 @@ class DefaultOriginFactory implements OriginFactory
     {
         $index = $this->search(function (Frame $frame) {
             if ($frame->class === Ray::class) {
-                return true;
+                return \true;
             }
-
-            if ($this->startsWith($frame->file, dirname(__DIR__))) {
-                return true;
+            if ($this->startsWith($frame->file, \dirname(__DIR__))) {
+                return \true;
             }
-
-            return false;
+            return \false;
         }, $frames);
-
         return $index + 1;
     }
-
-    public function startsWith(string $hayStack, string $needle): bool
+    public function startsWith(string $hayStack, string $needle) : bool
     {
-        return strpos($hayStack, $needle) === 0;
+        return \strpos($hayStack, $needle) === 0;
     }
-
     /**
      * @param callable $callable
      * @param array $items
@@ -78,7 +61,6 @@ class DefaultOriginFactory implements OriginFactory
                 return $key;
             }
         }
-
         return null;
     }
 }

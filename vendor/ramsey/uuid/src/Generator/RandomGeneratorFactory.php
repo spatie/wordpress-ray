@@ -8,23 +8,62 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 /**
- * RandomGeneratorFactory retrieves a default random generator, based on the
- * environment
+ * A factory for retrieving a random generator, based on the environment
  */
 class RandomGeneratorFactory
 {
     /**
-     * Returns a default random generator, based on the current environment
+     * For testing, `openssl_random_pseudo_bytes()` override; if `true`, treat as
+     * if `openssl_random_pseudo_bytes()` is not available
+     *
+     * @var bool
      */
-    public function getGenerator(): RandomGeneratorInterface
+    public static $forceNoOpensslRandomPseudoBytes = \false;
+    /**
+     * For testing, `random_bytes()` override; if `true`, treat as if `random_bytes()`
+     * is not available.
+     *
+     * @var bool
+     */
+    public static $forceNoRandomBytes = \false;
+    /**
+     * Returns `true` if the system has `openssl_random_pseudo_bytes()`
+     *
+     * @return bool
+     */
+    protected static function hasOpensslRandomPseudoBytes()
     {
-        return new RandomBytesGenerator();
+        return \function_exists('openssl_random_pseudo_bytes') && !self::$forceNoOpensslRandomPseudoBytes;
+    }
+    /**
+     * Returns `true` if the system has `random_bytes()`
+     *
+     * @return bool
+     */
+    protected static function hasRandomBytes()
+    {
+        return \function_exists('random_bytes') && !self::$forceNoRandomBytes;
+    }
+    /**
+     * Returns a default random generator, based on the current environment
+     *
+     * @return RandomGeneratorInterface
+     */
+    public static function getGenerator()
+    {
+        if (self::hasRandomBytes()) {
+            return new RandomBytesGenerator();
+        }
+        if (self::hasOpensslRandomPseudoBytes()) {
+            return new OpenSslGenerator();
+        }
+        return new MtRandGenerator();
     }
 }

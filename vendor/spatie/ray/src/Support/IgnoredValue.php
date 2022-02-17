@@ -1,10 +1,10 @@
 <?php
 
-namespace Spatie\Ray\Support;
+namespace Spatie\WordPressRay\Spatie\Ray\Support;
 
 class IgnoredValue
 {
-    public static function make(): self
+    public static function make() : self
     {
         return new static();
     }

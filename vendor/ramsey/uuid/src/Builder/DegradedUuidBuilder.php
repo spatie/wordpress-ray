@@ -8,69 +8,43 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
+namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Builder;
-
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\Time\DegradedTimeConverter;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\DegradedUuid;
-use Ramsey\Uuid\Rfc4122\Fields as Rfc4122Fields;
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\DegradedUuid;
 /**
- * @deprecated DegradedUuid instances are no longer necessary to support 32-bit
- *     systems. Transition to {@see DefaultUuidBuilder}.
- *
- * @psalm-immutable
+ * DegradedUuidBuilder builds instances of DegradedUuid
  */
 class DegradedUuidBuilder implements UuidBuilderInterface
 {
     /**
      * @var NumberConverterInterface
      */
-    private $numberConverter;
-
+    private $converter;
     /**
-     * @var TimeConverterInterface
-     */
-    private $timeConverter;
-
-    /**
-     * @param NumberConverterInterface $numberConverter The number converter to
-     *     use when constructing the DegradedUuid
-     * @param TimeConverterInterface|null $timeConverter The time converter to use
-     *     for converting timestamps extracted from a UUID to Unix timestamps
-     */
-    public function __construct(
-        NumberConverterInterface $numberConverter,
-        ?TimeConverterInterface $timeConverter = null
-    ) {
-        $this->numberConverter = $numberConverter;
-        $this->timeConverter = $timeConverter ?: new DegradedTimeConverter();
-    }
-
-    /**
-     * Builds and returns a DegradedUuid
+     * Constructs the DegradedUuidBuilder
      *
-     * @param CodecInterface $codec The codec to use for building this DegradedUuid instance
-     * @param string $bytes The byte string from which to construct a UUID
-     *
-     * @return DegradedUuid The DegradedUuidBuild returns an instance of Ramsey\Uuid\DegradedUuid
-     *
-     * @psalm-pure
+     * @param NumberConverterInterface The number converter to use when constructing the DegradedUuid
      */
-    public function build(CodecInterface $codec, string $bytes): UuidInterface
+    public function __construct(NumberConverterInterface $converter)
     {
-        return new DegradedUuid(
-            new Rfc4122Fields($bytes),
-            $this->numberConverter,
-            $codec,
-            $this->timeConverter
-        );
+        $this->converter = $converter;
+    }
+    /**
+     * Builds a DegradedUuid
+     *
+     * @param CodecInterface $codec The codec to use for building this DegradedUuid
+     * @param array $fields An array of fields from which to construct the DegradedUuid;
+     *     see {@see \Ramsey\Uuid\UuidInterface::getFieldsHex()} for array structure.
+     * @return DegradedUuid
+     */
+    public function build(CodecInterface $codec, array $fields)
+    {
+        return new DegradedUuid($fields, $this->converter, $codec);
     }
 }
