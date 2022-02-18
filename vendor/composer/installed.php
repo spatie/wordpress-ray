@@ -5,7 +5,7 @@
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'b5b25203652612c1e8d4e3bb895cc76ef604094b',
+        'reference' => '4f1f7acea6b39a19381f2ed73ecf64ff08241c95',
         'name' => 'spatie/wordpress-ray',
         'dev' => false,
     ),
@@ -67,7 +67,7 @@
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'b5b25203652612c1e8d4e3bb895cc76ef604094b',
+            'reference' => '4f1f7acea6b39a19381f2ed73ecf64ff08241c95',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-mbstring' => array(
