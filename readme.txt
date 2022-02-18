@@ -1,7 +1,7 @@
 === Ray ===
 Contributors: freekmurze
 Donate link: https://github.com/sponsors/spatie
-Tags: development, debugging, debug, developer, development
+Tags: development, debugging, debug, developer
 Requires PHP: 7.3
 Requires at least: 5.5
 Tested up to: 5.9
