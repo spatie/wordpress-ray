@@ -17,6 +17,9 @@ class LogPayload extends Payload
     public function __construct($values)
     {
         if (!\is_array($values)) {
+            if (\is_int($values) && $values >= 11111111111111111) {
+                $values = (string) $values;
+            }
             $values = [$values];
         }
         $this->values = $values;

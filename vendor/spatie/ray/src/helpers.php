@@ -27,10 +27,10 @@ if (!\function_exists('Spatie\\WordPressRay\\ray')) {
                 // in `getPackageProviders` of the base test suite
             }
         }
-        if (\class_exists(CraftRay::class)) {
+        if (\class_exists(CraftRay::class) && \class_exists(Yii::class)) {
             return Yii::$container->get(CraftRay::class)->send(...$args);
         }
-        if (\class_exists(YiiRay::class)) {
+        if (\class_exists(YiiRay::class) && \class_exists(Yii::class)) {
             return Yii::$container->get(YiiRay::class)->send(...$args);
         }
         $rayClass = Ray::class;

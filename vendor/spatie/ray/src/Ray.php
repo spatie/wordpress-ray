@@ -6,6 +6,7 @@ use Spatie\WordPressRay\Carbon\CarbonInterface;
 use Closure;
 use Spatie\WordPressRay\Composer\InstalledVersions;
 use Exception;
+use Spatie\WordPressRay\Illuminate\Support\Str;
 use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 use Spatie\WordPressRay\Spatie\Backtrace\Backtrace;
 use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
@@ -18,6 +19,7 @@ use Spatie\WordPressRay\Spatie\Ray\Payloads\CallerPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CarbonPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ClearAllPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\ColorPayload;
+use Spatie\WordPressRay\Spatie\Ray\Payloads\ConfettiPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CreateLockPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\CustomPayload;
 use Spatie\WordPressRay\Spatie\Ray\Payloads\DecodedJsonPayload;
@@ -400,10 +402,29 @@ class Ray
         $payload = new SeparatorPayload();
         return $this->sendRequest($payload);
     }
+    public function url(string $url, string $label = '') : self
+    {
+        if (!Str::startsWith($url, 'http')) {
+            $url = "https://{$url}";
+        }
+        if (empty($label)) {
+            $label = $url;
+        }
+        $link = "<a href='{$url}'>{$label}</a>";
+        return $this->html($link);
+    }
+    public function link(string $url, string $label = '')
+    {
+        return $this->url($url, $label);
+    }
     public function html(string $html = '') : self
     {
         $payload = new HtmlPayload($html);
         return $this->sendRequest($payload);
+    }
+    public function confetti() : self
+    {
+        return $this->sendRequest(new ConfettiPayload());
     }
     public function exception(Throwable $exception, array $meta = [])
     {

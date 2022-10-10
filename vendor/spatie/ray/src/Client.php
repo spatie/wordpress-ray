@@ -41,7 +41,9 @@ class Client
             $expiresAt = \microtime(\true) + 30.0;
             static::$cache[$this->fingerprint] = [$success, $expiresAt];
         } finally {
-            \curl_close($curlHandle);
+            if (isset($curlHandle)) {
+                \curl_close($curlHandle);
+            }
             return $success ?? \false;
         }
     }
@@ -62,7 +64,9 @@ class Client
                 // do nothing for now
             }
         } finally {
-            \curl_close($curlHandle);
+            if (isset($curlHandle)) {
+                \curl_close($curlHandle);
+            }
         }
     }
     public function lockExists(string $lockName) : bool

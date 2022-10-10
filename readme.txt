@@ -5,7 +5,7 @@ Tags: development, debugging, debug, developer
 Requires PHP: 7.3
 Requires at least: 5.5
 Tested up to: 5.9
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: MIT
 
 Easily debug WordPress sites using Ray.
