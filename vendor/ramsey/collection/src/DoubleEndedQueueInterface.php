@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\NoSuchElementException;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
 /**
  * A linear collection that supports element insertion and removal at both ends.
  *
@@ -158,9 +155,6 @@ use Ramsey\Collection\Exception\NoSuchElementException;
  * ability to insert nulls. This is so because `null` is used as a special
  * return value by various methods to indicated that the double-ended queue is
  * empty.
- *
- * @template T
- * @extends QueueInterface<T>
  */
 interface DoubleEndedQueueInterface extends QueueInterface
 {
@@ -171,7 +165,7 @@ interface DoubleEndedQueueInterface extends QueueInterface
      * When using a capacity-restricted double-ended queue, it is generally
      * preferable to use the `offerFirst()` method.
      *
-     * @param T $element The element to add to the front of this queue.
+     * @param mixed $element The element to add to the front of this queue.
      *
      * @return bool `true` if this queue changed as a result of the call.
      *
@@ -180,9 +174,7 @@ interface DoubleEndedQueueInterface extends QueueInterface
      *     Implementations should use a more-specific exception that extends
      *     `\RuntimeException`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function addFirst($element): bool;
-
+    public function addFirst($element) : bool;
     /**
      * Inserts the specified element at the end of this queue if it is possible
      * to do so immediately without violating capacity restrictions.
@@ -192,7 +184,7 @@ interface DoubleEndedQueueInterface extends QueueInterface
      *
      * This method is equivalent to `add()`.
      *
-     * @param T $element The element to add to the end of this queue.
+     * @param mixed $element The element to add to the end of this queue.
      *
      * @return bool `true` if this queue changed as a result of the call.
      *
@@ -201,9 +193,7 @@ interface DoubleEndedQueueInterface extends QueueInterface
      *     Implementations should use a more-specific exception that extends
      *     `\RuntimeException`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function addLast($element): bool;
-
+    public function addLast($element) : bool;
     /**
      * Inserts the specified element at the front of this queue if it is
      * possible to do so immediately without violating capacity restrictions.
@@ -212,13 +202,11 @@ interface DoubleEndedQueueInterface extends QueueInterface
      * preferable to `addFirst()`, which can fail to insert an element only by
      * throwing an exception.
      *
-     * @param T $element The element to add to the front of this queue.
+     * @param mixed $element The element to add to the front of this queue.
      *
      * @return bool `true` if the element was added to this queue, else `false`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function offerFirst($element): bool;
-
+    public function offerFirst($element) : bool;
     /**
      * Inserts the specified element at the end of this queue if it is possible
      * to do so immediately without violating capacity restrictions.
@@ -227,90 +215,81 @@ interface DoubleEndedQueueInterface extends QueueInterface
      * preferable to `addLast()` which can fail to insert an element only by
      * throwing an exception.
      *
-     * @param T $element The element to add to the end of this queue.
+     * @param mixed $element The element to add to the end of this queue.
      *
      * @return bool `true` if the element was added to this queue, else `false`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function offerLast($element): bool;
-
+    public function offerLast($element) : bool;
     /**
      * Retrieves and removes the head of this queue.
      *
      * This method differs from `pollFirst()` only in that it throws an
      * exception if this queue is empty.
      *
-     * @return T the first element in this queue.
+     * @return mixed the first element in this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function removeFirst();
-
     /**
      * Retrieves and removes the tail of this queue.
      *
      * This method differs from `pollLast()` only in that it throws an exception
      * if this queue is empty.
      *
-     * @return T the last element in this queue.
+     * @return mixed the last element in this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function removeLast();
-
     /**
      * Retrieves and removes the head of this queue, or returns `null` if this
      * queue is empty.
      *
-     * @return T|null the head of this queue, or `null` if this queue is empty.
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function pollFirst();
-
     /**
      * Retrieves and removes the tail of this queue, or returns `null` if this
      * queue is empty.
      *
-     * @return T|null the tail of this queue, or `null` if this queue is empty.
+     * @return mixed|null the tail of this queue, or `null` if this queue is empty.
      */
     public function pollLast();
-
     /**
      * Retrieves, but does not remove, the head of this queue.
      *
      * This method differs from `peekFirst()` only in that it throws an
      * exception if this queue is empty.
      *
-     * @return T the head of this queue.
+     * @return mixed the head of this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function firstElement();
-
     /**
      * Retrieves, but does not remove, the tail of this queue.
      *
      * This method differs from `peekLast()` only in that it throws an exception
      * if this queue is empty.
      *
-     * @return T the tail of this queue.
+     * @return mixed the tail of this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function lastElement();
-
     /**
      * Retrieves, but does not remove, the head of this queue, or returns `null`
      * if this queue is empty.
      *
-     * @return T|null the head of this queue, or `null` if this queue is empty.
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function peekFirst();
-
     /**
      * Retrieves, but does not remove, the tail of this queue, or returns `null`
      * if this queue is empty.
      *
-     * @return T|null the tail of this queue, or `null` if this queue is empty.
+     * @return mixed|null the tail of this queue, or `null` if this queue is empty.
      */
     public function peekLast();
 }

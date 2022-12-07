@@ -9,112 +9,90 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
-
-use Ramsey\Collection\Exception\InvalidArgumentException;
-use Ramsey\Collection\Tool\TypeTrait;
-use Ramsey\Collection\Tool\ValueToStringTrait;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Collection\Tool\TypeTrait;
+use Spatie\WordPressRay\Ramsey\Collection\Tool\ValueToStringTrait;
 use function array_combine;
 use function array_key_exists;
 use function is_int;
-
 /**
  * `NamedParameterMap` represents a mapping of values to a set of named keys
  * that may optionally be typed
- *
- * @extends AbstractMap<mixed>
  */
 class NamedParameterMap extends AbstractMap
 {
     use TypeTrait;
     use ValueToStringTrait;
-
     /**
      * Named parameters defined for this map.
      *
-     * @var array<string, string>
+     * @var array<mixed, string>
      */
     protected $namedParameters;
-
     /**
      * Constructs a new `NamedParameterMap`.
      *
-     * @param array<array-key, string> $namedParameters The named parameters defined for this map.
-     * @param array<array-key, mixed> $data An initial set of data to set on this map.
+     * @param array<mixed, string> $namedParameters The named parameters defined for this map.
+     * @param mixed[] $data An initial set of data to set on this map.
      */
     public function __construct(array $namedParameters, array $data = [])
     {
         $this->namedParameters = $this->filterNamedParameters($namedParameters);
         parent::__construct($data);
     }
-
     /**
      * Returns named parameters set for this `NamedParameterMap`.
      *
-     * @return array<string, string>
+     * @return array<mixed, string>
      */
-    public function getNamedParameters(): array
+    public function getNamedParameters() : array
     {
         return $this->namedParameters;
     }
-
     /**
-     * @inheritDoc
+     * Sets the given value to the given offset in the map.
+     *
+     * @param mixed $offset The offset to set.
+     * @param mixed $value The value to set at the given offset.
+     *
+     * @throws InvalidArgumentException if the offset provided is not a
+     *     defined named parameter, or if the value is not of the type defined
+     *     for the given named parameter.
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        if ($offset === null) {
-            throw new InvalidArgumentException(
-                'Map elements are key/value pairs; a key must be provided for '
-                . 'value ' . var_export($value, true)
-            );
-        }
-
         if (!array_key_exists($offset, $this->namedParameters)) {
-            throw new InvalidArgumentException(
-                'Attempting to set value for unconfigured parameter \''
-                . $offset . '\''
-            );
+            throw new InvalidArgumentException('Attempting to set value for unconfigured parameter \'' . $offset . '\'');
         }
-
-        if ($this->checkType($this->namedParameters[$offset], $value) === false) {
-            throw new InvalidArgumentException(
-                'Value for \'' . $offset . '\' must be of type '
-                . $this->namedParameters[$offset] . '; value is '
-                . $this->toolValueToString($value)
-            );
+        if ($this->checkType($this->namedParameters[$offset], $value) === \false) {
+            throw new InvalidArgumentException('Value for \'' . $offset . '\' must be of type ' . $this->namedParameters[$offset] . '; value is ' . $this->toolValueToString($value));
         }
-
         $this->data[$offset] = $value;
     }
-
     /**
      * Given an array of named parameters, constructs a proper mapping of
      * named parameters to types.
      *
-     * @param array<array-key, string> $namedParameters The named parameters to filter.
+     * @param array<mixed, string> $namedParameters The named parameters to filter.
      *
-     * @return array<string, string>
+     * @return array<mixed, string>
      */
-    protected function filterNamedParameters(array $namedParameters): array
+    protected function filterNamedParameters(array $namedParameters) : array
     {
         $names = [];
         $types = [];
-
         foreach ($namedParameters as $key => $value) {
             if (is_int($key)) {
-                $names[] = $value;
+                $names[] = (string) $value;
                 $types[] = 'mixed';
             } else {
                 $names[] = $key;
-                $types[] = $value;
+                $types[] = (string) $value;
             }
         }
-
         return array_combine($names, $types) ?: [];
     }
 }

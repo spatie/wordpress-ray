@@ -1,8 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
-namespace Brick\Math\Exception;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Brick\Math\Exception;
 
 /**
  * Exception thrown when a number cannot be represented at the requested scale without rounding.
@@ -11,8 +10,6 @@ class RoundingNecessaryException extends MathException
 {
     /**
      * @return RoundingNecessaryException
-     *
-     * @psalm-pure
      */
     public static function roundingNecessary() : RoundingNecessaryException
     {

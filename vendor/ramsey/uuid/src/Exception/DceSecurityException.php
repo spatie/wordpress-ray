@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Exception;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Exception;
 
 use RuntimeException as PhpRuntimeException;
-
 /**
  * Thrown to indicate an exception occurred while dealing with DCE Security
  * (version 2) UUIDs

@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\NoSuchElementException;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
 /**
  * A queue is a collection in which the entities in the collection are kept in
  * order.
@@ -92,9 +89,6 @@ use Ramsey\Collection\Exception\NoSuchElementException;
  * Even in the implementations that permit it, `null` should not be inserted
  * into a queue, as `null` is also used as a special return value by the
  * `poll()` method to indicate that the queue contains no elements.
- *
- * @template T
- * @extends ArrayInterface<T>
  */
 interface QueueInterface extends ArrayInterface
 {
@@ -119,7 +113,7 @@ interface QueueInterface extends ArrayInterface
      *
      * @see self::offer()
      *
-     * @param T $element The element to add to this queue.
+     * @param mixed $element The element to add to this queue.
      *
      * @return bool `true` if this queue changed as a result of the call.
      *
@@ -128,9 +122,7 @@ interface QueueInterface extends ArrayInterface
      *     Implementations should use a more-specific exception that extends
      *     `\RuntimeException`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function add($element): bool;
-
+    public function add($element) : bool;
     /**
      * Retrieves, but does not remove, the head of this queue.
      *
@@ -139,12 +131,11 @@ interface QueueInterface extends ArrayInterface
      *
      * @see self::peek()
      *
-     * @return T the head of this queue.
+     * @return mixed the head of this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function element();
-
     /**
      * Inserts the specified element into this queue if it is possible to do so
      * immediately without violating capacity restrictions.
@@ -155,33 +146,29 @@ interface QueueInterface extends ArrayInterface
      *
      * @see self::add()
      *
-     * @param T $element The element to add to this queue.
+     * @param mixed $element The element to add to this queue.
      *
      * @return bool `true` if the element was added to this queue, else `false`.
      */
-    // phpcs:ignore SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
-    public function offer($element): bool;
-
+    public function offer($element) : bool;
     /**
      * Retrieves, but does not remove, the head of this queue, or returns `null`
      * if this queue is empty.
      *
      * @see self::element()
      *
-     * @return T|null the head of this queue, or `null` if this queue is empty.
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function peek();
-
     /**
      * Retrieves and removes the head of this queue, or returns `null`
      * if this queue is empty.
      *
      * @see self::remove()
      *
-     * @return T|null the head of this queue, or `null` if this queue is empty.
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function poll();
-
     /**
      * Retrieves and removes the head of this queue.
      *
@@ -190,14 +177,13 @@ interface QueueInterface extends ArrayInterface
      *
      * @see self::poll()
      *
-     * @return T the head of this queue.
+     * @return mixed the head of this queue.
      *
      * @throws NoSuchElementException if this queue is empty.
      */
     public function remove();
-
     /**
      * Returns the type associated with this queue.
      */
-    public function getType(): string;
+    public function getType() : string;
 }

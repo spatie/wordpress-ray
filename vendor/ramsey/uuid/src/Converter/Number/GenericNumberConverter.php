@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Number;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Converter\Number;
-
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Math\CalculatorInterface;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Math\CalculatorInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
 /**
  * GenericNumberConverter uses the provided calculator to convert decimal
  * numbers to and from hexadecimal values
@@ -29,7 +26,6 @@ class GenericNumberConverter implements NumberConverterInterface
     public function __construct(private CalculatorInterface $calculator)
     {
     }
-
     /**
      * @inheritDoc
      * @psalm-pure
@@ -37,11 +33,10 @@ class GenericNumberConverter implements NumberConverterInterface
      * @psalm-suppress MoreSpecificReturnType we know that the retrieved `string` is never empty
      * @psalm-suppress LessSpecificReturnStatement we know that the retrieved `string` is never empty
      */
-    public function fromHex(string $hex): string
+    public function fromHex(string $hex) : string
     {
         return $this->calculator->fromBase($hex, 16)->toString();
     }
-
     /**
      * @inheritDoc
      * @psalm-pure
@@ -49,7 +44,7 @@ class GenericNumberConverter implements NumberConverterInterface
      * @psalm-suppress MoreSpecificReturnType we know that the retrieved `string` is never empty
      * @psalm-suppress LessSpecificReturnStatement we know that the retrieved `string` is never empty
      */
-    public function toHex(string $number): string
+    public function toHex(string $number) : string
     {
         /** @phpstan-ignore-next-line PHPStan complains that this is not a non-empty-string. */
         return $this->calculator->toBase(new IntegerObject($number), 16);

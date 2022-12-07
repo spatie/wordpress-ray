@@ -9,18 +9,14 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
-
-use Ramsey\Uuid\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
 use ValueError;
-
 use function preg_match;
 use function sprintf;
 use function substr;
-
 /**
  * A value object representing a hexadecimal number
  *
@@ -33,43 +29,36 @@ use function substr;
 final class Hexadecimal implements TypeInterface
 {
     private string $value;
-
     /**
      * @param self|string $value The hexadecimal value to store
      */
-    public function __construct(self | string $value)
+    public function __construct(self|string $value)
     {
         $this->value = $value instanceof self ? (string) $value : $this->prepareValue($value);
     }
-
-    public function toString(): string
+    public function toString() : string
     {
         return $this->value;
     }
-
-    public function __toString(): string
+    public function __toString() : string
     {
         return $this->toString();
     }
-
-    public function jsonSerialize(): string
+    public function jsonSerialize() : string
     {
         return $this->toString();
     }
-
-    public function serialize(): string
+    public function serialize() : string
     {
         return $this->toString();
     }
-
     /**
      * @return array{string: string}
      */
-    public function __serialize(): array
+    public function __serialize() : array
     {
         return ['string' => $this->toString()];
     }
-
     /**
      * Constructs the object from a serialized string representation
      *
@@ -77,39 +66,31 @@ final class Hexadecimal implements TypeInterface
      *
      * @psalm-suppress UnusedMethodCall
      */
-    public function unserialize(string $data): void
+    public function unserialize(string $data) : void
     {
         $this->__construct($data);
     }
-
     /**
      * @param array{string?: string} $data
      */
-    public function __unserialize(array $data): void
+    public function __unserialize(array $data) : void
     {
         // @codeCoverageIgnoreStart
         if (!isset($data['string'])) {
             throw new ValueError(sprintf('%s(): Argument #1 ($data) is invalid', __METHOD__));
         }
         // @codeCoverageIgnoreEnd
-
         $this->unserialize($data['string']);
     }
-
-    private function prepareValue(string $value): string
+    private function prepareValue(string $value) : string
     {
-        $value = strtolower($value);
-
-        if (str_starts_with($value, '0x')) {
+        $value = \strtolower($value);
+        if (\str_starts_with($value, '0x')) {
             $value = substr($value, 2);
         }
-
         if (!preg_match('/^[A-Fa-f0-9]+$/', $value)) {
-            throw new InvalidArgumentException(
-                'Value must be a hexadecimal number'
-            );
+            throw new InvalidArgumentException('Value must be a hexadecimal number');
         }
-
         return $value;
     }
 }

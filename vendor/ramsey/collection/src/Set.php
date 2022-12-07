@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * A set is a collection that contains no duplicate elements.
@@ -34,9 +32,6 @@ namespace Ramsey\Collection;
  * $bar = new \My\Foo();
  * $set->add($bar); // returns TRUE, $bar !== $foo
  * ```
- *
- * @template T
- * @extends AbstractSet<T>
  */
 class Set extends AbstractSet
 {
@@ -48,21 +43,22 @@ class Set extends AbstractSet
      * @var string
      */
     private $setType;
-
     /**
      * Constructs a set object of the specified type, optionally with the
      * specified data.
      *
      * @param string $setType The type (FQCN) associated with this set.
-     * @param array<array-key, T> $data The initial items to store in the set.
+     * @param mixed[] $data The initial items to store in the set.
      */
     public function __construct(string $setType, array $data = [])
     {
         $this->setType = $setType;
         parent::__construct($data);
     }
-
-    public function getType(): string
+    /**
+     * Returns the type associated with this set.
+     */
+    public function getType() : string
     {
         return $this->setType;
     }

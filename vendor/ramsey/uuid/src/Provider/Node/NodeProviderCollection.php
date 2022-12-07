@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider\Node;
-
-use Ramsey\Collection\AbstractCollection;
-use Ramsey\Uuid\Provider\NodeProviderInterface;
-use Ramsey\Uuid\Type\Hexadecimal;
-
+use Spatie\WordPressRay\Ramsey\Collection\AbstractCollection;
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
 /**
  * A collection of NodeProviderInterface objects
  *
@@ -30,11 +27,10 @@ use Ramsey\Uuid\Type\Hexadecimal;
  */
 class NodeProviderCollection extends AbstractCollection
 {
-    public function getType(): string
+    public function getType() : string
     {
         return NodeProviderInterface::class;
     }
-
     /**
      * Re-constructs the object from its serialized form
      *
@@ -44,23 +40,12 @@ class NodeProviderCollection extends AbstractCollection
      * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      * @psalm-suppress RedundantConditionGivenDocblockType
      */
-    public function unserialize($serialized): void
+    public function unserialize($serialized) : void
     {
         /** @var array<array-key, NodeProviderInterface> $data */
-        $data = unserialize($serialized, [
-            'allowed_classes' => [
-                Hexadecimal::class,
-                RandomNodeProvider::class,
-                StaticNodeProvider::class,
-                SystemNodeProvider::class,
-            ],
-        ]);
-
-        $this->data = array_filter(
-            $data,
-            function ($unserialized): bool {
-                return $unserialized instanceof NodeProviderInterface;
-            }
-        );
+        $data = \unserialize($serialized, ['allowed_classes' => [Hexadecimal::class, RandomNodeProvider::class, StaticNodeProvider::class, SystemNodeProvider::class]]);
+        $this->data = \array_filter($data, function ($unserialized) : bool {
+            return $unserialized instanceof NodeProviderInterface;
+        });
     }
 }

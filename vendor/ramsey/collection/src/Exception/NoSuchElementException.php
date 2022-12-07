@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Exception;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Exception;
 
 /**
  * Thrown when attempting to access an element that does not exist.

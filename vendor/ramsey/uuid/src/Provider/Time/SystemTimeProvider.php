@@ -9,25 +9,20 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Time;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider\Time;
-
-use Ramsey\Uuid\Provider\TimeProviderInterface;
-use Ramsey\Uuid\Type\Time;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
 use function gettimeofday;
-
 /**
  * SystemTimeProvider retrieves the current time using built-in PHP functions
  */
 class SystemTimeProvider implements TimeProviderInterface
 {
-    public function getTime(): Time
+    public function getTime() : Time
     {
         $time = gettimeofday();
-
         return new Time($time['sec'], $time['usec']);
     }
 }

@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Time;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider\Time;
-
-use Ramsey\Uuid\Provider\TimeProviderInterface;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-use Ramsey\Uuid\Type\Time;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\TimeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
 /**
  * FixedTimeProvider uses a known time to provide the time
  *
@@ -29,28 +26,25 @@ class FixedTimeProvider implements TimeProviderInterface
     public function __construct(private Time $time)
     {
     }
-
     /**
      * Sets the `usec` component of the time
      *
      * @param int|string|IntegerObject $value The `usec` value to set
      */
-    public function setUsec($value): void
+    public function setUsec($value) : void
     {
         $this->time = new Time($this->time->getSeconds(), $value);
     }
-
     /**
      * Sets the `sec` component of the time
      *
      * @param int|string|IntegerObject $value The `sec` value to set
      */
-    public function setSec($value): void
+    public function setSec($value) : void
     {
         $this->time = new Time($value, $this->time->getMicroseconds());
     }
-
-    public function getTime(): Time
+    public function getTime() : Time
     {
         return $this->time;
     }

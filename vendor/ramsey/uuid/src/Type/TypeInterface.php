@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Type;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Type;
 
 use JsonSerializable;
 use Serializable;
-
 /**
  * TypeInterface ensures consistency in typed values returned by ramsey/uuid
  *
@@ -24,7 +21,6 @@ use Serializable;
  */
 interface TypeInterface extends JsonSerializable, Serializable
 {
-    public function toString(): string;
-
-    public function __toString(): string;
+    public function toString() : string;
+    public function __toString() : string;
 }

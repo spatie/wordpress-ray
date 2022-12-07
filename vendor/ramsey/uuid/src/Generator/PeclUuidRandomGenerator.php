@@ -9,16 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 use function uuid_create;
 use function uuid_parse;
-
 use const UUID_TYPE_RANDOM;
-
 /**
  * PeclUuidRandomGenerator generates strings of random binary data using ext-uuid
  *
@@ -26,10 +22,9 @@ use const UUID_TYPE_RANDOM;
  */
 class PeclUuidRandomGenerator implements RandomGeneratorInterface
 {
-    public function generate(int $length): string
+    public function generate(int $length) : string
     {
         $uuid = uuid_create(UUID_TYPE_RANDOM);
-
         return uuid_parse($uuid);
     }
 }

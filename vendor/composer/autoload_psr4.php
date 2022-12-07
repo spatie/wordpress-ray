@@ -6,8 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Polyfill\\Php81\\' => array($vendorDir . '/symfony/polyfill-php81'),
-    'Spatie\\WordPressRay\\Tests\\' => array($baseDir . '/tests'),
     'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Spatie\\WordPressRay\\Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
     'Spatie\\WordPressRay\\Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
@@ -17,14 +15,9 @@ return array(
     'Spatie\\WordPressRay\\Spatie\\Ray\\' => array($vendorDir . '/spatie/ray/src'),
     'Spatie\\WordPressRay\\Spatie\\Macroable\\' => array($vendorDir . '/spatie/macroable/src'),
     'Spatie\\WordPressRay\\Spatie\\Backtrace\\' => array($vendorDir . '/spatie/backtrace/src'),
+    'Spatie\\WordPressRay\\Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
+    'Spatie\\WordPressRay\\Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Spatie\\WordPressRay\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'Spatie\\WordPressRay\\Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'Spatie\\WordPressRay\\' => array($baseDir . '/src'),
-    'Ramsey\\Uuid\\' => array($vendorDir . '/ramsey/uuid/src'),
-    'Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
-    'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
-    'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
-    'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
-    'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
-    'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
-    'Bamarni\\Composer\\Bin\\' => array($vendorDir . '/bamarni/composer-bin-plugin/src'),
 );

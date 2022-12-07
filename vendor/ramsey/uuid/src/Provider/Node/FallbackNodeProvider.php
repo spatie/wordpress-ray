@@ -9,15 +9,12 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider\Node;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider\Node;
-
-use Ramsey\Uuid\Exception\NodeException;
-use Ramsey\Uuid\Provider\NodeProviderInterface;
-use Ramsey\Uuid\Type\Hexadecimal;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\NodeException;
+use Spatie\WordPressRay\Ramsey\Uuid\Provider\NodeProviderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
 /**
  * FallbackNodeProvider retrieves the system node ID by stepping through a list
  * of providers until a node ID can be obtained
@@ -30,25 +27,17 @@ class FallbackNodeProvider implements NodeProviderInterface
     public function __construct(private iterable $providers)
     {
     }
-
-    public function getNode(): Hexadecimal
+    public function getNode() : Hexadecimal
     {
         $lastProviderException = null;
-
         foreach ($this->providers as $provider) {
             try {
                 return $provider->getNode();
             } catch (NodeException $exception) {
                 $lastProviderException = $exception;
-
                 continue;
             }
         }
-
-        throw new NodeException(
-            'Unable to find a suitable node provider',
-            0,
-            $lastProviderException
-        );
+        throw new NodeException('Unable to find a suitable node provider', 0, $lastProviderException);
     }
 }

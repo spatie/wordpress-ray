@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
 /**
  * A collection represents a group of objects.
@@ -69,9 +67,6 @@ namespace Ramsey\Collection;
  *     // the collection is a collection of My\Foo objects
  * }
  * ```
- *
- * @template T
- * @extends AbstractCollection<T>
  */
 class Collection extends AbstractCollection
 {
@@ -84,22 +79,23 @@ class Collection extends AbstractCollection
      * @var string
      */
     private $collectionType;
-
     /**
      * Constructs a collection object of the specified type, optionally with the
      * specified data.
      *
      * @param string $collectionType The type (FQCN) associated with this
      *     collection.
-     * @param array<array-key, T> $data The initial items to store in the collection.
+     * @param mixed[] $data The initial items to store in the collection.
      */
     public function __construct(string $collectionType, array $data = [])
     {
         $this->collectionType = $collectionType;
         parent::__construct($data);
     }
-
-    public function getType(): string
+    /**
+     * Returns the type associated with this collection.
+     */
+    public function getType() : string
     {
         return $this->collectionType;
     }

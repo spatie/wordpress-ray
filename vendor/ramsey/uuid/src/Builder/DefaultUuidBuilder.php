@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Builder;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Builder;
-
-use Ramsey\Uuid\Rfc4122\UuidBuilder as Rfc4122UuidBuilder;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidBuilder as Rfc4122UuidBuilder;
 /**
  * @deprecated Transition to {@see Rfc4122UuidBuilder}.
  *

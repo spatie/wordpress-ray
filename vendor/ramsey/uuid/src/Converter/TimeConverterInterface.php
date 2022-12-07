@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Converter;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Converter;
-
-use Ramsey\Uuid\Type\Hexadecimal;
-use Ramsey\Uuid\Type\Time;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
 /**
  * A time converter converts timestamps into representations that may be used
  * in UUIDs
@@ -41,8 +38,7 @@ interface TimeConverterInterface
      *
      * @psalm-pure
      */
-    public function calculateTime(string $seconds, string $microseconds): Hexadecimal;
-
+    public function calculateTime(string $seconds, string $microseconds) : Hexadecimal;
     /**
      * Converts a timestamp extracted from a UUID to a Unix timestamp
      *
@@ -54,5 +50,5 @@ interface TimeConverterInterface
      *
      * @psalm-pure
      */
-    public function convertTime(Hexadecimal $uuidTimestamp): Time;
+    public function convertTime(Hexadecimal $uuidTimestamp) : Time;
 }

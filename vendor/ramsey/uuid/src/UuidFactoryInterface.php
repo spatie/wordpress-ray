@@ -9,16 +9,13 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid;
 
 use DateTimeInterface;
-use Ramsey\Uuid\Type\Hexadecimal;
-use Ramsey\Uuid\Type\Integer as IntegerObject;
-use Ramsey\Uuid\Validator\ValidatorInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Hexadecimal;
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Integer as IntegerObject;
+use Spatie\WordPressRay\Ramsey\Uuid\Validator\ValidatorInterface;
 /**
  * UuidFactoryInterface defines common functionality all `UuidFactory` instances
  * must implement
@@ -35,8 +32,7 @@ interface UuidFactoryInterface
      *
      * @psalm-pure
      */
-    public function fromBytes(string $bytes): UuidInterface;
-
+    public function fromBytes(string $bytes) : UuidInterface;
     /**
      * Creates a UUID from a DateTimeInterface instance
      *
@@ -50,12 +46,7 @@ interface UuidFactoryInterface
      * @return UuidInterface A UuidInterface instance that represents a
      *     version 1 UUID created from a DateTimeInterface instance
      */
-    public function fromDateTime(
-        DateTimeInterface $dateTime,
-        ?Hexadecimal $node = null,
-        ?int $clockSeq = null
-    ): UuidInterface;
-
+    public function fromDateTime(DateTimeInterface $dateTime, ?Hexadecimal $node = null, ?int $clockSeq = null) : UuidInterface;
     /**
      * Creates a UUID from a 128-bit integer string
      *
@@ -66,8 +57,7 @@ interface UuidFactoryInterface
      *
      * @psalm-pure
      */
-    public function fromInteger(string $integer): UuidInterface;
-
+    public function fromInteger(string $integer) : UuidInterface;
     /**
      * Creates a UUID from the string standard representation
      *
@@ -78,15 +68,13 @@ interface UuidFactoryInterface
      *
      * @psalm-pure
      */
-    public function fromString(string $uuid): UuidInterface;
-
+    public function fromString(string $uuid) : UuidInterface;
     /**
      * Returns the validator to use for the factory
      *
      * @psalm-mutation-free
      */
-    public function getValidator(): ValidatorInterface;
-
+    public function getValidator() : ValidatorInterface;
     /**
      * Returns a version 1 (Gregorian time) UUID from a host ID, sequence number,
      * and the current time
@@ -101,8 +89,7 @@ interface UuidFactoryInterface
      * @return UuidInterface A UuidInterface instance that represents a
      *     version 1 UUID
      */
-    public function uuid1($node = null, ?int $clockSeq = null): UuidInterface;
-
+    public function uuid1($node = null, ?int $clockSeq = null) : UuidInterface;
     /**
      * Returns a version 2 (DCE Security) UUID from a local domain, local
      * identifier, host ID, clock sequence, and the current time
@@ -122,13 +109,7 @@ interface UuidFactoryInterface
      * @return UuidInterface A UuidInterface instance that represents a
      *     version 2 UUID
      */
-    public function uuid2(
-        int $localDomain,
-        ?IntegerObject $localIdentifier = null,
-        ?Hexadecimal $node = null,
-        ?int $clockSeq = null
-    ): UuidInterface;
-
+    public function uuid2(int $localDomain, ?IntegerObject $localIdentifier = null, ?Hexadecimal $node = null, ?int $clockSeq = null) : UuidInterface;
     /**
      * Returns a version 3 (name-based) UUID based on the MD5 hash of a
      * namespace ID and a name
@@ -141,16 +122,14 @@ interface UuidFactoryInterface
      *
      * @psalm-pure
      */
-    public function uuid3($ns, string $name): UuidInterface;
-
+    public function uuid3($ns, string $name) : UuidInterface;
     /**
      * Returns a version 4 (random) UUID
      *
      * @return UuidInterface A UuidInterface instance that represents a
      *     version 4 UUID
      */
-    public function uuid4(): UuidInterface;
-
+    public function uuid4() : UuidInterface;
     /**
      * Returns a version 5 (name-based) UUID based on the SHA-1 hash of a
      * namespace ID and a name
@@ -163,8 +142,7 @@ interface UuidFactoryInterface
      *
      * @psalm-pure
      */
-    public function uuid5($ns, string $name): UuidInterface;
-
+    public function uuid5($ns, string $name) : UuidInterface;
     /**
      * Returns a version 6 (reordered time) UUID from a host ID, sequence number,
      * and the current time
@@ -178,5 +156,5 @@ interface UuidFactoryInterface
      * @return UuidInterface A UuidInterface instance that represents a
      *     version 6 UUID
      */
-    public function uuid6(?Hexadecimal $node = null, ?int $clockSeq = null): UuidInterface;
+    public function uuid6(?Hexadecimal $node = null, ?int $clockSeq = null) : UuidInterface;
 }

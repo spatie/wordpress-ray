@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Rfc4122;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Rfc4122;
 
 /**
  * Provides common functionality for max UUIDs
@@ -29,12 +27,11 @@ trait MaxTrait
     /**
      * Returns the bytes that comprise the fields
      */
-    abstract public function getBytes(): string;
-
+    public abstract function getBytes() : string;
     /**
      * Returns true if the byte string represents a max UUID
      */
-    public function isMax(): bool
+    public function isMax() : bool
     {
         return $this->getBytes() === "\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff";
     }

@@ -9,22 +9,19 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Nonstandard;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Nonstandard;
-
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Lazy\LazyUuidFromString;
-use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
-use Ramsey\Uuid\Rfc4122\TimeTrait;
-use Ramsey\Uuid\Rfc4122\UuidInterface;
-use Ramsey\Uuid\Rfc4122\UuidV1;
-use Ramsey\Uuid\Uuid;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Lazy\LazyUuidFromString;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\TimeTrait;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidV1;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 /**
  * Reordered time, or version 6, UUIDs include timestamp, clock sequence, and
  * node values that are combined into a 128-bit unsigned integer
@@ -39,7 +36,6 @@ use Ramsey\Uuid\Uuid;
 class UuidV6 extends Uuid implements UuidInterface
 {
     use TimeTrait;
-
     /**
      * Creates a version 6 (reordered time) UUID
      *
@@ -51,55 +47,33 @@ class UuidV6 extends Uuid implements UuidInterface
      * @param TimeConverterInterface $timeConverter The time converter to use
      *     for converting timestamps extracted from a UUID to unix timestamps
      */
-    public function __construct(
-        Rfc4122FieldsInterface $fields,
-        NumberConverterInterface $numberConverter,
-        CodecInterface $codec,
-        TimeConverterInterface $timeConverter
-    ) {
+    public function __construct(Rfc4122FieldsInterface $fields, NumberConverterInterface $numberConverter, CodecInterface $codec, TimeConverterInterface $timeConverter)
+    {
         if ($fields->getVersion() !== Uuid::UUID_TYPE_REORDERED_TIME) {
-            throw new InvalidArgumentException(
-                'Fields used to create a UuidV6 must represent a '
-                . 'version 6 (reordered time) UUID'
-            );
+            throw new InvalidArgumentException('Fields used to create a UuidV6 must represent a ' . 'version 6 (reordered time) UUID');
         }
-
         parent::__construct($fields, $numberConverter, $codec, $timeConverter);
     }
-
     /**
      * Converts this UUID into an instance of a version 1 UUID
      */
-    public function toUuidV1(): UuidV1
+    public function toUuidV1() : UuidV1
     {
         $hex = $this->getHex()->toString();
-        $hex = substr($hex, 7, 5)
-            . substr($hex, 13, 3)
-            . substr($hex, 3, 4)
-            . '1' . substr($hex, 0, 3)
-            . substr($hex, 16);
-
+        $hex = \substr($hex, 7, 5) . \substr($hex, 13, 3) . \substr($hex, 3, 4) . '1' . \substr($hex, 0, 3) . \substr($hex, 16);
         /** @var LazyUuidFromString $uuid */
-        $uuid = Uuid::fromBytes((string) hex2bin($hex));
-
+        $uuid = Uuid::fromBytes((string) \hex2bin($hex));
         return $uuid->toUuidV1();
     }
-
     /**
      * Converts a version 1 UUID into an instance of a version 6 UUID
      */
-    public static function fromUuidV1(UuidV1 $uuidV1): \Ramsey\Uuid\Rfc4122\UuidV6
+    public static function fromUuidV1(UuidV1 $uuidV1) : \Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\UuidV6
     {
         $hex = $uuidV1->getHex()->toString();
-        $hex = substr($hex, 13, 3)
-            . substr($hex, 8, 4)
-            . substr($hex, 0, 5)
-            . '6' . substr($hex, 5, 3)
-            . substr($hex, 16);
-
+        $hex = \substr($hex, 13, 3) . \substr($hex, 8, 4) . \substr($hex, 0, 5) . '6' . \substr($hex, 5, 3) . \substr($hex, 16);
         /** @var LazyUuidFromString $uuid */
-        $uuid = Uuid::fromBytes((string) hex2bin($hex));
-
+        $uuid = Uuid::fromBytes((string) \hex2bin($hex));
         return $uuid->toUuidV6();
     }
 }

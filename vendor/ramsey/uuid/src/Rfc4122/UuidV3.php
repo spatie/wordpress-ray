@@ -9,18 +9,15 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Rfc4122;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Rfc4122;
-
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
-use Ramsey\Uuid\Uuid;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Rfc4122\FieldsInterface as Rfc4122FieldsInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
 /**
  * Version 3 UUIDs are named-based, using combination of a namespace and name
  * that are hashed into a 128-bit unsigned integer using MD5
@@ -40,19 +37,11 @@ final class UuidV3 extends Uuid implements UuidInterface
      * @param TimeConverterInterface $timeConverter The time converter to use
      *     for converting timestamps extracted from a UUID to unix timestamps
      */
-    public function __construct(
-        Rfc4122FieldsInterface $fields,
-        NumberConverterInterface $numberConverter,
-        CodecInterface $codec,
-        TimeConverterInterface $timeConverter
-    ) {
+    public function __construct(Rfc4122FieldsInterface $fields, NumberConverterInterface $numberConverter, CodecInterface $codec, TimeConverterInterface $timeConverter)
+    {
         if ($fields->getVersion() !== Uuid::UUID_TYPE_HASH_MD5) {
-            throw new InvalidArgumentException(
-                'Fields used to create a UuidV3 must represent a '
-                . 'version 3 (name-based, MD5-hashed) UUID'
-            );
+            throw new InvalidArgumentException('Fields used to create a UuidV3 must represent a ' . 'version 3 (name-based, MD5-hashed) UUID');
         }
-
         parent::__construct($fields, $numberConverter, $codec, $timeConverter);
     }
 }

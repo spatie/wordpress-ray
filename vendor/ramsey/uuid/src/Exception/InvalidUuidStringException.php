@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Exception;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Exception;
 
 /**
  * Thrown to indicate that the string received is not a valid UUID

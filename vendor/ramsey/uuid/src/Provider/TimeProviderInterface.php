@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Provider;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Provider;
-
-use Ramsey\Uuid\Type\Time;
-
+use Spatie\WordPressRay\Ramsey\Uuid\Type\Time;
 /**
  * A time provider retrieves the current time
  */
@@ -24,5 +21,5 @@ interface TimeProviderInterface
     /**
      * Returns a time object
      */
-    public function getTime(): Time;
+    public function getTime() : Time;
 }

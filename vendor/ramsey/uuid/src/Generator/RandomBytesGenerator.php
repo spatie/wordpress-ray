@@ -9,14 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
-
-use Ramsey\Uuid\Exception\RandomSourceException;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\RandomSourceException;
 use Throwable;
-
 /**
  * RandomBytesGenerator generates strings of random binary data using the
  * built-in `random_bytes()` PHP function
@@ -30,16 +27,12 @@ class RandomBytesGenerator implements RandomGeneratorInterface
      *
      * @inheritDoc
      */
-    public function generate(int $length): string
+    public function generate(int $length) : string
     {
         try {
-            return random_bytes($length);
+            return \random_bytes($length);
         } catch (Throwable $exception) {
-            throw new RandomSourceException(
-                $exception->getMessage(),
-                (int) $exception->getCode(),
-                $exception
-            );
+            throw new RandomSourceException($exception->getMessage(), (int) $exception->getCode(), $exception);
         }
     }
 }

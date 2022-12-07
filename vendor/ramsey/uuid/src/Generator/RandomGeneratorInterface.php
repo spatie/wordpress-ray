@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 /**
  * A random generator generates strings of random binary data
@@ -26,5 +24,5 @@ interface RandomGeneratorInterface
      *
      * @return string A binary string
      */
-    public function generate(int $length): string;
+    public function generate(int $length) : string;
 }

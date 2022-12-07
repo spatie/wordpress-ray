@@ -9,19 +9,16 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Nonstandard;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Nonstandard;
-
-use Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Ramsey\Uuid\Codec\CodecInterface;
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Converter\TimeConverterInterface;
-use Ramsey\Uuid\Exception\UnableToBuildUuidException;
-use Ramsey\Uuid\UuidInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Codec\CodecInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\TimeConverterInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Exception\UnableToBuildUuidException;
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 use Throwable;
-
 /**
  * Nonstandard\UuidBuilder builds instances of Nonstandard\Uuid
  *
@@ -35,12 +32,9 @@ class UuidBuilder implements UuidBuilderInterface
      * @param TimeConverterInterface $timeConverter The time converter to use
      *     for converting timestamps extracted from a UUID to Unix timestamps
      */
-    public function __construct(
-        private NumberConverterInterface $numberConverter,
-        private TimeConverterInterface $timeConverter
-    ) {
+    public function __construct(private NumberConverterInterface $numberConverter, private TimeConverterInterface $timeConverter)
+    {
     }
-
     /**
      * Builds and returns a Nonstandard\Uuid
      *
@@ -52,24 +46,18 @@ class UuidBuilder implements UuidBuilderInterface
      *
      * @psalm-pure
      */
-    public function build(CodecInterface $codec, string $bytes): UuidInterface
+    public function build(CodecInterface $codec, string $bytes) : UuidInterface
     {
         try {
-            return new Uuid(
-                $this->buildFields($bytes),
-                $this->numberConverter,
-                $codec,
-                $this->timeConverter
-            );
+            return new Uuid($this->buildFields($bytes), $this->numberConverter, $codec, $this->timeConverter);
         } catch (Throwable $e) {
             throw new UnableToBuildUuidException($e->getMessage(), (int) $e->getCode(), $e);
         }
     }
-
     /**
      * Proxy method to allow injecting a mock, for testing
      */
-    protected function buildFields(string $bytes): Fields
+    protected function buildFields(string $bytes) : Fields
     {
         return new Fields($bytes);
     }

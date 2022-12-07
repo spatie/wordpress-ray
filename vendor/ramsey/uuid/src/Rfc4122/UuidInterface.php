@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Rfc4122;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Rfc4122;
-
-use Ramsey\Uuid\UuidInterface as BaseUuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface as BaseUuidInterface;
 /**
  * Also known as a Leach-Salz variant UUID, an RFC 4122 variant UUID is a
  * universally unique identifier defined by RFC 4122

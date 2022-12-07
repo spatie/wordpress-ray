@@ -25,10 +25,8 @@
  *
  * @link https://github.com/brick/math brick/math at GitHub
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Math;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Math;
 
 /**
  * Specifies a rounding behavior for numerical operations capable of discarding
@@ -52,13 +50,11 @@ final class RoundingMode
     private function __construct()
     {
     }
-
     /**
      * Asserts that the requested operation has an exact result, hence no
      * rounding is necessary.
      */
     public const UNNECESSARY = 0;
-
     /**
      * Rounds away from zero.
      *
@@ -67,7 +63,6 @@ final class RoundingMode
      * calculated value.
      */
     public const UP = 1;
-
     /**
      * Rounds towards zero.
      *
@@ -76,7 +71,6 @@ final class RoundingMode
      * the calculated value.
      */
     public const DOWN = 2;
-
     /**
      * Rounds towards positive infinity.
      *
@@ -84,7 +78,6 @@ final class RoundingMode
      * DOWN. Note that this rounding mode never decreases the calculated value.
      */
     public const CEILING = 3;
-
     /**
      * Rounds towards negative infinity.
      *
@@ -92,7 +85,6 @@ final class RoundingMode
      * UP. Note that this rounding mode never increases the calculated value.
      */
     public const FLOOR = 4;
-
     /**
      * Rounds towards "nearest neighbor" unless both neighbors are equidistant,
      * in which case round up.
@@ -102,7 +94,6 @@ final class RoundingMode
      * school.
      */
     public const HALF_UP = 5;
-
     /**
      * Rounds towards "nearest neighbor" unless both neighbors are equidistant,
      * in which case round down.
@@ -111,7 +102,6 @@ final class RoundingMode
      * as for DOWN.
      */
     public const HALF_DOWN = 6;
-
     /**
      * Rounds towards "nearest neighbor" unless both neighbors are equidistant,
      * in which case round towards positive infinity.
@@ -120,7 +110,6 @@ final class RoundingMode
      * as for HALF_DOWN.
      */
     public const HALF_CEILING = 7;
-
     /**
      * Rounds towards "nearest neighbor" unless both neighbors are equidistant,
      * in which case round towards negative infinity.
@@ -129,7 +118,6 @@ final class RoundingMode
      * as for HALF_UP.
      */
     public const HALF_FLOOR = 8;
-
     /**
      * Rounds towards the "nearest neighbor" unless both neighbors are
      * equidistant, in which case rounds towards the even neighbor.

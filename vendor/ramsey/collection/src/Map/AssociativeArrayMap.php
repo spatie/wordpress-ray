@@ -9,16 +9,11 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
 /**
  * `AssociativeArrayMap` represents a standard associative array object.
- *
- * @template T
- * @extends AbstractMap<T>
  */
 class AssociativeArrayMap extends AbstractMap
 {

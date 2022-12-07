@@ -9,21 +9,14 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection;
-
-use Ramsey\Collection\Exception\InvalidArgumentException;
-use Ramsey\Collection\Exception\NoSuchElementException;
-
+use Spatie\WordPressRay\Ramsey\Collection\Exception\InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Collection\Exception\NoSuchElementException;
 /**
  * This class provides a basic implementation of `DoubleEndedQueueInterface`, to
  * minimize the effort required to implement this interface.
- *
- * @template T
- * @extends Queue<T>
- * @implements DoubleEndedQueueInterface<T>
  */
 class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
 {
@@ -33,155 +26,228 @@ class DoubleEndedQueue extends Queue implements DoubleEndedQueueInterface
      * @var int
      */
     private $tail = -1;
-
     /**
-     * @inheritDoc
+     * Sets the given value to the given offset in the queue.
+     *
+     * Since arbitrary offsets may not be manipulated in a queue, this method
+     * serves only to fulfill the `ArrayAccess` interface requirements. It is
+     * invoked by other operations when adding values to the queue.
+     *
+     * @link http://php.net/manual/en/arrayaccess.offsetset.php ArrayAccess::offsetSet()
+     *
+     * @param mixed|null $offset The offset is ignored and is treated as `null`.
+     * @param mixed $value The value to set at the given offset.
+     *
+     * @throws InvalidArgumentException when the value does not match the
+     *     specified type for this queue.
      */
-    public function offsetSet($offset, $value): void
+    public function offsetSet($offset, $value) : void
     {
-        if ($this->checkType($this->getType(), $value) === false) {
-            throw new InvalidArgumentException(
-                'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($value)
-            );
+        if ($this->checkType($this->getType(), $value) === \false) {
+            throw new InvalidArgumentException('Value must be of type ' . $this->getType() . '; value is ' . $this->toolValueToString($value));
         }
-
         $this->tail++;
-
         $this->data[$this->tail] = $value;
     }
-
     /**
-     * @inheritDoc
+     * Ensures that the specified element is inserted at the front of this queue.
+     *
+     * @see self::offerFirst()
+     *
+     * @param mixed $element The element to add to this queue.
+     *
+     * @return bool `true` if this queue changed as a result of the call.
+     *
+     * @throws InvalidArgumentException when the value does not match the
+     *     specified type for this queue.
      */
-    public function addFirst($element): bool
+    public function addFirst($element) : bool
     {
-        if ($this->checkType($this->getType(), $element) === false) {
-            throw new InvalidArgumentException(
-                'Value must be of type ' . $this->getType() . '; value is '
-                . $this->toolValueToString($element)
-            );
+        if ($this->checkType($this->getType(), $element) === \false) {
+            throw new InvalidArgumentException('Value must be of type ' . $this->getType() . '; value is ' . $this->toolValueToString($element));
         }
-
         $this->index--;
-
         $this->data[$this->index] = $element;
-
-        return true;
+        return \true;
     }
-
     /**
-     * @inheritDoc
+     * Ensures that the specified element in inserted at the end of this queue.
+     *
+     * @see Queue::add()
+     *
+     * @param mixed $element The element to add to this queue.
+     *
+     * @return bool `true` if this queue changed as a result of the call.
+     *
+     * @throws InvalidArgumentException when the value does not match the
+     *     specified type for this queue.
      */
-    public function addLast($element): bool
+    public function addLast($element) : bool
     {
         return $this->add($element);
     }
-
     /**
-     * @inheritDoc
+     * Inserts the specified element at the front this queue.
+     *
+     * @see self::addFirst()
+     *
+     * @param mixed $element The element to add to this queue.
+     *
+     * @return bool `true` if the element was added to this queue, else `false`.
      */
-    public function offerFirst($element): bool
+    public function offerFirst($element) : bool
     {
         try {
             return $this->addFirst($element);
         } catch (InvalidArgumentException $e) {
-            return false;
+            return \false;
         }
     }
-
     /**
-     * @inheritDoc
+     * Inserts the specified element at the end this queue.
+     *
+     * @see self::addLast()
+     * @see Queue::offer()
+     *
+     * @param mixed $element The element to add to this queue.
+     *
+     * @return bool `true` if the element was added to this queue, else `false`.
      */
-    public function offerLast($element): bool
+    public function offerLast($element) : bool
     {
         return $this->offer($element);
     }
-
     /**
-     * @inheritDoc
+     * Retrieves and removes the head of this queue.
+     *
+     * This method differs from `pollFirst()` only in that it throws an
+     * exception if this queue is empty.
+     *
+     * @see self::pollFirst()
+     * @see Queue::remove()
+     *
+     * @return mixed the head of this queue.
+     *
+     * @throws NoSuchElementException if this queue is empty.
      */
     public function removeFirst()
     {
         return $this->remove();
     }
-
     /**
-     * @inheritDoc
+     * Retrieves and removes the tail of this queue.
+     *
+     * This method differs from `pollLast()` only in that it throws an exception
+     * if this queue is empty.
+     *
+     * @see self::pollLast()
+     *
+     * @return mixed the tail of this queue.
+     *
+     * @throws NoSuchElementException if this queue is empty.
      */
     public function removeLast()
     {
-        $tail = $this->pollLast();
-
-        if ($tail === null) {
+        if ($this->count() === 0) {
             throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
+        $tail = $this[$this->tail];
+        unset($this[$this->tail]);
+        $this->tail--;
         return $tail;
     }
-
     /**
-     * @inheritDoc
+     * Retrieves and removes the head of this queue, or returns `null` if this
+     * queue is empty.
+     *
+     * @see self::removeFirst()
+     *
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function pollFirst()
     {
         return $this->poll();
     }
-
     /**
-     * @inheritDoc
+     * Retrieves and removes the tail of this queue, or returns `null` if this
+     * queue is empty.
+     *
+     * @see self::removeLast()
+     *
+     * @return mixed|null the tail of this queue, or `null` if this queue is empty.
      */
     public function pollLast()
     {
         if ($this->count() === 0) {
             return null;
         }
-
         $tail = $this[$this->tail];
-
         unset($this[$this->tail]);
         $this->tail--;
-
         return $tail;
     }
-
     /**
-     * @inheritDoc
+     * Retrieves, but does not remove, the head of this queue.
+     *
+     * This method differs from `peekFirst()` only in that it throws an
+     * exception if this queue is empty.
+     *
+     * @see self::peekFirst()
+     * @see Queue::element()
+     *
+     * @return mixed the head of this queue.
+     *
+     * @throws NoSuchElementException if this queue is empty.
      */
     public function firstElement()
     {
         return $this->element();
     }
-
     /**
-     * @inheritDoc
+     * Retrieves, but does not remove, the tail of this queue.
+     *
+     * This method differs from `peekLast()` only in that it throws an exception
+     * if this queue is empty.
+     *
+     * @see self::peekLast()
+     *
+     * @return mixed the tail of this queue.
+     *
+     * @throws NoSuchElementException if this queue is empty.
      */
     public function lastElement()
     {
         if ($this->count() === 0) {
             throw new NoSuchElementException('Can\'t return element from Queue. Queue is empty.');
         }
-
         return $this->data[$this->tail];
     }
-
     /**
-     * @inheritDoc
+     * Retrieves, but does not remove, the head of this queue, or returns `null`
+     * if this queue is empty.
+     *
+     * @see self::firstElement()
+     * @see Queue::peek()
+     *
+     * @return mixed|null the head of this queue, or `null` if this queue is empty.
      */
     public function peekFirst()
     {
         return $this->peek();
     }
-
     /**
-     * @inheritDoc
+     * Retrieves, but does not remove, the tail of this queue, or returns `null`
+     * if this queue is empty.
+     *
+     * @see self::lastElement()
+     *
+     * @return mixed|null the tail of this queue, or `null` if this queue is empty
      */
     public function peekLast()
     {
         if ($this->count() === 0) {
             return null;
         }
-
         return $this->data[$this->tail];
     }
 }

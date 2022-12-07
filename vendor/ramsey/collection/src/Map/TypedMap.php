@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Map;
 
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Map;
-
-use Ramsey\Collection\Tool\TypeTrait;
-
+use Spatie\WordPressRay\Ramsey\Collection\Tool\TypeTrait;
 /**
  * A `TypedMap` represents a map of elements where key and value are typed.
  *
@@ -79,15 +76,10 @@ use Ramsey\Collection\Tool\TypeTrait;
  *     }
  * }
  * ```
- *
- * @template K
- * @template T
- * @extends AbstractTypedMap<K, T>
  */
 class TypedMap extends AbstractTypedMap
 {
     use TypeTrait;
-
     /**
      * The data type of keys stored in this collection.
      *
@@ -97,40 +89,40 @@ class TypedMap extends AbstractTypedMap
      * @var string data type of the map key.
      */
     private $keyType;
-
     /**
      * The data type of values stored in this collection.
      *
-     * A map value's type is immutable once it is set. For this reason, this
+     * A map values's type is immutable once it is set. For this reason, this
      * property is set private.
      *
      * @var string data type of the map value.
      */
     private $valueType;
-
     /**
      * Constructs a map object of the specified key and value types,
      * optionally with the specified data.
      *
      * @param string $keyType The data type of the map's keys.
      * @param string $valueType The data type of the map's values.
-     * @param array<K, T> $data The initial data to set for this map.
+     * @param mixed[] $data The initial data to set for this map.
      */
     public function __construct(string $keyType, string $valueType, array $data = [])
     {
         $this->keyType = $keyType;
         $this->valueType = $valueType;
-
-        /** @psalm-suppress MixedArgumentTypeCoercion */
         parent::__construct($data);
     }
-
-    public function getKeyType(): string
+    /**
+     * Return the type used on the key.
+     */
+    public function getKeyType() : string
     {
         return $this->keyType;
     }
-
-    public function getValueType(): string
+    /**
+     * Return the type forced on the values.
+     */
+    public function getValueType() : string
     {
         return $this->valueType;
     }

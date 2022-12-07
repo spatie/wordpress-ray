@@ -9,10 +9,8 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Rfc4122;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Uuid\Rfc4122;
 
 /**
  * Provides common functionality for nil UUIDs
@@ -29,13 +27,12 @@ trait NilTrait
     /**
      * Returns the bytes that comprise the fields
      */
-    abstract public function getBytes(): string;
-
+    public abstract function getBytes() : string;
     /**
      * Returns true if the byte string represents a nil UUID
      */
-    public function isNil(): bool
+    public function isNil() : bool
     {
-        return $this->getBytes() === "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+        return $this->getBytes() === "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00";
     }
 }

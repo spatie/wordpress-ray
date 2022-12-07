@@ -9,13 +9,10 @@
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Collection\Tool;
+declare (strict_types=1);
+namespace Spatie\WordPressRay\Ramsey\Collection\Tool;
 
 use DateTimeInterface;
-
 use function get_class;
 use function get_resource_type;
 use function is_array;
@@ -23,7 +20,6 @@ use function is_bool;
 use function is_callable;
 use function is_resource;
 use function is_scalar;
-
 /**
  * Provides functionality to express a value as string
  */
@@ -44,50 +40,37 @@ trait ValueToStringTrait
      *
      * @param mixed $value the value to return as a string.
      */
-    protected function toolValueToString($value): string
+    protected function toolValueToString($value) : string
     {
         // null
         if ($value === null) {
             return 'NULL';
         }
-
         // boolean constants
         if (is_bool($value)) {
             return $value ? 'TRUE' : 'FALSE';
         }
-
         // array
         if (is_array($value)) {
             return 'Array';
         }
-
         // scalar types (integer, float, string)
         if (is_scalar($value)) {
             return (string) $value;
         }
-
         // resource
         if (is_resource($value)) {
             return '(' . get_resource_type($value) . ' resource #' . (int) $value . ')';
         }
-
-        // If we don't know what it is, use var_export().
-        if (!is_object($value)) {
-            return '(' . var_export($value, true) . ')';
-        }
-
-        // From here, $value should be an object.
-
+        // after this line $value is an object since is not null, scalar, array or resource
         // __toString() is implemented
         if (is_callable([$value, '__toString'])) {
             return (string) $value->__toString();
         }
-
         // object of type \DateTime
         if ($value instanceof DateTimeInterface) {
             return $value->format('c');
         }
-
         // unknown type
         return '(' . get_class($value) . ' Object)';
     }
