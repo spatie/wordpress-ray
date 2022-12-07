@@ -8,8 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
-namespace Symfony\Contracts\Service;
+namespace Spatie\WordPressRay\Symfony\Contracts\Service;
 
 /**
  * A ServiceSubscriber exposes its dependencies via the static {@link getSubscribedServices} method.
@@ -47,7 +46,7 @@ interface ServiceSubscriberInterface
      *  * ['?Psr\Log\LoggerInterface'] is a shortcut for
      *  * ['Psr\Log\LoggerInterface' => '?Psr\Log\LoggerInterface']
      *
-     * @return string[] The required service types, optionally keyed by service names
+     * @return array The required service types, optionally keyed by service names
      */
-    public static function getSubscribedServices(): array;
+    public static function getSubscribedServices();
 }

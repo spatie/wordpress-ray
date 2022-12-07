@@ -8,124 +8,118 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
+namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Codec;
-
-use Ramsey\Uuid\Builder\UuidBuilderInterface;
-use Ramsey\Uuid\Exception\InvalidArgumentException;
-use Ramsey\Uuid\Exception\InvalidUuidStringException;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
-
-use function bin2hex;
-use function hex2bin;
-use function implode;
-use function sprintf;
-use function str_replace;
-use function strlen;
-use function substr;
-
+use InvalidArgumentException;
+use Spatie\WordPressRay\Ramsey\Uuid\Builder\UuidBuilderInterface;
+use Spatie\WordPressRay\Ramsey\Uuid\Uuid;
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 /**
  * StringCodec encodes and decodes RFC 4122 UUIDs
  *
  * @link http://tools.ietf.org/html/rfc4122
- *
- * @psalm-immutable
  */
 class StringCodec implements CodecInterface
 {
     /**
-     * Constructs a StringCodec
-     *
-     * @param UuidBuilderInterface $builder The builder to use when encoding UUIDs
+     * @var UuidBuilderInterface
      */
-    public function __construct(private UuidBuilderInterface $builder)
-    {
-    }
-
-    public function encode(UuidInterface $uuid): string
-    {
-        $hex = bin2hex($uuid->getFields()->getBytes());
-
-        /** @var non-empty-string */
-        return sprintf(
-            '%08s-%04s-%04s-%04s-%012s',
-            substr($hex, 0, 8),
-            substr($hex, 8, 4),
-            substr($hex, 12, 4),
-            substr($hex, 16, 4),
-            substr($hex, 20),
-        );
-    }
-
+    private $builder;
     /**
-     * @psalm-return non-empty-string
-     * @psalm-suppress MoreSpecificReturnType we know that the retrieved `string` is never empty
-     * @psalm-suppress LessSpecificReturnStatement we know that the retrieved `string` is never empty
-     */
-    public function encodeBinary(UuidInterface $uuid): string
-    {
-        /** @phpstan-ignore-next-line PHPStan complains that this is not a non-empty-string. */
-        return $uuid->getFields()->getBytes();
-    }
-
-    /**
-     * @throws InvalidUuidStringException
+     * Constructs a StringCodec for use encoding and decoding UUIDs
      *
-     * @inheritDoc
+     * @param UuidBuilderInterface $builder The UUID builder to use when encoding UUIDs
      */
-    public function decode(string $encodedUuid): UuidInterface
+    public function __construct(UuidBuilderInterface $builder)
     {
-        return $this->builder->build($this, $this->getBytes($encodedUuid));
+        $this->builder = $builder;
     }
-
-    public function decodeBytes(string $bytes): UuidInterface
+    /**
+     * Encodes a UuidInterface as a string representation of a UUID
+     *
+     * @param UuidInterface $uuid
+     * @return string Hexadecimal string representation of a UUID
+     */
+    public function encode(UuidInterface $uuid)
     {
-        if (strlen($bytes) !== 16) {
-            throw new InvalidArgumentException(
-                '$bytes string should contain 16 characters.'
-            );
+        $fields = \array_values($uuid->getFieldsHex());
+        return \vsprintf('%08s-%04s-%04s-%02s%02s-%012s', $fields);
+    }
+    /**
+     * Encodes a UuidInterface as a binary representation of a UUID
+     *
+     * @param UuidInterface $uuid
+     * @return string Binary string representation of a UUID
+     */
+    public function encodeBinary(UuidInterface $uuid)
+    {
+        return \hex2bin($uuid->getHex());
+    }
+    /**
+     * Decodes a string representation of a UUID into a UuidInterface object instance
+     *
+     * @param string $encodedUuid
+     * @return UuidInterface
+     */
+    public function decode($encodedUuid)
+    {
+        $components = $this->extractComponents($encodedUuid);
+        $fields = $this->getFields($components);
+        return $this->builder->build($this, $fields);
+    }
+    /**
+     * Decodes a binary representation of a UUID into a UuidInterface object instance
+     *
+     * @param string $bytes
+     * @return UuidInterface
+     */
+    public function decodeBytes($bytes)
+    {
+        if (\strlen($bytes) !== 16) {
+            throw new InvalidArgumentException('$bytes string should contain 16 characters.');
         }
-
-        return $this->builder->build($this, $bytes);
+        $hexUuid = \unpack('H*', $bytes);
+        return $this->decode($hexUuid[1]);
     }
-
     /**
      * Returns the UUID builder
+     *
+     * @return UuidBuilderInterface
      */
-    protected function getBuilder(): UuidBuilderInterface
+    protected function getBuilder()
     {
         return $this->builder;
     }
-
     /**
-     * Returns a byte string of the UUID
+     * Returns an array of UUID components (the UUID exploded on its dashes)
+     *
+     * @return array
      */
-    protected function getBytes(string $encodedUuid): string
+    protected function extractComponents($encodedUuid)
     {
-        $parsedUuid = str_replace(
-            ['urn:', 'uuid:', 'URN:', 'UUID:', '{', '}', '-'],
-            '',
-            $encodedUuid
-        );
-
-        $components = [
-            substr($parsedUuid, 0, 8),
-            substr($parsedUuid, 8, 4),
-            substr($parsedUuid, 12, 4),
-            substr($parsedUuid, 16, 4),
-            substr($parsedUuid, 20),
-        ];
-
-        if (!Uuid::isValid(implode('-', $components))) {
-            throw new InvalidUuidStringException(
-                'Invalid UUID string: ' . $encodedUuid
-            );
+        $nameParsed = \str_replace(array('urn:', 'uuid:', '{', '}', '-'), '', $encodedUuid);
+        // We have stripped out the dashes and are breaking up the string using
+        // substr(). In this way, we can accept a full hex value that doesn't
+        // contain dashes.
+        $components = array(\substr($nameParsed, 0, 8), \substr($nameParsed, 8, 4), \substr($nameParsed, 12, 4), \substr($nameParsed, 16, 4), \substr($nameParsed, 20));
+        $nameParsed = \implode('-', $components);
+        if (!Uuid::isValid($nameParsed)) {
+            throw new InvalidArgumentException('Invalid UUID string: ' . $encodedUuid);
         }
-
-        return (string) hex2bin($parsedUuid);
+        return $components;
+    }
+    /**
+     * Returns the fields that make up this UUID
+     *
+     * @see \Ramsey\Uuid\UuidInterface::getFieldsHex()
+     * @return array
+     */
+    protected function getFields(array $components)
+    {
+        return array('time_low' => \sprintf('%08s', $components[0]), 'time_mid' => \sprintf('%04s', $components[1]), 'time_hi_and_version' => \sprintf('%04s', $components[2]), 'clock_seq_hi_and_reserved' => \sprintf('%02s', \substr($components[3], 0, 2)), 'clock_seq_low' => \sprintf('%02s', \substr($components[3], 2)), 'node' => \sprintf('%012s', $components[4]));
     }
 }

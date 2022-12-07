@@ -8,47 +8,43 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
+namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Number;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Converter\Number;
-
-use Ramsey\Uuid\Converter\NumberConverterInterface;
-use Ramsey\Uuid\Math\BrickMathCalculator;
-
+use Spatie\WordPressRay\Moontoast\Math\BigNumber;
+use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
 /**
- * Previously used to integrate moontoast/math as a bignum arithmetic library,
- * BigNumberConverter is deprecated in favor of GenericNumberConverter
- *
- * @deprecated Transition to {@see GenericNumberConverter}.
- *
- * @psalm-immutable
+ * BigNumberConverter converts UUIDs from hexadecimal characters into
+ * moontoast/math `BigNumber` representations of integers and vice versa
  */
 class BigNumberConverter implements NumberConverterInterface
 {
-    private NumberConverterInterface $converter;
-
-    public function __construct()
-    {
-        $this->converter = new GenericNumberConverter(new BrickMathCalculator());
-    }
-
     /**
-     * @inheritDoc
-     * @psalm-pure
+     * Converts a hexadecimal number into a `Moontoast\Math\BigNumber` representation
+     *
+     * @param string $hex The hexadecimal string representation to convert
+     * @return BigNumber
      */
-    public function fromHex(string $hex): string
+    public function fromHex($hex)
     {
-        return $this->converter->fromHex($hex);
+        $number = BigNumber::convertToBase10($hex, 16);
+        return new BigNumber($number);
     }
-
     /**
-     * @inheritDoc
-     * @psalm-pure
+     * Converts an integer or `Moontoast\Math\BigNumber` integer representation
+     * into a hexadecimal string representation
+     *
+     * @param int|string|BigNumber $integer An integer or `Moontoast\Math\BigNumber`
+     * @return string Hexadecimal string
      */
-    public function toHex(string $number): string
+    public function toHex($integer)
     {
-        return $this->converter->toHex($number);
+        if (!$integer instanceof BigNumber) {
+            $integer = new BigNumber($integer);
+        }
+        return BigNumber::convertFromBase10($integer, 16);
     }
 }

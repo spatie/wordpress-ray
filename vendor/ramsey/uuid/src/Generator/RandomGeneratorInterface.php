@@ -8,23 +8,23 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
-
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Generator;
+namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
 /**
- * A random generator generates strings of random binary data
+ * RandomGeneratorInterface provides functionality to generate strings of random
+ * binary data
  */
 interface RandomGeneratorInterface
 {
     /**
-     * Generates a string of randomized binary data
+     * Generates a string of random binary data of the specified length
      *
-     * @param int<1, max> $length The number of bytes of random binary data to generate
-     *
+     * @param integer $length The number of bytes of random binary data to generate
      * @return string A binary string
      */
-    public function generate(int $length): string;
+    public function generate($length);
 }

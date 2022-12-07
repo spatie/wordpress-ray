@@ -8,23 +8,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Spatie\WordPressRay\Symfony\Component\VarDumper\Caster;
 
-namespace Symfony\Component\VarDumper\Caster;
-
-use Ramsey\Uuid\UuidInterface;
-use Symfony\Component\VarDumper\Cloner\Stub;
-
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
+use Spatie\WordPressRay\Symfony\Component\VarDumper\Cloner\Stub;
 /**
  * @author Grégoire Pineau <lyrixx@lyrixx.info>
  */
 final class UuidCaster
 {
-    public static function castRamseyUuid(UuidInterface $c, array $a, Stub $stub, bool $isNested): array
+    public static function castRamseyUuid(UuidInterface $c, array $a, Stub $stub, bool $isNested) : array
     {
-        $a += [
-            Caster::PREFIX_VIRTUAL.'uuid' => (string) $c,
-        ];
-
+        $a += [Caster::PREFIX_VIRTUAL . 'uuid' => (string) $c];
         return $a;
     }
 }

@@ -8,64 +8,44 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
+ * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
+ * @link https://packagist.org/packages/ramsey/uuid Packagist
+ * @link https://github.com/ramsey/uuid GitHub
  */
+namespace Spatie\WordPressRay\Ramsey\Uuid\Codec;
 
-declare(strict_types=1);
-
-namespace Ramsey\Uuid\Codec;
-
-use Ramsey\Uuid\UuidInterface;
-
+use Spatie\WordPressRay\Ramsey\Uuid\UuidInterface;
 /**
- * A codec encodes and decodes a UUID according to defined rules
- *
- * @psalm-immutable
+ * CodecInterface represents a UUID coder-decoder
  */
 interface CodecInterface
 {
     /**
-     * Returns a hexadecimal string representation of a UuidInterface
+     * Encodes a UuidInterface as a string representation of a UUID
      *
-     * @param UuidInterface $uuid The UUID for which to create a hexadecimal
-     *     string representation
-     *
+     * @param UuidInterface $uuid
      * @return string Hexadecimal string representation of a UUID
-     *
-     * @psalm-return non-empty-string
      */
-    public function encode(UuidInterface $uuid): string;
-
+    public function encode(UuidInterface $uuid);
     /**
-     * Returns a binary string representation of a UuidInterface
+     * Encodes a UuidInterface as a binary representation of a UUID
      *
-     * @param UuidInterface $uuid The UUID for which to create a binary string
-     *     representation
-     *
+     * @param UuidInterface $uuid
      * @return string Binary string representation of a UUID
-     *
-     * @psalm-return non-empty-string
      */
-    public function encodeBinary(UuidInterface $uuid): string;
-
+    public function encodeBinary(UuidInterface $uuid);
     /**
-     * Returns a UuidInterface derived from a hexadecimal string representation
+     * Decodes a string representation of a UUID into a UuidInterface object instance
      *
-     * @param string $encodedUuid The hexadecimal string representation to
-     *     convert into a UuidInterface instance
-     *
-     * @return UuidInterface An instance of a UUID decoded from a hexadecimal
-     *     string representation
+     * @param string $encodedUuid
+     * @return UuidInterface
      */
-    public function decode(string $encodedUuid): UuidInterface;
-
+    public function decode($encodedUuid);
     /**
-     * Returns a UuidInterface derived from a binary string representation
+     * Decodes a binary representation of a UUID into a UuidInterface object instance
      *
-     * @param string $bytes The binary string representation to convert into a
-     *     UuidInterface instance
-     *
-     * @return UuidInterface An instance of a UUID decoded from a binary string
-     *     representation
+     * @param string $bytes
+     * @return UuidInterface
      */
-    public function decodeBytes(string $bytes): UuidInterface;
+    public function decodeBytes($bytes);
 }
