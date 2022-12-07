@@ -8,74 +8,108 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
- * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
- * @link https://packagist.org/packages/ramsey/uuid Packagist
- * @link https://github.com/ramsey/uuid GitHub
  */
-namespace Spatie\WordPressRay\Ramsey\Uuid\Generator;
 
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+declare(strict_types=1);
+
+namespace Ramsey\Uuid\Generator;
+
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Exception\InvalidArgumentException;
+
+use function bin2hex;
+use function explode;
+use function hex2bin;
+use function microtime;
+use function str_pad;
+use function substr;
+
+use const STR_PAD_LEFT;
+
 /**
- * CombGenerator provides functionality to generate COMB (combined GUID/timestamp)
- * sequential UUIDs
+ * CombGenerator generates COMBs (combined UUID/timestamp)
  *
- * @link https://en.wikipedia.org/wiki/Globally_unique_identifier#Sequential_algorithms
+ * The CombGenerator, when used with the StringCodec (and, by proxy, the
+ * TimestampLastCombCodec) or the TimestampFirstCombCodec, combines the current
+ * timestamp with a UUID (hence the name "COMB"). The timestamp either appears
+ * as the first or last 48 bits of the COMB, depending on the codec used.
+ *
+ * By default, COMBs will have the timestamp set as the last 48 bits of the
+ * identifier.
+ *
+ * ``` php
+ * $factory = new UuidFactory();
+ *
+ * $factory->setRandomGenerator(new CombGenerator(
+ *     $factory->getRandomGenerator(),
+ *     $factory->getNumberConverter()
+ * ));
+ *
+ * $comb = $factory->uuid4();
+ * ```
+ *
+ * To generate a COMB with the timestamp as the first 48 bits, set the
+ * TimestampFirstCombCodec as the codec.
+ *
+ * ``` php
+ * $factory->setCodec(new TimestampFirstCombCodec($factory->getUuidBuilder()));
+ * ```
+ *
+ * @link https://www.informit.com/articles/printerfriendly/25862 The Cost of GUIDs as Primary Keys
  */
 class CombGenerator implements RandomGeneratorInterface
 {
-    /**
-     * @var RandomGeneratorInterface
-     */
-    private $randomGenerator;
-    /**
-     * @var NumberConverterInterface
-     */
-    private $converter;
-    /**
-     * @var integer
-     */
-    private $timestampBytes;
-    /**
-     * Constructs a `CombGenerator` using a random-number generator and a number converter
-     *
-     * @param RandomGeneratorInterface $generator Random-number generator for the non-time part.
-     * @param NumberConverterInterface $numberConverter Instance of number converter.
-     */
-    public function __construct(RandomGeneratorInterface $generator, NumberConverterInterface $numberConverter)
-    {
-        $this->converter = $numberConverter;
-        $this->randomGenerator = $generator;
-        $this->timestampBytes = 6;
+    public const TIMESTAMP_BYTES = 6;
+
+    public function __construct(
+        private RandomGeneratorInterface $generator,
+        private NumberConverterInterface $numberConverter
+    ) {
     }
+
     /**
-     * Generates a string of binary data of the specified length
+     * @throws InvalidArgumentException if $length is not a positive integer
+     *     greater than or equal to CombGenerator::TIMESTAMP_BYTES
      *
-     * @param integer $length The number of bytes of random binary data to generate
-     * @return string A binary string
+     * @inheritDoc
      */
-    public function generate($length)
+    public function generate(int $length): string
     {
-        if ($length < $this->timestampBytes || $length < 0) {
-            throw new \InvalidArgumentException('Length must be a positive integer.');
+        if ($length < self::TIMESTAMP_BYTES) {
+            throw new InvalidArgumentException(
+                'Length must be a positive integer greater than or equal to ' . self::TIMESTAMP_BYTES
+            );
         }
+
         $hash = '';
-        if ($this->timestampBytes > 0 && $length > $this->timestampBytes) {
-            $hash = $this->randomGenerator->generate($length - $this->timestampBytes);
+        if (self::TIMESTAMP_BYTES > 0 && $length > self::TIMESTAMP_BYTES) {
+            $hash = $this->generator->generate($length - self::TIMESTAMP_BYTES);
         }
-        $lsbTime = \str_pad($this->converter->toHex($this->timestamp()), $this->timestampBytes * 2, '0', \STR_PAD_LEFT);
-        if ($this->timestampBytes > 0 && \strlen($lsbTime) > $this->timestampBytes * 2) {
-            $lsbTime = \substr($lsbTime, 0 - $this->timestampBytes * 2);
-        }
-        return \hex2bin(\str_pad(\bin2hex($hash), $length - $this->timestampBytes, '0')) . \hex2bin($lsbTime);
+
+        $lsbTime = str_pad(
+            $this->numberConverter->toHex($this->timestamp()),
+            self::TIMESTAMP_BYTES * 2,
+            '0',
+            STR_PAD_LEFT
+        );
+
+        return (string) hex2bin(
+            str_pad(
+                bin2hex($hash),
+                $length - self::TIMESTAMP_BYTES,
+                '0'
+            )
+            . $lsbTime
+        );
     }
+
     /**
-     * Returns current timestamp as integer, precise to 0.00001 seconds
-     *
-     * @return integer
+     * Returns current timestamp a string integer, precise to 0.00001 seconds
      */
-    private function timestamp()
+    private function timestamp(): string
     {
-        $time = \explode(' ', \microtime(\false));
-        return $time[1] . \substr($time[0], 2, 5);
+        $time = explode(' ', microtime(false));
+
+        return $time[1] . substr($time[0], 2, 5);
     }
 }
