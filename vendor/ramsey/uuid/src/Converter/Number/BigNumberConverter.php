@@ -8,43 +8,47 @@
  *
  * @copyright Copyright (c) Ben Ramsey <ben@benramsey.com>
  * @license http://opensource.org/licenses/MIT MIT
- * @link https://benramsey.com/projects/ramsey-uuid/ Documentation
- * @link https://packagist.org/packages/ramsey/uuid Packagist
- * @link https://github.com/ramsey/uuid GitHub
  */
-namespace Spatie\WordPressRay\Ramsey\Uuid\Converter\Number;
 
-use Spatie\WordPressRay\Moontoast\Math\BigNumber;
-use Spatie\WordPressRay\Ramsey\Uuid\Converter\NumberConverterInterface;
+declare(strict_types=1);
+
+namespace Ramsey\Uuid\Converter\Number;
+
+use Ramsey\Uuid\Converter\NumberConverterInterface;
+use Ramsey\Uuid\Math\BrickMathCalculator;
+
 /**
- * BigNumberConverter converts UUIDs from hexadecimal characters into
- * moontoast/math `BigNumber` representations of integers and vice versa
+ * Previously used to integrate moontoast/math as a bignum arithmetic library,
+ * BigNumberConverter is deprecated in favor of GenericNumberConverter
+ *
+ * @deprecated Transition to {@see GenericNumberConverter}.
+ *
+ * @psalm-immutable
  */
 class BigNumberConverter implements NumberConverterInterface
 {
-    /**
-     * Converts a hexadecimal number into a `Moontoast\Math\BigNumber` representation
-     *
-     * @param string $hex The hexadecimal string representation to convert
-     * @return BigNumber
-     */
-    public function fromHex($hex)
+    private NumberConverterInterface $converter;
+
+    public function __construct()
     {
-        $number = BigNumber::convertToBase10($hex, 16);
-        return new BigNumber($number);
+        $this->converter = new GenericNumberConverter(new BrickMathCalculator());
     }
+
     /**
-     * Converts an integer or `Moontoast\Math\BigNumber` integer representation
-     * into a hexadecimal string representation
-     *
-     * @param int|string|BigNumber $integer An integer or `Moontoast\Math\BigNumber`
-     * @return string Hexadecimal string
+     * @inheritDoc
+     * @psalm-pure
      */
-    public function toHex($integer)
+    public function fromHex(string $hex): string
     {
-        if (!$integer instanceof BigNumber) {
-            $integer = new BigNumber($integer);
-        }
-        return BigNumber::convertFromBase10($integer, 16);
+        return $this->converter->fromHex($hex);
+    }
+
+    /**
+     * @inheritDoc
+     * @psalm-pure
+     */
+    public function toHex(string $number): string
+    {
+        return $this->converter->toHex($number);
     }
 }

@@ -19,6 +19,7 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
+        "ramsey/uuid": "^4.6",
         "spatie/backtrace": "^1.2.1",
         "spatie/ray": "^1.36.0"
     },
