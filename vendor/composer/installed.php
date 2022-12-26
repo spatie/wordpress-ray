@@ -3,7 +3,7 @@
         'name' => 'spatie/wordpress-ray',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1a25555bf996d734792cfe0332d04962459f4105',
+        'reference' => 'a3a6bc3b2e5b8e309c197626028a0ffd8df73ac9',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -82,7 +82,7 @@
         'spatie/wordpress-ray' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1a25555bf996d734792cfe0332d04962459f4105',
+            'reference' => 'a3a6bc3b2e5b8e309c197626028a0ffd8df73ac9',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

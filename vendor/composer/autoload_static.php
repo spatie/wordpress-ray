@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
+class ComposerStaticInit96802fbd89b8c95540ab6e020b618b61
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -24,6 +24,7 @@ class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
             'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\' => 46,
             'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\' => 48,
             'Spatie\\WordPressRay\\Symfony\\Component\\Stopwatch\\' => 48,
+            'Spatie\\WordPressRay\\Spatie\\WordPressRay\\' => 40,
             'Spatie\\WordPressRay\\Spatie\\Ray\\' => 31,
             'Spatie\\WordPressRay\\Spatie\\Macroable\\' => 37,
             'Spatie\\WordPressRay\\Spatie\\Backtrace\\' => 37,
@@ -31,7 +32,6 @@ class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
             'Spatie\\WordPressRay\\Ramsey\\Collection\\' => 38,
             'Spatie\\WordPressRay\\Psr\\Container\\' => 34,
             'Spatie\\WordPressRay\\Brick\\Math\\' => 31,
-            'Spatie\\WordPressRay\\' => 20,
         ),
     );
 
@@ -59,6 +59,10 @@ class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
         'Spatie\\WordPressRay\\Symfony\\Component\\Stopwatch\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/stopwatch',
+        ),
+        'Spatie\\WordPressRay\\Spatie\\WordPressRay\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Spatie\\WordPressRay\\Spatie\\Ray\\' => 
         array (
@@ -88,10 +92,6 @@ class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
-        'Spatie\\WordPressRay\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
     );
 
     public static $classMap = array (
@@ -103,9 +103,9 @@ class ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit83a60eeefd0258df7615f0a336a4ee5f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit96802fbd89b8c95540ab6e020b618b61::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit96802fbd89b8c95540ab6e020b618b61::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit96802fbd89b8c95540ab6e020b618b61::$classMap;
 
         }, null, ClassLoader::class);
     }

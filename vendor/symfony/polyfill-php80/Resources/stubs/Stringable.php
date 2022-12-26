@@ -9,3 +9,4 @@ interface Stringable
      */
     public function __toString();
 }
+\class_alias('Spatie\\WordPressRay\\Stringable', 'Stringable', \false);

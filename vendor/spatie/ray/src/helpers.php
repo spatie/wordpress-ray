@@ -8,7 +8,7 @@ use Spatie\WordPressRay\Spatie\LaravelRay\Ray as LaravelRay;
 use Spatie\WordPressRay\Spatie\Ray\Ray;
 use Spatie\WordPressRay\Spatie\Ray\Settings\SettingsFactory;
 use Spatie\WordPressRay\Spatie\RayBundle\Ray as SymfonyRay;
-use Spatie\WordPressRay\Ray as WordPressRay;
+use Spatie\WordPressRay\Spatie\WordPressRay\Ray as WordPressRay;
 use Spatie\WordPressRay\Spatie\YiiRay\Ray as YiiRay;
 if (!\function_exists('Spatie\\WordPressRay\\ray')) {
     /**

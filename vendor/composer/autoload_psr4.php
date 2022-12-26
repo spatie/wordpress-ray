@@ -12,6 +12,7 @@ return array(
     'Spatie\\WordPressRay\\Symfony\\Contracts\\Service\\' => array($vendorDir . '/symfony/service-contracts'),
     'Spatie\\WordPressRay\\Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Spatie\\WordPressRay\\Symfony\\Component\\Stopwatch\\' => array($vendorDir . '/symfony/stopwatch'),
+    'Spatie\\WordPressRay\\Spatie\\WordPressRay\\' => array($baseDir . '/src'),
     'Spatie\\WordPressRay\\Spatie\\Ray\\' => array($vendorDir . '/spatie/ray/src'),
     'Spatie\\WordPressRay\\Spatie\\Macroable\\' => array($vendorDir . '/spatie/macroable/src'),
     'Spatie\\WordPressRay\\Spatie\\Backtrace\\' => array($vendorDir . '/spatie/backtrace/src'),
@@ -19,5 +20,4 @@ return array(
     'Spatie\\WordPressRay\\Ramsey\\Collection\\' => array($vendorDir . '/ramsey/collection/src'),
     'Spatie\\WordPressRay\\Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Spatie\\WordPressRay\\Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
-    'Spatie\\WordPressRay\\' => array($baseDir . '/src'),
 );
