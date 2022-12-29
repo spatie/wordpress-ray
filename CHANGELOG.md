@@ -2,6 +2,12 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## Unreleased
+
+- using jetpack autoloader instead of class scoping
+- bump minimum version to php 7.4
+- bump WordPress compatability to 6.1
+
 ## 1.5.1 - 2021-09-10
 
 - fix as compatible with WordPress 5.8

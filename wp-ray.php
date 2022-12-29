@@ -8,8 +8,8 @@
  * Author: Spatie
  * Author URI: https://spatie.be
  * License: MIT
- * Requires PHP: 8.0
- * Tested up to: 5.9
+ * Requires PHP: 7.4
+ * Tested up to: 6.1
  */
 
 use Spatie\WordPressRay\Ray;

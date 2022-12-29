@@ -2,9 +2,9 @@
 Contributors: freekmurze
 Donate link: https://github.com/sponsors/spatie
 Tags: development, debugging, debug, developer
-Requires PHP: 7.3
+Requires PHP: 7.4
 Requires at least: 5.5
-Tested up to: 5.9
+Tested up to: 6.1
 Stable tag: 1.5.6
 License: MIT
 
@@ -57,4 +57,3 @@ You can find the changelog [at GitHub](https://github.com/spatie/wordpress-ray/b
 Want to know how to get started? Head over to [our extensive docs](https://spatie.be/docs/ray).
 
 Want to report a bug? Create an issue at the [spatie/wordpress-ray](https://github.com/spatie/wordpress-ray) repo.
-
