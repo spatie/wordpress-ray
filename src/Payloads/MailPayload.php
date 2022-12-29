@@ -2,7 +2,7 @@
 
 namespace Spatie\WordPressRay\Payloads;
 
-use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
+use Spatie\Ray\Payloads\Payload;
 use Spatie\WordPressRay\Support\Mailable;
 
 class MailPayload extends Payload
