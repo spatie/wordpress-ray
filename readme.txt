@@ -2,7 +2,7 @@
 Contributors: freekmurze
 Donate link: https://github.com/sponsors/spatie
 Tags: development, debugging, debug, developer
-Requires PHP: 7.4
+Requires PHP: 8.0
 Requires at least: 5.5
 Tested up to: 6.1
 Stable tag: 1.5.6

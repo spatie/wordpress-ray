@@ -8,7 +8,7 @@
  * Author: Spatie
  * Author URI: https://spatie.be
  * License: MIT
- * Requires PHP: 7.4
+ * Requires PHP: 8.0
  * Tested up to: 6.1
  */
 
