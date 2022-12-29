@@ -26,7 +26,6 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 - update spatie/ray in `composer.json` with the highest version number of the package
 - update `readme.txt` and `wp-ray` with the new release number
-- run `bash build.sh`
 - create a new release, it will automatically be pushed to the WordPress SVN
 
 ## Credits

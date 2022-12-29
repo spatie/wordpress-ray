@@ -2,6 +2,35 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
+## Unreleased
+
+- using jetpack autoloader instead of class scoping
+- bump WordPress compatability to 6.1
+
+## 1.6.0 - 2022-12-26
+
+- require PHP 8
+
+## 1.5.6
+
+- second attempt at fixing deprecation notice on PHP 8.1
+
+## 1.5.5
+
+- bump dependencies
+
+## 1.5.4 - 2022-10-10
+
+- update ray version
+
+## 1.5.3 - 2022-02-18
+
+- Raise the tested up to WP version by @slaFFik in #50
+
+## 1.5.2 - 2022-02-17
+
+- bring up to date with spatie/ray 1.33.2
+
 ## 1.5.1 - 2021-09-10
 
 - fix as compatible with WordPress 5.8

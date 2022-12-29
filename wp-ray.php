@@ -9,15 +9,15 @@
  * Author URI: https://spatie.be
  * License: MIT
  * Requires PHP: 8.0
- * Tested up to: 5.9
+ * Tested up to: 6.1
  */
 
 use Spatie\WordPressRay\Ray;
 
 // This will add the `ray()` function
 if (! class_exists(Ray::class)) {
-    if (is_file(__DIR__ . '/vendor/autoload.php')) {
-        require_once __DIR__ . '/vendor/autoload.php';
+    if (is_file(__DIR__ . '/vendor/autoload_packages.php')) {
+        require_once __DIR__ . '/vendor/autoload_packages.php';
     }
 }
 

@@ -6,13 +6,13 @@ use Spatie\WordPressRay\Loggers\HookLogger;
 use Spatie\WordPressRay\Loggers\MailLogger;
 use Spatie\WordPressRay\Loggers\ErrorLogger;
 use Spatie\WordPressRay\Loggers\QueryLogger;
-use Spatie\WordPressRay\Spatie\Backtrace\Frame;
-use Spatie\WordPressRay\Spatie\Ray\Origin\DefaultOriginFactory;
+use Spatie\Backtrace\Frame;
+use Spatie\Ray\Origin\DefaultOriginFactory;
 
 class OriginFactory extends DefaultOriginFactory
 {
     /**
-     * @return \Spatie\WordPressRay\Spatie\Backtrace\Frame|null
+     * @return \Spatie\Backtrace\Frame|null
      */
     public function getFrame()
     {

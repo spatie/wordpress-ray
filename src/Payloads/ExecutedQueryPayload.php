@@ -2,7 +2,7 @@
 
 namespace Spatie\WordPressRay\Payloads;
 
-use Spatie\WordPressRay\Spatie\Ray\Payloads\Payload;
+use Spatie\Ray\Payloads\Payload;
 
 class ExecutedQueryPayload extends Payload
 {

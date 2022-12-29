@@ -18,10 +18,11 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "ramsey/uuid": "^4.6",
         "spatie/backtrace": "^1.2.1",
-        "spatie/ray": "^1.36.0"
+        "spatie/ray": "^1.36.0",
+        "automattic/jetpack-autoloader": "^2.10"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8.2",
@@ -47,6 +48,7 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
+            "automattic/jetpack-autoloader": true,
             "bamarni/composer-bin-plugin": true,
             "composer/installers": true
         }
