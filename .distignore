@@ -1,0 +1,27 @@
+# Directories
+/.git
+/.github
+/.wordpress-org
+/bin
+/node_modules
+/tests
+/src
+/.idea
+/.php_cs
+/.php_cs.cache
+/.phpunit.result.cache
+/build
+/coverage
+/docs
+/vendor-bin
+# DO NOT EXCLUDE /vendor
+
+# Files
+.editorconfig
+.gitattributes
+.php_cs.dist
+composer.lock
+phpunit.xml.dist
+psalm.xml
+phpunit.xml
+psalm.xml
