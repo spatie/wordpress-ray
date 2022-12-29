@@ -2,11 +2,6 @@
 
 All notable changes to `wordpress-ray` will be documented in this file.
 
-## Unreleased
-
-- using jetpack autoloader instead of class scoping
-- bump WordPress compatability to 6.1
-
 ## 1.6.0 - 2022-12-26
 
 - require PHP 8
