@@ -18,6 +18,7 @@
 # Files
 .editorconfig
 .gitattributes
+.gitignore
 .php_cs.dist
 composer.lock
 phpunit.xml.dist
