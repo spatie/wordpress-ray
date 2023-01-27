@@ -47,6 +47,9 @@
         "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
     },
     "config": {
+        "platform": {
+            "php": "8.0"
+        },
         "sort-packages": true,
         "allow-plugins": {
             "automattic/jetpack-autoloader": true,
