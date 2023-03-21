@@ -20,9 +20,9 @@
     "require": {
         "php": "^8.0",
         "ramsey/uuid": "^4.6",
-        "spatie/backtrace": "^1.2.1",
-        "spatie/ray": "^1.36.0",
-        "automattic/jetpack-autoloader": "^2.10"
+        "spatie/backtrace": "^1.4.0",
+        "spatie/ray": "^1.37.1",
+        "automattic/jetpack-autoloader": "^2.11"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8.2",
