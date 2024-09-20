@@ -9,7 +9,7 @@
  * Author URI: https://spatie.be
  * License: MIT
  * Requires PHP: 8.0
- * Tested up to: 6.5
+ * Tested up to: 6.6
  */
 
 use Spatie\WordPressRay\Ray;
