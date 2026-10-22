@@ -6,7 +6,7 @@
 
 This package can be installed in any WordPress project to send debug output to [Ray](https://myray.app), the desktop debugging app from [Spatie](https://spatie.be/). 
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/wordpress-ray.jpg?t=1769610086" width="500px" />](https://spatie.be/github-ad-click/wordpress-ray)
+[<img src="https://spatie.be/github-ad-image/wordpress-ray.jpg" width="500px" />](https://spatie.be/github-ad-click/wordpress-ray)
 
 Ray is a desktop debugging app that keeps the instant feedback you get from console.log() and dump() but lets you use the same debugging syntax across Laravel, PHP, JavaScript and more frameworks and languages.
 
